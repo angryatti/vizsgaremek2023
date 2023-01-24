@@ -99,5 +99,10 @@ laravel_weboldal/Homestead.yaml
 laravel_weboldal/Homestead.json
 laravel_weboldal/.vagrant
 laravel_weboldal/.phpunit.result.cache
+
+<<<<<<< HEAD
+desktop_management/PetAndCareDesktopApp/bin/*
+desktop_management/PetAndCareDesktopApp/obj/*
+
 >>>>>>> f25b96c4c777fc57c2b362205e43f30164ed232d
 >>>>>>> d166afc056c8a1346ca63c1459af6d390b58c674
