@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 laravel_weboldal/node_modules
 laravel_weboldal/public/build
 laravel_weboldal/public/hot
@@ -22,3 +23,28 @@ laravel_weboldal/docker/php/home
 laravel_weboldal/docker/mysql/var/lib/mysql/*
 laravel_weboldal/.idea
 laravel_weboldal/README.pdf
+=======
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+>>>>>>> f25b96c4c777fc57c2b362205e43f30164ed232d
