@@ -15,9 +15,9 @@ laravel_weboldal/Homestead.yaml
 laravel_weboldal/auth.json
 laravel_weboldal/npm-debug.log
 laravel_weboldal/yarn-error.log
-laravel_weboldal//.fleet
-laravel_weboldal//.idea
-laravel_weboldal//.vscode
+laravel_weboldal/.fleet
+laravel_weboldal/.idea
+laravel_weboldal/.vscode
 
 laravel_weboldal/.DS_Store
 laravel_weboldal/docker/php/home

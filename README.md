@@ -1,14 +1,16 @@
-# Laravel kiinduó projekt
+# Laravel - Pet & Care
+## az eredeti docker száramási helye
+```https://github.com/rcsnjszg/laravel-alap
 
 ## Szerver előkészítése
 
-A `https://github.com/rcsnjszg/laravel-alap.git` egy olyan alap projektet tartalmaz, ami már tartalmaz egy teljes webszervert docker alapokon, továbbá `https://github.com/laravel/laravel` oldalon található laravel 9-es verzióját.
+A `https://github.com/angryatti/vizsgaremek2023.git` egy olyan alap projektet tartalmaz, ami már tartalmaz egy teljes webszervert docker alapokon, továbbá `https://github.com/laravel/laravel` oldalon található laravel 9-es verzióját.
 
 A tároló klónozásával hozzunk létre egy új projektet.
 A `projekt_neve` helyére illesszük be, hogy melyik mappában szeretnénk ezt megtenni.
 
 ```bash
-git clone https://github.com/rcsnjszg/laravel-alap.git projekt_neve
+git clone https://github.com/angryatti/vizsgaremek2023.git projekt_neve
 ```
 
 Amennyiben nem lenne git a gépünkön telepítve, az előbbi műveletet docker segítségével is megtehetjük:
@@ -17,20 +19,20 @@ Amennyiben nem lenne git a gépünkön telepítve, az előbbi műveletet docker 
 
 ```bat
 docker run -it --rm -v %cd%:/git alpine/git clone ^
-    https://github.com/rcsnjszg/laravel-alap.git projekt_neve
+    https://github.com/angryatti/vizsgaremek2023.git projekt_neve
 ```
 
 **Windows - Power Shell**
 
 ```powershell
 docker run -it --rm -v /${PWD}:/git alpine/git clone \
-    https://github.com/rcsnjszg/laravel-alap.git projekt_neve
+    https://github.com/angryatti/vizsgaremek2023.git projekt_neve
 ```
 **Mac és Linux - bash, zsh, fish**
 
 ```bash
 docker run -it --rm -v (pwd):/git alpine/git clone \
-    https://github.com/rcsnjszg/laravel-alap.git projekt_neve
+    https://github.com/angryatti/vizsgaremek2023.git projekt_neve
 ```
 
 Ahogy a Laravel projekt esetén, így itt is szükségünk lesz egy `.env` fájlra, amit a `.env.example` másolásával hozhatjuk létre a legegyszerűbben.
@@ -203,8 +205,8 @@ git remote -v
 ```
 
 ```text
-origin  git@github.com:rcsnjszg/laravel-alap.git (fetch)
-origin  git@github.com:rcsnjszg/laravel-alap.git (push)
+origin  git@github.com:angryatti/vizsgaremek2023.git (fetch)
+origin  git@github.com:angryatti/vizsgaremek2023.git (push)
 ```
 
 Láthatjuk, hogy az a repo van beállítva, amit leklónoztunk.
