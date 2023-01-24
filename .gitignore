@@ -1,4 +1,56 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+laravel_weboldal/node_modules
+laravel_weboldal/public/build
+laravel_weboldal/public/hot
+laravel_weboldal/public/storage
+laravel_weboldal/storage/*.key
+laravel_weboldal/vendor
+laravel_weboldal/.env
+laravel_weboldal/.env.backup
+laravel_weboldal/.env.production
+laravel_weboldal/.phpunit.result.cache
+laravel_weboldal/Homestead.json
+laravel_weboldal/Homestead.yaml
+laravel_weboldal/auth.json
+laravel_weboldal/npm-debug.log
+laravel_weboldal/yarn-error.log
+laravel_weboldal//.fleet
+laravel_weboldal//.idea
+laravel_weboldal//.vscode
+
+laravel_weboldal/.DS_Store
+laravel_weboldal/docker/php/home
+laravel_weboldal/docker/mysql/var/lib/mysql/*
+laravel_weboldal/.idea
+laravel_weboldal/README.pdf
+=======
+laravel_weboldal/vendor/
+laravel_weboldal/node_modules/
+laravel_weboldal/npm-debug.log
+laravel_weboldal/yarn-error.log
+
+# Laravel 4 specific
+laravel_weboldal/bootstrap/compiled.php
+laravel_weboldal/app/storage/
+
+# Laravel 5 & Lumen specific
+laravel_weboldal/public/storage
+laravel_weboldal/public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+laravel_weboldal/laravel_weboldal/public_html/storage
+laravel_weboldal/laravel_weboldal/public_html/hot
+
+laravel_weboldal/storage/*.key
+laravel_weboldal/.env
+laravel_weboldal/Homestead.yaml
+laravel_weboldal/Homestead.json
+laravel_weboldal/.vagrant
+laravel_weboldal/.phpunit.result.cache
+>>>>>>> f25b96c4c777fc57c2b362205e43f30164ed232d
+=======
+<<<<<<< HEAD
 laravel_weboldal/node_modules
 laravel_weboldal/public/build
 laravel_weboldal/public/hot
@@ -25,26 +77,27 @@ laravel_weboldal/.idea
 laravel_weboldal/README.pdf
 =======
 /vendor/
-node_modules/
-npm-debug.log
-yarn-error.log
+laravel_weboldal/node_modules/
+laravel_weboldal/npm-debug.log
+laravel_weboldal/yarn-error.log
 
 # Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+laravel_weboldal/bootstrap/compiled.php
+laravel_weboldal/app/storage/
 
 # Laravel 5 & Lumen specific
-public/storage
-public/hot
+laravel_weboldal/public/storage
+laravel_weboldal/public/hot
 
 # Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
+laravel_weboldal/public_html/storage
+laravel_weboldal/public_html/hot
 
-storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
+laravel_weboldal/storage/*.key
+laravel_weboldal/.env
+laravel_weboldal/Homestead.yaml
+laravel_weboldal/Homestead.json
+laravel_weboldal/.vagrant
+laravel_weboldal/.phpunit.result.cache
 >>>>>>> f25b96c4c777fc57c2b362205e43f30164ed232d
+>>>>>>> d166afc056c8a1346ca63c1459af6d390b58c674
