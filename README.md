@@ -1,6 +1,7 @@
 # Laravel - Pet & Care
 ## az eredeti docker száramási helye
-```https://github.com/rcsnjszg/laravel-alap
+
+https://github.com/rcsnjszg/laravel-alap
 
 ## Szerver előkészítése
 
