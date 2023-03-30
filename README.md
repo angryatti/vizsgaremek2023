@@ -4,6 +4,7 @@
 https://github.com/rcsnjszg/laravel-alap
 
 ## Szerver előkészítése
+A node.js 18.4.x LTS vagy node.js 19.7.0, amelynek npm kezelőjének optimális verziószáma: 9.5.0
 
 A `https://github.com/angryatti/vizsgaremek2023.git` egy olyan alap projektet tartalmaz, ami már tartalmaz egy teljes webszervert docker alapokon, továbbá `https://github.com/laravel/laravel` oldalon található laravel 9-es verzióját.
 
@@ -12,6 +13,11 @@ A `projekt_neve` helyére illesszük be, hogy melyik mappában szeretnénk ezt m
 
 ```bash
 git clone https://github.com/angryatti/vizsgaremek2023.git projekt_neve
+```
+
+**Ezzel adunk futtatási jogot a start.sh-hoz**  
+```
+chmod u+x
 ```
 
 Amennyiben nem lenne git a gépünkön telepítve, az előbbi műveletet docker segítségével is megtehetjük:
