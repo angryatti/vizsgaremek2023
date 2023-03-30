@@ -9,6 +9,9 @@
     @vite(['resources/css/app.scss','resources/js/app.js' , 'resources/js/app.vue.js'])
 </head>
 <body class="bg">
-    @yield("content")
+    <div>
+        @yield("content")
+    </div>
+    
 </body>
 </html>
