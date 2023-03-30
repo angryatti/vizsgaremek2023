@@ -8,7 +8,7 @@
     <title>@yield("title")</title>
     @vite(['resources/css/app.scss','resources/js/app.js' , 'resources/js/app.vue.js'])
 </head>
-<body>
+<body class="bg">
     @yield("content")
 </body>
 </html>
