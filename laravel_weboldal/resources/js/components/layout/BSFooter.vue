@@ -12,7 +12,7 @@
 
 
 </script>
-<style>
+<style scoped>
          p{
             text-align: center;
             color: white;
