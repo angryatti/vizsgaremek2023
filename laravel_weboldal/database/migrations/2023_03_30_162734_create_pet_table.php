@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->string('pet_name',35)->nullable(false);
+            $table->string('gender',7)->nullable(false);
+            $table->boolean('castrated')->nullable(false);
             $table->string('img_userdefine',100)->nullable(true);
             $table->text('description')->nullable(false);
             $table->string('contact_info',200)->nullable(false);
