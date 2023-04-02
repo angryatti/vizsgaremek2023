@@ -24,7 +24,7 @@ $COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml  up -d
 $COMPOSE exec app composer install
 $COMPOSE exec app php artisan key:generate
 $COMPOSE exec app npm install
-$COMPOSE exec app php artisan migrate:refresh --seed --seeder=DatabasePetSeeder
+$COMPOSE exec app php artisan migrate:refresh --seed --seeder=DatabasePetSeeder --seeder=DatabaseDogListSeeder
 npm install vite
 npm run build
 npm run dev
