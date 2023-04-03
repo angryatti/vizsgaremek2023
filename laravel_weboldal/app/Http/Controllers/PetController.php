@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePetRequest;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 
@@ -19,4 +20,6 @@ class PetController extends Controller
     {
         return Pet::where('id',$id)->get();
     }
+
+    
 }
