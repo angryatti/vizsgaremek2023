@@ -11,17 +11,18 @@
             <TabItem Header="Bejelentkezés">
                 <Grid Background="#FFE5E5E5" >
                     <Grid.ColumnDefinitions>
-                    
-                        <ColumnDefinition MinWidth="100"  Width="*"/>
-                        
-                        <ColumnDefinition MinWidth="100" Width="*" />
-                        
-                        <ColumnDefinition MinWidth="100" Width="*" />
-                  
-                        <ColumnDefinition MinWidth="100" Width="*" />
 
-                        <ColumnDefinition MinWidth="100" Width="*" />
-                        
+                        <ColumnDefinition MinWidth="100"  Width="34*"/>
+                        <ColumnDefinition Width="19*"/>
+
+                        <ColumnDefinition MinWidth="100" Width="53*" />
+
+                        <ColumnDefinition MinWidth="100" Width="53*" />
+
+                        <ColumnDefinition MinWidth="100" Width="53*" />
+
+                        <ColumnDefinition MinWidth="100" Width="53*" />
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
@@ -30,14 +31,14 @@
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                     </Grid.RowDefinitions>
-                    
-                    <Label Grid.Column="0" Grid.Row="0" x:Name="userName" Content="Felhasználónév:" Target="{Binding ElementName=usernameTB}"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="usernameTB" TextWrapping="Wrap" Text="root" ForceCursor="True" VerticalAlignment="Center" />
-                    <Label Grid.Column="0" Grid.Row="1"  x:Name="password" Content="Jelszó:" Target="{Binding ElementName=passwordPB}"/>
-                    <PasswordBox Grid.Column="1" Grid.Row="1" x:Name="passwordPB" />
-                    <Button Grid.Column="1" Grid.Row="2"  x:Name="adminLoginBT" Content="MySQL Connect" Click="adminLoginBT_Click" IsDefault="True"/>
 
-                    <Label Grid.Column="1" Grid.Row="3" x:Name="loginMessage" Content="Jelentkezzen be!" Foreground="Red" />
+                    <Label Grid.Column="0" Grid.Row="0" x:Name="userName" Content="Felhasználónév:" Target="{Binding ElementName=usernameTB}" Grid.ColumnSpan="3" Margin="0,0,159,26" Grid.RowSpan="2"/>
+                    <TextBox Grid.Column="2" x:Name="usernameTB" TextWrapping="Wrap" Text="root" ForceCursor="True" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,158,0" />
+                    <Label Grid.Column="0" Grid.Row="1"  x:Name="password" Content="Jelszó:" Target="{Binding ElementName=passwordPB}" Grid.ColumnSpan="3" Margin="0,0,159,25" Grid.RowSpan="2"/>
+                    <PasswordBox Grid.Column="2" Grid.Row="1" x:Name="passwordPB" Grid.ColumnSpan="2" Margin="0,0,158,25" Grid.RowSpan="2" />
+                    <Button Grid.Column="2" Grid.Row="2"  x:Name="adminLoginBT" Content="MySQL Connect" Click="adminLoginBT_Click" IsDefault="True" Grid.ColumnSpan="2" Margin="0,0,158,26" Grid.RowSpan="2"/>
+
+                    <Label Grid.Column="2" Grid.Row="3" x:Name="loginMessage" Content="Jelentkezzen be!" Foreground="Red" Grid.ColumnSpan="2" Margin="0,0,158,25" Grid.RowSpan="2" />
 
                 </Grid>
             </TabItem>
@@ -55,15 +56,34 @@
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
-                  
+
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" x:Name="PetNameLB" Content="Kisállat neve:" />
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="petNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" VerticalAlignment="Center" />
-                    <Button Grid.Column="2" Grid.Row="2" x:Name="nextPetBT" Click="nextDogPetBT_Click">Következő állat</Button>
+                    <Label Grid.Column="0" Grid.Row="0" x:Name="PetDogNameLB" Content="Kisállat neve:" />
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="petDogNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" VerticalAlignment="Center" />
+                    <Button Grid.Column="2" Grid.Row="2" x:Name="nextDogPetBT" Click="nextDogPetBT_Click">Következő állat</Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Cicák">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition MinWidth="100"  Width="*"/>
+
+                        <ColumnDefinition MinWidth="100" Width="*" />
+
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="25"  Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" x:Name="PetCatNameLB" Content="Kisállat neve:" />
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="petCatNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" VerticalAlignment="Center" />
+                    <Button Grid.Column="2" Grid.Row="2" x:Name="nextCatPetBT" Click="nextCatPetBT_Click">Következő kisállat</Button>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Egyéb">
                 <Grid Background="#FFE5E5E5"/>
