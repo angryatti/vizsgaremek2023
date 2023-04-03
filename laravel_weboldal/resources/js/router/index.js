@@ -72,7 +72,16 @@ const routes = [
       title: "Regisztráció",
       requiesAuth: false
     }
-  }
+  },
+  {
+    path: '/allatok/:id',
+    name: 'kisallat',
+    component: () => import('@/pages/AdvertPage.vue'),
+    meta: {
+      title: "Egy adott kisállat",
+      requiesAuth: false
+    }
+  },
 ]
 
 export const router = createRouter({

@@ -8,6 +8,11 @@
             <form action="">
                 <label for="info" class="mb-4" ><h1>Adja meg az adatokat!</h1></label><br>
 
+            <label for="username"><h2>Felhasználónév</h2></label>
+            <div class="col-6 mx-auto">
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+
             <label for="email"><h2>E-mail</h2></label>
             <div class="col-6 mx-auto">
                 <input type="text" name="email" id="email" class="form-control">
@@ -20,7 +25,11 @@
             </div>
 
 
+<<<<<<< HEAD
             <label for="password2"><h2>Jelszó megint</h2></label>
+=======
+            <label for="password"><h2>Jelszó megerősítés</h2></label>
+>>>>>>> 453b0d1ba226a33497f1cd4f7f154180cc80c948
             <div class="col-6 mx-auto">
                <input type="password" name="password2" id="password2" class="form-control "> 
             </div>

@@ -8,6 +8,14 @@ namespace PetAndCareDesktopApp
 {
     public class Pet
     {
+
+        public Pet()
+        {
+
+
+        }
+
+
         public Pet(int iD, string petName, string breed, string gender, bool castrated, string imgUserDefine, string description, string contactInfo, DateTime createdAt, DateTime updatedAt)
         {
             ID = iD;

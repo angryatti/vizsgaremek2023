@@ -5,7 +5,7 @@
             <h5 class="card-title">{{pet.pet_name}}</h5>
             <p class="card-text">{{pet.breed}}<br>
                                  {{pet.gender}}</p>
-            <a href="#" class="btn btn-primary">További információk</a>
+            <div @onclick="gotoDetails()" class="btn btn-primary">További információk</div>
         </div>
     </div>
 </template>
@@ -14,7 +14,13 @@
 export default{
   name: "AdvertCard",
   props:{
-    pet: Object
+    pet: Object,
+    id: pet.id
+  },
+  methods:{
+    gotoDetails(){
+      this.$router.push({path:"/allatok/id"})
+    }
   }
 }
 </script>
