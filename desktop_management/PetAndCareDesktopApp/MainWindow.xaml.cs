@@ -22,6 +22,7 @@ namespace PetAndCareDesktopApp
         bool adminSigned = false;
         List<Pet> pets = new List<Pet>();
         List<Dog> dogs = new List<Dog>();
+        List<Cat> cats = new List<Cat>();
         private async void adminLoginBT_Click(object sender, RoutedEventArgs e)
         {
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
@@ -86,6 +87,16 @@ namespace PetAndCareDesktopApp
                                 updatedAt: currentUpdated));
 
                         }
+
+                        if (reader.GetValue(2).ToString() == "macska")
+                        {
+                            cats.Add(new Cat(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
+                                gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
+                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), createdAt: currentDate,
+                                updatedAt: currentUpdated));
+
+                        }
+
                     }
 
           
@@ -93,10 +104,7 @@ namespace PetAndCareDesktopApp
 
                     await connection.CloseAsync();
 
-                    foreach (Pet pet in pets)
-                    {
-                        MessageBox.Show(pet.PetName+" "+pet.Breed);
-                    }
+                   
 
 
 
@@ -128,13 +136,32 @@ namespace PetAndCareDesktopApp
 
             }
 
-            petNameTB.Text = dogs[petDogCounter].PetName;
+            petDogNameTB.Text = dogs[petDogCounter].PetName;
 
 
 
 
 
             petDogCounter++;
+        }
+
+        int petCatCounter = 0;
+        private void nextCatPetBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (petCatCounter == cats.Count)
+            {
+
+                petCatCounter = 0;
+
+            }
+
+            petCatNameTB.Text = cats[petCatCounter].PetName;
+
+
+
+
+
+            petCatCounter++;
         }
     }
 }
