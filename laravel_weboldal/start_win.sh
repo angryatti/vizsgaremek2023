@@ -24,7 +24,8 @@ winpty $COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml  up -d
 winpty $COMPOSE exec app composer install
 winpty $COMPOSE exec app php artisan key:generate
 winpty $COMPOSE exec app npm install
-winpty $COMPOSE exec app php artisan migrate:refresh --seed --seeder=DatabasePetSeeder --seeder=DatabaseDogListSeeder
+winpty $COMPOSE exec app php artisan migrate:refresh
+winpty $COMPOSE exec app php artisan db:seed
 npm install vite
 npm run build
 npm run dev

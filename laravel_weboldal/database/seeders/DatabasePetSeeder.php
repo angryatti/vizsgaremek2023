@@ -22,7 +22,9 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Nagymaros utca.",
-            'description' => "A kiskutya két hete született, jövő héten elvihető."
+            'description' => "A kiskutya két hete született, jövő héten elvihető.",
+            'created_at' => '2022-12-09',
+            'updated_at' => '2023-01-06'
         ]);
 
         DB::table('pets')->insert([
