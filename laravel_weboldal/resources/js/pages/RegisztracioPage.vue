@@ -5,7 +5,15 @@
         <div class="container bg-primary bg-opacity-25">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 mt-3">
-            <form action="">
+                   
+                   <div>
+    <input name="fieldName" v-model="value" />
+    <span v-if="errorMessage && meta.touched">
+      {{ errorMessage }}
+    </span>
+  </div>
+
+           <!-- <form @submit="sendData">
                 <label for="info" class="mb-4" ><h1>Adja meg az adatokat!</h1></label><br>
 
             <label for="username"><h2>Felhasználónév</h2></label>
@@ -30,7 +38,11 @@
             
 
             <button type="submit" class="btn btn-primary mt-3">Regisztráció</button>
-        </form> 
+<ErrorComponent v-if="error" :error="error" /> {{error}}
+
+        </form> -->
+
+        
                 </div>
             </div>
         </div>
@@ -40,6 +52,46 @@
 </template>
 
 <script>
+import { object, string } from 'yup';
+import { useField } from 'vee-validate';
+
+const { errorMessage, meta, value } = useField('fieldName');
+export default{
+    data(){
+        const schema = yup.object({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8)});
+
+       return{
+        error:null,
+        schema,
+        
+       }
+    },
+    
+   /* methods:{
+        sendData(values){
+        try{
+            const resp = axios.post("http://localhost:8881/api/user", values)
+        }catch(e){
+            this.error = e
+        }
+        }
+    },*/
+  setup() {
+    // Non-reactive because it was not explicitly defined with `reactive` or `ref`
+    const schema = yup.object({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+    });
+
+    return {
+      schema,
+    };
+  },
+
+   
+}
 </script>
 
 <style scoped>

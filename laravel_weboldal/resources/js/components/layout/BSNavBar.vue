@@ -13,7 +13,7 @@
         </li>
       </ul>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
-        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-for="link in routes.slice(5, 8)" :key="link.name">
+        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-for="link in routes.slice(5, 9)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link>
         </li>
       </ul>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePetRequest;
+use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -36,7 +38,8 @@ class UserController extends Controller
     public function store(StorePetRequest $request)
     {
         $validated = $request->validated();
-        return redirect();
+        User::create($validated);
+        return User::create();
     }
 
     /**
