@@ -24,12 +24,8 @@
                <input type="password" name="password" id="password" class="form-control "> 
             </div>
 
-
-<<<<<<< HEAD
             <label for="password2"><h2>Jelszó megint</h2></label>
-=======
             <label for="password"><h2>Jelszó megerősítés</h2></label>
->>>>>>> 453b0d1ba226a33497f1cd4f7f154180cc80c948
             <div class="col-6 mx-auto">
                <input type="password" name="password2" id="password2" class="form-control "> 
             </div>
