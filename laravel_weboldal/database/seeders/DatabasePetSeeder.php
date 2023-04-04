@@ -23,6 +23,7 @@ class DatabasePetSeeder extends Seeder
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Nagymaros utca.",
             'description' => "A kiskutya két hete született, jövő héten elvihető.",
+            'petbreed_id' => 1,
             'created_at' => '2022-12-09',
             'updated_at' => '2023-01-06'
         ]);
@@ -34,7 +35,8 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Nagymaros utca.",
-            'description' => "A kiskutya két hete született, jövő héten nagy eséllyel elvihető."
+            'description' => "A kiskutya két hete született, jövő héten nagy eséllyel elvihető.",
+            'petbreed_id' => 31
         ]);
 
         DB::table('pets')->insert([
@@ -44,7 +46,8 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Nagy Lajos király útja.",
-            'description' => "A kislány kutya három hete született, ivartalanított, jövő héten elvihető."
+            'description' => "A kislány kutya három hete született, ivartalanított, jövő héten elvihető.",
+            'petbreed_id' => 5,
         ]);
 
         DB::table('pets')->insert([
@@ -54,7 +57,8 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Deák Ferenc tér",
-            'description' => "A kislány kutya két hónapja született, ivartalanított, azonnal elvihető."
+            'description' => "A kislány kutya két hónapja született, ivartalanított, azonnal elvihető.",
+            'petbreed_id' => 1,
         ]);
 
         DB::table('pets')->insert([
@@ -64,7 +68,8 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
           //  'img_userdefine' => "morzsi.jpg",
           'contact_info' => "Budapest, Deák Ferenc tér",
-            'description' => "A kiskutya három hete született, ivartalanított, jövő héten elvihető."
+            'description' => "A kiskutya három hete született, ivartalanított, jövő héten elvihető.",
+            'petbreed_id' => 12
         ]);
 
 
@@ -75,7 +80,8 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
           //  'img_userdefine' => "mirci.jpg",
           'contact_info' => "Budapest XVII, Kisvárda utcában.",
-            'description' => "Háromhetes. A cica ivartalanított és féregtelenítve!"
+            'description' => "Háromhetes. A cica ivartalanított és féregtelenítve!",
+         
         ]);
 
         DB::table('pets')->insert([

@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('img_userdefine',100)->nullable(true);
             $table->text('description')->nullable(false);
             $table->string('contact_info',200)->nullable(false);
+            $table->integer('petbreed_id',false,false)->nullable(true);
+       //     $table->foreignId('user_id')->references('id')->on('users');;
+
             $table->timestamps();
         });
     }
