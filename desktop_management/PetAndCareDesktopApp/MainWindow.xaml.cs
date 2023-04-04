@@ -129,25 +129,74 @@ namespace PetAndCareDesktopApp
         int petDogCounter = 0;
         private void nextDogPetBT_Click(object sender, RoutedEventArgs e)
         {
-            if (petDogCounter == dogs.Count)
+
+
+            if (adminSigned)
             {
 
-                petDogCounter = 0;
+
+
+                if (petDogCounter == dogs.Count)
+                {
+
+                    petDogCounter = 0;
+
+                }
+
+                try
+                {
+                    petDogNameTB.Text = dogs[petDogCounter].PetName;
+                    petDogGenderTB.Text = dogs[petDogCounter].Gender;
+                    petDogCastratedTB.Text = dogs[petDogCounter].Castrated.ToString();
+                    if (dogs[petDogCounter].ImgUserDefine.ToString() == "")
+                    {
+                        petDogImgUserDefineTB.Text = "NULL";
+                    }
+                    petDogDescriptionTB.Text = dogs[petDogCounter].Description;
+
+                    petDogContactInfoTB.Text = dogs[petDogCounter ].ContactInfo;
+
+
+                }
+                catch (PetException ex)
+
+                {
+                    MessageBox.Show(ex.Message);
+
+
+
+
+                }
+                finally
+                {
+
+                    petDogCounter++;
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
 
             }
 
-            petDogNameTB.Text = dogs[petDogCounter].PetName;
 
 
-
-
-
-            petDogCounter++;
         }
 
         int petCatCounter = 0;
         private void nextCatPetBT_Click(object sender, RoutedEventArgs e)
         {
+
+            if (cats.Count < 0)
+            {
+
+                throw new PetException("Adatbázisban nem szerepel cica, javítsa ki!");
+
+
+            }
+
+
             if (petCatCounter == cats.Count)
             {
 
