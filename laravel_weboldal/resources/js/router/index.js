@@ -74,7 +74,7 @@ const routes = [
     }
   },
   {
-    path: '/allatok/:id',
+    path: '/allat/:id',
     name: 'kisallat',
     component: () => import('@/pages/AdvertPage.vue'),
     meta: {
