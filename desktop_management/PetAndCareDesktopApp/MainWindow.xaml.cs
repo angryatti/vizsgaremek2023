@@ -56,10 +56,24 @@ namespace PetAndCareDesktopApp
                     DbDataReader reader = await command.ExecuteReaderAsync();
                     DateTime currentDate;
                     DateTime currentUpdated;
+                    int petBreadID = 0;
+
                     while (await reader.ReadAsync())
                     {
+                        if (reader.GetValue(8).ToString() == string.Empty)
+                        {
+                            petBreadID = -1;
 
-                        if (reader.GetValue(8).ToString() == string.Empty || reader.GetValue(8)==null)
+
+                        }
+                        else
+                        {
+
+                            petBreadID = Convert.ToInt32(reader.GetValue(8));
+
+
+                        }
+                        if (reader.GetValue(9).ToString() == string.Empty || reader.GetValue(9)==null)
                         {
                             currentDate = DateTime.Now;
                             currentUpdated = DateTime.Now;
@@ -67,8 +81,8 @@ namespace PetAndCareDesktopApp
                         else
                         {
 
-                            currentDate = Convert.ToDateTime(reader.GetValue(8));
-                            currentUpdated = Convert.ToDateTime(reader.GetValue(9));
+                            currentDate = Convert.ToDateTime(reader.GetValue(9));
+                            currentUpdated = Convert.ToDateTime(reader.GetValue(10));
 
 
 
@@ -76,14 +90,16 @@ namespace PetAndCareDesktopApp
 
                         pets.Add(new Pet(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
                             gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
-                            description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), createdAt: currentDate,
+                            description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), petbreadid: petBreadID, 
+                            createdAt: currentDate,
                             updatedAt: currentUpdated));
 
                         if (reader.GetValue(2).ToString() == "kutya")
                         {
                             dogs.Add(new Dog(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
                                 gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
-                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), createdAt: currentDate,
+                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(),
+                                petbreedid: petBreadID , createdAt: currentDate,
                                 updatedAt: currentUpdated));
 
                         }
@@ -92,19 +108,35 @@ namespace PetAndCareDesktopApp
                         {
                             cats.Add(new Cat(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
                                 gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
-                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), createdAt: currentDate,
+                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), 
+                                petbreedid: petBreadID, createdAt: currentDate,
                                 updatedAt: currentUpdated));
 
                         }
 
                     }
 
-          
+
+                    await reader.CloseAsync();
+
+                    command = new MySqlCommand("SELECT `dogbreed` FROM `doglist`;", connection);
+                    reader = await command.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+
+
+                        petBreedDogCB.Items.Add(reader.GetValue(0));
+
+
+                    }
+
+                    await reader.CloseAsync();
 
 
                     await connection.CloseAsync();
 
-                   
+                    
 
 
 
@@ -155,7 +187,7 @@ namespace PetAndCareDesktopApp
                     petDogDescriptionTB.Text = dogs[petDogCounter].Description;
 
                     petDogContactInfoTB.Text = dogs[petDogCounter ].ContactInfo;
-
+                    petBreedDogCB.SelectedIndex = dogs[petDogCounter].PetBreedId;
 
                 }
                 catch (PetException ex)
