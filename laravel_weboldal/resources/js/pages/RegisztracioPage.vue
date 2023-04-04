@@ -23,8 +23,6 @@
             <div class="col-6 mx-auto">
                <input type="password" name="password" id="password" class="form-control "> 
             </div>
-
-            <label for="password2"><h2>Jelszó megint</h2></label>
             <label for="password"><h2>Jelszó megerősítés</h2></label>
             <div class="col-6 mx-auto">
                <input type="password" name="password2" id="password2" class="form-control "> 

@@ -15,11 +15,10 @@ export default{
   name: "AdvertCard",
   props:{
     pet: Object,
-    id: pet.id
   },
   methods:{
     gotoDetails(){
-      this.$router.push({path:"/allatok/id"})
+      this.$router.push({path:"/allatok/:id"})
     }
   }
 }
