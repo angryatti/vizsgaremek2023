@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace PetAndCareDesktopApp
@@ -25,6 +28,7 @@ namespace PetAndCareDesktopApp
         List<Cat> cats = new List<Cat>();
         private async void adminLoginBT_Click(object sender, RoutedEventArgs e)
         {
+
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
 
             string checkUser = connection.ConnectionString.ToString().Split(';')[3].Split('=')[1];
@@ -44,11 +48,29 @@ namespace PetAndCareDesktopApp
                 {
 
 
+                 
+
                     adminSigned = true;
+                
+
+                    if (loginMessage.Foreground == Brushes.Red)
+                    {
+
+                        adminLoginBT.Content = "Kijelentkezés";
+                        loginMessage.Foreground = Brushes.Green;
+                        loginMessage.Content = "Sikeres bejelentkzés!";
+                    }
+                    else
+                    {
+
+                        adminLoginBT.Content = "Bejelentkezés";
+                        adminSigned = false;
+                        loginMessage.Content = "Jelentkezzen be!";
+                        loginMessage.Foreground = Brushes.Red;
+                    }
 
 
-                    loginMessage.Content = "Sikeres bejelentkzés!";
-                    loginMessage.Foreground = Brushes.Green;
+                  
 
 
 
@@ -57,7 +79,9 @@ namespace PetAndCareDesktopApp
                     DateTime currentDate;
                     DateTime currentUpdated;
                     int petBreadID = 0;
-
+                    pets.Clear();
+                    dogs.Clear();
+                    cats.Clear();
                     while (await reader.ReadAsync())
                     {
                         if (reader.GetValue(8).ToString() == string.Empty)
@@ -153,6 +177,10 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show($"Kapcsolódás sikertelen! \n Rossz felhasználónév vagy jelszó!");
 
             }
+
+        
+          
+
         }
 
 
@@ -243,6 +271,168 @@ namespace PetAndCareDesktopApp
 
 
             petCatCounter++;
+        }
+
+        bool InputCheck(string input)
+        {
+            string pattern = @"^[a-zA-Zéáöőóúüűí]+$";
+            string patternNum = "^[0-9]";
+
+
+            if (!string.IsNullOrEmpty(input))
+            {
+
+                bool c = Char.IsUpper(input[0]);
+                if (!c)
+                {
+                    MessageBox.Show("Nagybetűvel kell kezdődnie!");
+                    return false;
+
+                }
+                else
+                {
+
+
+                    Regex regex = new Regex(pattern);
+                    Regex regexNum = new Regex(patternNum);
+                    if (regex.IsMatch(input) && !regexNum.IsMatch(input))
+                    {
+                        return true;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Csak betűket tartalmazhat");
+                        return false;
+
+                    }
+                }
+            }
+
+            return true;
+        }
+        bool InputCheckNum(string input)
+        {
+
+            string patternNum = "^([1-9][0-9][0-9]|[1-9][0-9])$";
+
+            bool IsNumber = int.TryParse(input, out _);
+
+
+            //if (c.GetType() != typeof(int))
+            if (!IsNumber)
+            {
+                MessageBox.Show("csak szám lehet!");
+                return false;
+
+            }
+            else
+            {
+
+
+
+                Regex regexNum = new Regex(patternNum);
+
+
+                if (regexNum.IsMatch(input))
+                {
+                    return true;
+
+                }
+                else
+                {
+                    MessageBox.Show("az érték csak 10-999 között lehet");
+                    return false;
+
+                }
+            }
+        }
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj == null) yield return (T)Enumerable.Empty<T>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                DependencyObject ithChild = VisualTreeHelper.GetChild(depObj, i);
+                if (ithChild == null) continue;
+                if (ithChild is T t) yield return t;
+                foreach (T childOfChild in FindVisualChildren<T>(ithChild)) yield return childOfChild;
+            }
+        }
+
+        private async void saveAllDog_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+
+          List <string> arrayOfcolumns = new List<string>();
+
+
+
+
+            if (adminSigned)
+            {
+
+
+                using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
+
+                string temp = petDogNameTB.Text;
+                await connection.OpenAsync();
+
+                MySqlCommand command_first = new MySqlCommand($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS", connection);
+                DbDataReader reader_first = await command_first.ExecuteReaderAsync();
+
+
+                foreach (DbDataReader dbColumn in reader_first)
+                {
+                 arrayOfcolumns.Add(dbColumn.ToString());
+                }
+                
+
+                foreach (string read in arrayOfcolumns)
+                {
+
+                    MessageBox.Show(read);
+
+                }
+
+
+                //              SELECT*
+                //FROM INFORMATION_SCHEMA.COLUMNS
+
+
+
+
+                foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+                {
+                    temp = tb.Text;
+
+              
+                if (InputCheck(temp))
+                {
+                    await connection.OpenAsync();
+                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET pet_name =  '{temp}' where id = {dogs[petDogCounter - 1].ID};", connection);
+                    DbDataReader reader = await command.ExecuteReaderAsync();
+
+
+                        reader.Close();
+                        await connection.CloseAsync();
+                }
+
+                
+                }
+                
+
+
+
+            }
+                else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
+
+            }
+            */
+
         }
     }
 }
