@@ -5,21 +5,25 @@
             <h5 class="card-title">{{pet.pet_name}}</h5>
             <p class="card-text">{{pet.breed}}<br>
                                  {{pet.gender}}</p>
-            <div @onclick="gotoDetails()" class="btn btn-primary">További információk</div>
+            <router-link :kisallat="pet" :to="'/allat/'+pet.id" class="btn btn-primary">További információk</router-link>
         </div>
     </div>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 export default{
   name: "AdvertCard",
   props:{
     pet: Object,
   },
-  methods:{
-    gotoDetails(){
-      this.$router.push({path:"/allatok/:id"})
+  data(){
+    return{
+      kisallat: this.pet
     }
-  }
+  },
+  components:{
+    RouterLink
+  },
 }
 </script>
