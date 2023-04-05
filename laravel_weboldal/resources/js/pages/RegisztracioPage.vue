@@ -3,6 +3,7 @@
         <div class="container bg-primary bg-opacity-25">              
             <div class="row"> 
 <div class="col-12 mb-3 mt-3">
+        <h1 class="mb-5" style="text-decoration: underline;">Regisztráció</h1>
     <Form @submit="submit" :validation-schema="schema">
     <h2>Felhasználónév:</h2>  <br> <Field name="text" type="text" class="form-control mb-3" style="justify-content: center;"/>
       <ErrorMessage name="text" class="alert alert-danger" role="alert"/>
@@ -13,7 +14,7 @@
       <ErrorMessage name="password" class="alert alert-danger" role="alert"/>
     <h2>Jelszó megerősítése:</h2>  <br> <Field name="password2" type="password" class="form-control mb-3" style="justify-content: center;"/>
       <ErrorMessage name="password2" class="alert alert-danger" role="alert"/>
-      <button class="btn btn-primary mx-auto mt-3">Submit</button>
+      <button class="btn btn-primary mx-auto mt-3">Regisztráció</button>
     
     </Form>
     </div>        

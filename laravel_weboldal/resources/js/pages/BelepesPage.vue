@@ -5,27 +5,32 @@
         <div class="container bg-opacity-50">
             <div class="row mx-auto mb-3 mt-3">
                 <div class="col-12">
-                    <form action="">
-                        <label for="bejelentkezes" class="mb-4"><h1>Bejelentkezés</h1></label><br>
-                        <label for="email"><h2>E-mail:</h2></label>
-                        <div class="col-6 mx-auto">
-                            <input type="text" class="form-control">
-                        </div>
-                        
-                         <label for="password"><h2>Jelszó</h2></label>
-                         <div class="col-6 mx-auto">
-                            <input type="password" name="password" id="password" class="form-control">
-                         </div>
-                         
-                         <button type="submit" class="mx-auto mt-3 mb-3 btn btn-success">Bejelentkezés</button>
-                    </form>
+                    <h1 class="text-center mb-3" style="text-decoration: underline;">Bejelentkezés</h1>
+                    <Form @submit="submit" :validation-schema="schema">
+    
+      
+    <h2 class="mx-auto mb-3">Email:</h2>  <br><Field name="email" class="form-control mb-3" style="justify-content: center;"/> 
+      <ErrorMessage name="email" class="alert alert-danger" role="alert"/>
+    <h2>Jelszó:</h2>  <br> <Field name="password" type="password" class="form-control mb-3" style="justify-content: center;"/>
+      <ErrorMessage name="password" class="alert alert-danger" role="alert"/>
+    
+      <button class="btn btn-success mx-auto mt-3 mb-3">Bejelentkezés</button>
+    
+    </Form>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
+ import { Form, Field, ErrorMessage } from 'vee-validate';
+  import * as yup from 'yup';
+  const schema = yup.object({
+    email: yup.string().required("kötelező kitölteni!").email("valós E-mail címnek kell lennie!"),
+    password: yup.string().required("kötelező kitölteni!").min(8, "minimum 8 karakternek kell lennie!"),
+   
+  });
 </script>
 
 <style scoped>
@@ -42,5 +47,13 @@ justify-content: center;
 .container{
     background-color: #3E1600;
     color: white
+}
+span {
+  display: block;
+  margin: 10px 0;
+}
+
+button, input {
+  display: block;
 }
 </style>
