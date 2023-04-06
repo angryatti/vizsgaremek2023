@@ -42,7 +42,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Kutyák">
+            <TabItem Header="Kutyák" x:Name="DogTabItem"  Visibility="Hidden">
                 <Grid Background="#FFE5E5E5" >
 
                     <Grid.ColumnDefinitions>
@@ -67,6 +67,8 @@
                     <Label Grid.Column="0" Grid.Row="0" x:Name="PetDogNameLB" Content="Kisállat neve:" />
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="petDogNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" />
                     <Label Grid.Column="2" Grid.Row="1" x:Name="PetBreedDogLB" Content="Kutya Fajtája:" />
+                    <Label Grid.Column="4" Grid.Row="4" x:Name="PetBreedDogLBNOSEE" Content="kutya?" Visibility="Hidden"/>
+                    <TextBox Grid.Column="4" Grid.Row="5" x:Name="PetBreedDogTB" IsReadOnly="True" Visibility="Hidden" />
                     <ComboBox Grid.Column="3" Grid.Row="1" x:Name="petBreedDogCB"  ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="1" x:Name="PetDogGenderLB" Content="Ivar:"/>
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="petDogGenderTB" TextWrapping="Wrap" Text="ivar" ForceCursor="True" />
@@ -82,7 +84,7 @@
                     <Button Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3"   x:Name="saveAllDoge" Click="saveAllDog_Click">Minden beállítás mentése</Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Cicák">
+            <TabItem Header="Cicák" x:Name="CatTabItem"  Visibility="Hidden">
                 <Grid Background="#FFE5E5E5">
 
                     <Grid.ColumnDefinitions>
@@ -104,7 +106,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Egyéb">
+            <TabItem Header="Egyéb" x:Name="OtherTabItem"  Visibility="Hidden">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
