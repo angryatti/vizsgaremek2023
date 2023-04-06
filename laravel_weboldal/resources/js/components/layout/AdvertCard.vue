@@ -12,18 +12,13 @@
 
 <script>
 import { RouterLink } from 'vue-router';
-export default{
+export default{ 
   name: "AdvertCard",
   props:{
     pet: Object,
   },
-  data(){
-    return{
-      kisallat: this.pet
-    }
-  },
   components:{
     RouterLink
-  },
+  }
 }
 </script>

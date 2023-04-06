@@ -59,6 +59,9 @@ namespace PetAndCareDesktopApp
                         adminLoginBT.Content = "Kijelentkezés";
                         loginMessage.Foreground = Brushes.Green;
                         loginMessage.Content = "Sikeres bejelentkzés!";
+                        DogTabItem.Visibility = Visibility.Visible;
+                        CatTabItem.Visibility = Visibility.Visible;
+                        OtherTabItem.Visibility = Visibility.Visible;
                     }
                     else
                     {
@@ -66,6 +69,9 @@ namespace PetAndCareDesktopApp
                         adminLoginBT.Content = "Bejelentkezés";
                         adminSigned = false;
                         loginMessage.Content = "Jelentkezzen be!";
+                        DogTabItem.Visibility = Visibility.Hidden;
+                        CatTabItem.Visibility = Visibility.Hidden;
+                        OtherTabItem.Visibility = Visibility.Hidden;
                         loginMessage.Foreground = Brushes.Red;
                     }
 
@@ -84,7 +90,7 @@ namespace PetAndCareDesktopApp
                     cats.Clear();
                     while (await reader.ReadAsync())
                     {
-                        if (reader.GetValue(8).ToString() == string.Empty)
+                        if (reader.GetValue(8).ToString() ==string.Empty)
                         {
                             petBreadID = -1;
 
@@ -205,7 +211,9 @@ namespace PetAndCareDesktopApp
 
                 try
                 {
+
                     petDogNameTB.Text = dogs[petDogCounter].PetName;
+
                     petDogGenderTB.Text = dogs[petDogCounter].Gender;
                     petDogCastratedTB.Text = dogs[petDogCounter].Castrated.ToString();
                     if (dogs[petDogCounter].ImgUserDefine.ToString() == "")
@@ -213,8 +221,8 @@ namespace PetAndCareDesktopApp
                         petDogImgUserDefineTB.Text = "NULL";
                     }
                     petDogDescriptionTB.Text = dogs[petDogCounter].Description;
-
-                    petDogContactInfoTB.Text = dogs[petDogCounter ].ContactInfo;
+                    PetBreedDogTB.Text = dogs[petDogCounter].Breed;
+                    petDogContactInfoTB.Text = dogs[petDogCounter].ContactInfo;
                     petBreedDogCB.SelectedIndex = dogs[petDogCounter].PetBreedId;
 
                 }
@@ -227,9 +235,9 @@ namespace PetAndCareDesktopApp
 
 
                 }
+
                 finally
                 {
-
                     petDogCounter++;
                 }
             }
@@ -311,41 +319,9 @@ namespace PetAndCareDesktopApp
 
             return true;
         }
-        bool InputCheckNum(string input)
+        bool InputCheckNum(string input) // még implementálni kell
         {
-
-            string patternNum = "^([1-9][0-9][0-9]|[1-9][0-9])$";
-
-            bool IsNumber = int.TryParse(input, out _);
-
-
-            //if (c.GetType() != typeof(int))
-            if (!IsNumber)
-            {
-                MessageBox.Show("csak szám lehet!");
-                return false;
-
-            }
-            else
-            {
-
-
-
-                Regex regexNum = new Regex(patternNum);
-
-
-                if (regexNum.IsMatch(input))
-                {
-                    return true;
-
-                }
-                else
-                {
-                    MessageBox.Show("az érték csak 10-999 között lehet");
-                    return false;
-
-                }
-            }
+            return true;
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -362,7 +338,7 @@ namespace PetAndCareDesktopApp
 
         private async void saveAllDog_Click(object sender, RoutedEventArgs e)
         {
-            /*
+        
 
           List <string> arrayOfcolumns = new List<string>();
 
@@ -378,51 +354,46 @@ namespace PetAndCareDesktopApp
                 string temp = petDogNameTB.Text;
                 await connection.OpenAsync();
 
-                MySqlCommand command_first = new MySqlCommand($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS", connection);
+                MySqlCommand command_first = new MySqlCommand("SHOW COLUMNS FROM pets;", connection); //($"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME LIKE 'pets'", connection);
                 DbDataReader reader_first = await command_first.ExecuteReaderAsync();
 
 
-                foreach (DbDataReader dbColumn in reader_first)
+               while(await reader_first.ReadAsync())
                 {
-                 arrayOfcolumns.Add(dbColumn.ToString());
+                 arrayOfcolumns.Add(reader_first.GetString(0));
                 }
                 
 
-                foreach (string read in arrayOfcolumns)
-                {
+           
 
-                    MessageBox.Show(read);
-
-                }
-
-
-                //              SELECT*
-                //FROM INFORMATION_SCHEMA.COLUMNS
-
-
-
-
+                await connection.CloseAsync();
+                int columnIndex = 1;
+                
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     temp = tb.Text;
 
+               //     MessageBox.Show(temp);
               
-                if (InputCheck(temp))
-                {
+               
+                        
                     await connection.OpenAsync();
-                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET pet_name =  '{temp}' where id = {dogs[petDogCounter - 1].ID};", connection);
-                    DbDataReader reader = await command.ExecuteReaderAsync();
 
+                   
+
+                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID-1};", connection);
+                    DbDataReader reader = await command.ExecuteReaderAsync();
+                    columnIndex++;
 
                         reader.Close();
                         await connection.CloseAsync();
-                }
+                
 
                 
                 }
                 
 
-
+    
 
             }
                 else
@@ -431,8 +402,9 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show("Jelentkezzen be!");
 
             }
-            */
-
+           
         }
+
+     
     }
 }

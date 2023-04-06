@@ -18,7 +18,7 @@ class PetController extends Controller
     }
     public function show($id)
     {
-        return Pet::where('id',$id)->get();
+        return Pet::where('id',$id)->firstOrFail();
     }
 
     
