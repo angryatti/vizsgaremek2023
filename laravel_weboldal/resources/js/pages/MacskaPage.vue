@@ -31,7 +31,7 @@ export default{
     },
     methods:{
         async getCats(){
-            const response = await axios.get('http://localhost:8881/api/cats')
+            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/cats`)
             this.cats = response.data
         }
     },

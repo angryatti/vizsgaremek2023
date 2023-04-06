@@ -20,7 +20,13 @@
 <script>
 import axios from 'axios';
 import AdvertCard from '../components/layout/AdvertCard.vue';
+
+
 export default{
+
+    
+
+
     name: 'KutyaPage',
     components:{
         AdvertCard,
@@ -32,7 +38,7 @@ export default{
     },
     methods:{
         async getDogs(){
-            const response = await axios.get('http://localhost:8881/api/dogs')
+            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/dogs`)
             this.dogs = response.data
         }
     },
