@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-12 mt-3 mb-3">
                     <div class="card-group">
-            <div class="row row-cols-4 row-cols-md-6 mx-auto" style="gap: 20px; justify-content: center;"> 
+            <div class="row mx-auto" style="gap: 20px; justify-content: center;"> 
                 <advert-card v-for="pet in dogs" :key="pet.id" :id="pet.id" :pet="pet"/>
             </div>
         </div>

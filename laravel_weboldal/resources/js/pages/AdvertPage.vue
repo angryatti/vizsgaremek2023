@@ -22,7 +22,7 @@ export default{
     },
     methods:{
         async fetchData(){
-            const resp = await axios.get(`http://localhost:8881/api/allat/${this.$route.params.id}`)
+            const resp = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/allat/${this.$route.params.id}`)
             this.allat = await resp.data
         }
     },
