@@ -22,4 +22,6 @@ use App\Http\Controllers\UserController;
 
 Route::get('/dogs',[PetController::class,'dogs']);
 Route::get('/cats',[PetController::class,'cats']);
+Route::get('/allat/{id}',[PetController::class,'show']);
+
 Route::post('/user', [UserController::class, 'store']);

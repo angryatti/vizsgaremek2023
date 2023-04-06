@@ -2,20 +2,32 @@
     <div class="box">
         <h1>Egy adott hirdetés</h1>
         {{$route.params.id}}
-        {{kisallat.name}}
-    </div>
+        {{allat}}
+
+    <div id="map">    
+
+</div></div>
 </template>
 
 
 <script>
-
+import axios from 'axios';
 export default{
     name: "AdvertPage",
-    props:{
-        kisallat:Object
+   data(){
+   return{
+        allat: {}
+
+    }
+    },
+    methods:{
+        async fetchData(){
+            const resp = await axios.get(`http://localhost:8881/api/allat/${this.$route.params.id}`)
+            this.allat = await resp.data
+        }
     },
     mounted(){
-        console.log(kisallat)
+        this.fetchData()
     }
 }
 </script>

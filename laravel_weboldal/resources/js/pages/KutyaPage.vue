@@ -13,7 +13,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 
@@ -34,7 +33,7 @@ export default{
         async getDogs(){
             const response = await axios.get('http://localhost:8881/api/dogs')
             this.dogs = response.data
-        }
+        },
     },
     mounted(){
         this.getDogs()
