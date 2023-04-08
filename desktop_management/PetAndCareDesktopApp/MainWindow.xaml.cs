@@ -261,29 +261,56 @@ namespace PetAndCareDesktopApp
         private void nextCatPetBT_Click(object sender, RoutedEventArgs e)
         {
 
-            if (cats.Count < 0)
+            if (adminSigned)
             {
 
-                throw new PetException("Adatbázisban nem szerepel cica, javítsa ki!");
 
 
+                if (petCatCounter == cats.Count)
+                {
+
+                    petCatCounter = 0;
+
+                }
+
+                try
+                {
+
+                    petCatNameTB.Text = cats[petCatCounter].PetName;
+
+                    petCatGenderTB.Text = cats[petCatCounter].Gender;
+                    petCatCastratedTB.Text = cats[petCatCounter].Castrated.ToString();
+                    if (cats[petCatCounter].ImgUserDefine.ToString() == "")
+                    {
+                        petCatImgUserDefineTB.Text = "NULL";
+                    }
+                    petCatDescriptionTB.Text = cats[petCatCounter].Description;
+                    PetBreedCatTB.Text = cats[petCatCounter].Breed;
+                    petCatContactInfoTB.Text = cats[petCatCounter].ContactInfo;
+                    petBreedCatCB.SelectedIndex = cats[petCatCounter].PetBreedId;
+
+                }
+                catch (PetException ex)
+
+                {
+                    MessageBox.Show(ex.Message);
+
+
+
+
+                }
+
+                finally
+                {
+                    petCatCounter++;
+                }
             }
-
-
-            if (petCatCounter == cats.Count)
+            else
             {
 
-                petCatCounter = 0;
+                MessageBox.Show("Jelentkezzen be!");
 
             }
-
-            petCatNameTB.Text = cats[petCatCounter].PetName;
-
-
-
-
-
-            petCatCounter++;
         }
 
         bool InputCheck(string input)
@@ -410,7 +437,79 @@ namespace PetAndCareDesktopApp
             }
            
         }
+        private async void saveAllCat_Click(object sender, RoutedEventArgs e)
+        {
 
-     
+
+            List<string> arrayOfcolumns = new List<string>();
+
+
+
+
+            if (adminSigned)
+            {
+
+
+                using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
+
+                string temp = petCatNameTB.Text;
+                await connection.OpenAsync();
+
+                MySqlCommand command_first = new MySqlCommand("SHOW COLUMNS FROM pets;", connection);
+                DbDataReader reader_first = await command_first.ExecuteReaderAsync();
+
+
+                while (await reader_first.ReadAsync())
+                {
+                    arrayOfcolumns.Add(reader_first.GetString(0));
+                }
+
+
+
+
+                await connection.CloseAsync();
+                int columnIndex = 1;
+                await connection.OpenAsync();
+                foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+                {
+                    temp = tb.Text;
+
+
+
+
+
+
+
+
+
+                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petCatCounter].ID - 1};", connection);
+                    DbDataReader reader = await command.ExecuteReaderAsync();
+                    columnIndex++;
+
+                    reader.Close();
+
+
+
+
+                }
+                await connection.CloseAsync();
+                MessageBox.Show("Minden adat sikeresen megváltoztatva!");
+
+                adminLoginBT_Click(this, e);
+
+            }
+            else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
+
+            }
+
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
