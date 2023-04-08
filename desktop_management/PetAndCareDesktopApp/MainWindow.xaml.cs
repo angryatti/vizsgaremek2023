@@ -40,7 +40,7 @@ namespace PetAndCareDesktopApp
 
 
 
-
+                adminSigned = true;
 
                 await connection.OpenAsync();
                 string temp = connection.State.ToString();
@@ -50,12 +50,12 @@ namespace PetAndCareDesktopApp
 
                  
 
-                    adminSigned = true;
+                   
                 
 
                     if (loginMessage.Foreground == Brushes.Red)
                     {
-
+                       
                         adminLoginBT.Content = "Kijelentkezés";
                         loginMessage.Foreground = Brushes.Green;
                         loginMessage.Content = "Sikeres bejelentkzés!";
@@ -66,13 +66,18 @@ namespace PetAndCareDesktopApp
                     else
                     {
 
-                        adminLoginBT.Content = "Bejelentkezés";
-                        adminSigned = false;
-                        loginMessage.Content = "Jelentkezzen be!";
-                        DogTabItem.Visibility = Visibility.Hidden;
-                        CatTabItem.Visibility = Visibility.Hidden;
-                        OtherTabItem.Visibility = Visibility.Hidden;
-                        loginMessage.Foreground = Brushes.Red;
+
+                        if (sender is Button)
+                        {
+                            adminSigned = false;
+                            adminLoginBT.Content = "Bejelentkezés";
+                            loginMessage.Content = "Jelentkezzen be!";
+                            DogTabItem.Visibility = Visibility.Hidden;
+                            CatTabItem.Visibility = Visibility.Hidden;
+                            OtherTabItem.Visibility = Visibility.Hidden;
+                            loginMessage.Foreground = Brushes.Red;
+                        }
+                 
                     }
 
 
@@ -354,7 +359,7 @@ namespace PetAndCareDesktopApp
                 string temp = petDogNameTB.Text;
                 await connection.OpenAsync();
 
-                MySqlCommand command_first = new MySqlCommand("SHOW COLUMNS FROM pets;", connection); //($"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME LIKE 'pets'", connection);
+                MySqlCommand command_first = new MySqlCommand("SHOW COLUMNS FROM pets;", connection);
                 DbDataReader reader_first = await command_first.ExecuteReaderAsync();
 
 
@@ -368,32 +373,33 @@ namespace PetAndCareDesktopApp
 
                 await connection.CloseAsync();
                 int columnIndex = 1;
-                
+                await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     temp = tb.Text;
 
-               //     MessageBox.Show(temp);
+              
               
                
                         
-                    await connection.OpenAsync();
+                   
 
                    
 
                     MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID-1};", connection);
                     DbDataReader reader = await command.ExecuteReaderAsync();
                     columnIndex++;
-
+                   
                         reader.Close();
-                        await connection.CloseAsync();
+                     
                 
 
                 
                 }
-                
+                await connection.CloseAsync();
+                MessageBox.Show("Minden adat sikeresen megváltoztatva!");
 
-    
+                adminLoginBT_Click(this, e);
 
             }
                 else
