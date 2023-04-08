@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePetRequest;
-use App\Models\Pet;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -35,11 +35,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePetRequest $request)
+    public function register(Request $request)
     {
-        $validated = $request->validated();
-        User::create($validated);
-        return User::create();
+        $validated = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'user_name' =>'required|unique:users,user_name',
+            'password' => 'required'
+        ]);
+        $user = User::create([
+            'email' => $validated['email'],
+            'user_name' => $validated['user_name'],
+            'password' => Hash::make($validated['password'])
+        ]);
+        return response()->Json(['message'=>'Sikeresen Regisztráltál az Oldalra']);
     }
 
     /**
