@@ -25,3 +25,4 @@ Route::get('/cats',[PetController::class,'cats']);
 Route::get('/allat/{id}',[PetController::class,'show']);
 
 Route::post('/register', [UserController::class, 'register']);
+Route::post('/login',[UserController::class,'login']);
