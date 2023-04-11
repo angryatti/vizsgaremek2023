@@ -79,9 +79,9 @@ class DatabasePetSeeder extends Seeder
             'gender' => 'Nőstény',
             'castrated' => true,
           //  'img_userdefine' => "mirci.jpg",
-          'contact_info' => "Budapest XVII, Kisvárda utcában.",
+            'contact_info' => "Budapest XVII, Kisvárda utcában.",
             'description' => "Háromhetes. A cica ivartalanított és féregtelenítve!",
-         
+            'petbreed_id' => 12,
         ]);
 
         DB::table('pets')->insert([
@@ -90,9 +90,10 @@ class DatabasePetSeeder extends Seeder
             'gender' => 'Hím',
             'castrated' => false,
           //  'img_userdefine' => "mirci.jpg",
-          'contact_info' => "2233 Ecser, Községháza",
+            'contact_info' => "2233 Ecser, Községháza",
             'description' => "Kéthetes, jövő héten elvíhető, féregtelenítve!"
-        ]);
+            'petbreed_id' => 35
+          ]);
 
         DB::table('pets')->insert([
             'pet_name' => 'Picur',
@@ -100,9 +101,10 @@ class DatabasePetSeeder extends Seeder
             'gender' => 'Hím',
             'castrated' => false,
           //  'img_userdefine' => "mirci.jpg",
-          'contact_info' => "Pest megye",
+            'contact_info' => "Pest megye",
             'description' => "Négyhetes, jövő héten elvíhető, féregtelenítve!"
-        ]);
+            'petbreed_id' => 5
+          ]);
 
         DB::table('pets')->insert([
             'pet_name' => 'Garfield',
@@ -110,9 +112,10 @@ class DatabasePetSeeder extends Seeder
             'gender' => 'Hím',
             'castrated' => false,
           //  'img_userdefine' => "mirci.jpg",
-          'contact_info' => "Pest megye",
+            'contact_info' => "Pest megye",
             'description' => "Háromhetes, jövő héten elvíhető, féregtelenítve!"
-        ]);
+            'petbreed_id' => 55
+          ]);
 
 
 

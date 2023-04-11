@@ -40,7 +40,7 @@ import * as yup from 'yup';
     submitting.value = true
     errors.value = {}
 
-    axios.post('http://localhost:8881/api/login',{
+    axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,
       password:password.value
     })
