@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,10 +12,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function login(Request $request){
+    public function login(LoginRequest $request){
         $creds = $request->GetCredentials();
         $user = Auth::getProvider()->retrieveByCredentials($creds);
-        return $this->authenticated($request, $user)
+        return $this->authenticated($request, $user);
+    }
+    protected function authenticated(Request $request, $user) 
+    {
+        return redirect()->route("#");
     }
 
 

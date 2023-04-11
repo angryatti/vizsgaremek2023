@@ -53,6 +53,7 @@ import * as yup from 'yup';
     })
     .finally(()=>{
       submitting.value = false
+      
     })
   }
 </script>
