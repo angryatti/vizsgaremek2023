@@ -169,6 +169,25 @@ namespace PetAndCareDesktopApp
                     await reader.CloseAsync();
 
 
+                    command = new MySqlCommand("SELECT `catbreed` FROM `catlist`;", connection);
+                    reader = await command.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+
+
+                        petBreedCatCB.Items.Add(reader.GetValue(0));
+
+
+                    }
+
+                    await reader.CloseAsync();
+
+
+
+
+
+
                     await connection.CloseAsync();
 
                     
