@@ -16,6 +16,8 @@
                             <span></span>
                         </div>
                         <p class="lead">{{ allat.description }}</p>
+                        <h3>Kapcsolat:</h3>
+                        <p class="lead">{{ allat.contact_info }}</p>
                         <div class="d-flex">
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
