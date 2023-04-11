@@ -404,7 +404,13 @@ namespace PetAndCareDesktopApp
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     temp = tb.Text;
-
+                    if (InputCheck(temp))
+                    {
+                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID-1};", connection);
+                    DbDataReader reader = await command.ExecuteReaderAsync();
+                    columnIndex++;
+                    reader.Close();
+                    }
               
               
                
@@ -413,11 +419,9 @@ namespace PetAndCareDesktopApp
 
                    
 
-                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID-1};", connection);
-                    DbDataReader reader = await command.ExecuteReaderAsync();
-                    columnIndex++;
+                    
                    
-                        reader.Close();
+                        
                      
                 
 
@@ -474,6 +478,14 @@ namespace PetAndCareDesktopApp
                 {
                     temp = tb.Text;
 
+                    if (InputCheck(temp))
+                    {
+                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petCatCounter].ID - 1};", connection);
+                        DbDataReader reader = await command.ExecuteReaderAsync();
+                        columnIndex++;
+
+                        reader.Close();
+                    }
 
 
 
@@ -481,12 +493,7 @@ namespace PetAndCareDesktopApp
 
 
 
-
-                    MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petCatCounter].ID - 1};", connection);
-                    DbDataReader reader = await command.ExecuteReaderAsync();
-                    columnIndex++;
-
-                    reader.Close();
+                    
 
 
 
