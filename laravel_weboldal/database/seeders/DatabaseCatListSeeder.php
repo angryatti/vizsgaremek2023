@@ -15,566 +15,568 @@ class DatabaseCatListSeeder extends Seeder
     public function run()
     {
         DB::table('catlist')->insert( [
-            =>'Amerikai drótszőrű '
+            'catbreed'=>'Amerikai drótszőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Alpine lynx '
+            'catbreed'=>'Alpine lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'American lynx '
+            'catbreed'=>'American lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai görbefülű '
+            'catbreed'=>'Amerikai görbefülű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai rövid szőrű '
+            'catbreed'=>'Amerikai rövid szőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai csonkafarkú '
+            'catbreed'=>'Amerikai csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Anatoli '
+            'catbreed'=>'Anatoli'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ausztrál köd '
+            'catbreed'=>'Ausztrál köd'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Bengáli '
+            'catbreed'=>'Bengáli'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Bombay '
+            'catbreed'=>'Bombay'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Bristol '
+            'catbreed'=>'Bristol'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Brit rövidszőrű '
+            'catbreed'=>'Brit rövidszőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Burmai szent templommacska '
+            'catbreed'=>'Burmai szent templommacska'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Burmilla '
+            'catbreed'=>'Burmilla'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Chausie '
+            'catbreed'=>'Chausie'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Cheetoh '
+            'catbreed'=>'Cheetoh'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Colorpoint rövid szőrű '
+            'catbreed'=>'Colorpoint rövid szőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Cornish rex '
+            'catbreed'=>'Cornish rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Desert lynx '
+            'catbreed'=>'Desert lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Devon rex '
+            'catbreed'=>'Devon rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Doni szfinx '
+            'catbreed'=>'Doni szfinx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Egyiptomi mau '
+            'catbreed'=>'Egyiptomi mau'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Európai rövidszőrű '
+            'catbreed'=>'Európai rövidszőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Exotic '
+            'catbreed'=>'Exotic'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Foldex '
+            'catbreed'=>'Foldex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'German rex '
+            'catbreed'=>'German rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Havanna '
+            'catbreed'=>'Havanna'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Highland lynx '
+            'catbreed'=>'Highland lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Hócipős '
+            'catbreed'=>'Hócipős'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Japán csonkafarkú '
+            'catbreed'=>'Japán csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Kaliforniai pettyes macska '
+            'catbreed'=>'Kaliforniai pettyes macska'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Kanaani '
+            'catbreed'=>'Kanaani'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Karthauzi '
+            'catbreed'=>'Karthauzi'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Keleti rövid szőrű '
+            'catbreed'=>'Keleti rövid szőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Korat '
+            'catbreed'=>'Korat'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Kuril-szigeti csonkafarkú '
+            'catbreed'=>'Kuril-szigeti csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'La Perm '
+            'catbreed'=>'La Perm'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Manx '
+            'catbreed'=>'Manx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Munchkin '
+            'catbreed'=>'Munchkin'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ocicat '
+            'catbreed'=>'Ocicat'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Orosz kék '
+            'catbreed'=>'Orosz kék'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Peterbald '
+            'catbreed'=>'Peterbald'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Pixiebob '
+            'catbreed'=>'Pixiebob'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Selkirk rex '
+            'catbreed'=>'Selkirk rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Sokoke '
+            'catbreed'=>'Sokoke'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Skót lógófülű '
+            'catbreed'=>'Skót lógófülű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szafari '
+            'catbreed'=>'Szafari'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szavanna '
+            'catbreed'=>'Szavanna'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szerengeti '
+            'catbreed'=>'Szerengeti'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szfinx '
+            'catbreed'=>'Szfinx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Sziámi macska '
+            'catbreed'=>'Sziámi macska'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szingapura '
+            'catbreed'=>'Szingapura'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Thai '
+            'catbreed'=>'Thai'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Tonkinéz '
+            'catbreed'=>'Tonkinéz'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Toyger '
+            'catbreed'=>'Toyger'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ural rex '
+            'catbreed'=>'Ural rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Vienna Woods '
+            'catbreed'=>'Vienna Woods'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Alpine lynx '
+            'catbreed'=>'Alpine lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'American lynx '
+            'catbreed'=>'American lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai keuda '
+            'catbreed'=>'Amerikai keuda'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai csonkafarkú '
+            'catbreed'=>'Amerikai csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Amerikai görbefülű '
+            'catbreed'=>'Amerikai görbefülű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ausztrál Tiffanie '
+            'catbreed'=>'Ausztrál Tiffanie'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Balinéz '
+            'catbreed'=>'Balinéz'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Birman '
+            'catbreed'=>'Birman'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Bohemian rex '
+            'catbreed'=>'Bohemian rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Brit hosszú szőrű '
+            'catbreed'=>'Brit hosszú szőrű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Cymric '
+            'catbreed'=>'Cymric'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Desert lynx '
+            'catbreed'=>'Desert lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Foldex '
+            'catbreed'=>'Foldex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Highland lynx '
+            'catbreed'=>'Highland lynx'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Jávai '
+            'catbreed'=>'Jávai'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Japán csonkafarkú '
+            'catbreed'=>'Japán csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Kuril-szigeti csonkafarkú '
+            'catbreed'=>'Kuril-szigeti csonkafarkú'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'La Perm '
+            'catbreed'=>'La Perm'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Maine Coon '
+            'catbreed'=>'Maine Coon'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Munchkin '
+            'catbreed'=>'Munchkin'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Nebelung '
+            'catbreed'=>'Nebelung'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Neva Masquarade '
+            'catbreed'=>'Neva Masquarade'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Norvég erdei macska '
+            'catbreed'=>'Norvég erdei macska'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ojos Azules '
+            'catbreed'=>'Ojos Azules'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Pixiebob '
+            'catbreed'=>'Pixiebob'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ragdoll '
+            'catbreed'=>'Ragdoll'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'RagaMuffin '
+            'catbreed'=>'RagaMuffin'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Skót lógófülű '
+            'catbreed'=>'Skót lógófülű'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szibériai '
+            'catbreed'=>'Szibériai'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Selkirk rex '
+            'catbreed'=>'Selkirk rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Szomáli '
+            'catbreed'=>'Szomáli'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Tiffany '
+            'catbreed'=>'Tiffany'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Török angóramacska '
+            'catbreed'=>'Török angóramacska'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Török Van '
+            'catbreed'=>'Török Van'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Ural rex '
+            'catbreed'=>'Ural rex'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'York '
+            'catbreed'=>'York'
             ] );
             
                         
             
              DB::table('catlist')->insert( [
-            =>'Keverék'
+            'catbreed'=>'Keverék'
             ] );
+            
+           
             
     }
 }
