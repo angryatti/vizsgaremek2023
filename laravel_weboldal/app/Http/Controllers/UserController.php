@@ -11,25 +11,9 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function login(Request $request){
-        $validate = Validator::make($request->all(),[
-            'email' =>'required|email',
-            'password'=>'required'
-        ]);
-        if($validate->fails()){
-            return response()->json([
-                'errors' =>$validate->errors(),
-            ],422);
-        }
-
-        if(!$token = Auth::attempt($request->only(['email','password']))){
-            return response()->json([
-                'error' => 'Unauthorized',
-            ],401);
-        }
-
-        return response()->json([
-            'token' => $token
-        ]);
+        $creds = $request->GetCredentials();
+        $user = Auth::getProvider()->retrieveByCredentials($creds);
+        return $this->authenticated($request, $user)
     }
 
 
@@ -45,6 +29,7 @@ class UserController extends Controller
             'user_name' => $validated['user_name'],
             'password' => Hash::make($validated['password'])
         ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
         return response()->Json(['message'=>'Sikeresen Regisztráltál az Oldalra']);
     }
 
@@ -54,9 +39,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function logout()
     {
-        //
+        Session::flush();
+
+        Auth::logout();
+
+
     }
 
     /**

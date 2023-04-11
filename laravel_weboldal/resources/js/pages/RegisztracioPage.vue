@@ -47,7 +47,7 @@ const password = ref('')
 
 const submitForm = async() =>{
   try{
-    const response = await axios.post('http://localhost:8881/api/register',{
+    const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/register`,{
       user_name:user_name.value,
       email:email.value,
       password:password.value
