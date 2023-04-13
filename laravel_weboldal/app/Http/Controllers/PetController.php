@@ -16,6 +16,10 @@ class PetController extends Controller
     {
         return Pet::where('breed','macska')->get();
     }
+    public function others()
+    {
+        return Pet::where('breed','egyeb')->get();
+    }
     public function show($id)
     {
         return Pet::where('id',$id)->firstOrFail();

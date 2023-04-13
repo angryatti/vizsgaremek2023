@@ -85,6 +85,20 @@
 </div>
         </div>
 </div>
+
+
+<div class="container containers">
+            <div class="row">
+                <div class="col-12 mt-3 mb-3">
+                    <div class="card-group">
+            <div class="row d-flex mx-auto text-center" style="gap: 20px; justify-content: center;"> 
+                <advert-card v-for="pet in others" :key="pet.id" :id="pet.id" :pet="pet"/>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -93,6 +107,28 @@
 </template>
 
 <script>
+import axios from 'axios';
+import AdvertCard from '../components/layout/AdvertCard.vue';
+export default{
+    name: 'EgyebPage',
+    components:{
+        AdvertCard,
+    },
+    data(){
+        return{
+            others: []
+        }
+    },
+    methods:{
+        async getOthers(){
+            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/others`)
+            this.others = response.others
+        }
+    },
+    mounted(){
+        this.getOthers()
+    }
+}
 </script>
 
 <style scoped>
