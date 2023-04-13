@@ -2,13 +2,13 @@
 
     
     <div class="box">
-        <div class="container mb-3" style="background-color: #F5EDD8; border-radius: 50px;">
+<div class="container mb-3" style="background-color: #F5EDD8; border-radius: 50px;">
         <div class="row">
             <div class="col-12">   
         <table class="table m-0 mx-auto text-center">
   <thead>
     <tr>
-      <th class="fs-3" scope="col" style="text-decoration: underline;">Faj</th>
+      
       <th class="fs-3" scope="col" style="text-decoration: underline;">Ivar</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Termet</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Kor</th>
@@ -18,13 +18,7 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row"><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Kutya
-  </label>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-</div></th>
+      
       <td>
         </td>
 
@@ -38,13 +32,7 @@
       <td></td>
     </tr>
     <tr>
-      <th scope="row"><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Macska
-  </label>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-</div></th>
+      
       <td><div class="form-check">
   
   <label class="form-check-label" for="flexCheckDefault">
@@ -75,13 +63,7 @@
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold;">szűrés</button></td>
     </tr>
     <tr>
-      <th scope="row"><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Egyéb
-  </label>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-</div></th>
+      
       <td><div class="form-check">
   
   <label class="form-check-label" for="flexCheckDefault">
@@ -102,9 +84,8 @@
 </table>
 </div>
         </div>
-     </div>  
+</div>
     </div>
-
 
 
 
