@@ -26,6 +26,7 @@ namespace PetAndCareDesktopApp
         List<Pet> pets = new List<Pet>();
         List<Dog> dogs = new List<Dog>();
         List<Cat> cats = new List<Cat>();
+        List<OtherPets> otherpets = new List<OtherPets>();
         private async void adminLoginBT_Click(object sender, RoutedEventArgs e)
         {
 
@@ -125,7 +126,7 @@ namespace PetAndCareDesktopApp
 
                         pets.Add(new Pet(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
                             gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
-                            description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), petbreadid: petBreadID, 
+                            description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), petbreedid: petBreadID, 
                             createdAt: currentDate,
                             updatedAt: currentUpdated));
 
@@ -144,6 +145,15 @@ namespace PetAndCareDesktopApp
                             cats.Add(new Cat(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
                                 gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
                                 description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(), 
+                                petbreedid: petBreadID, createdAt: currentDate,
+                                updatedAt: currentUpdated));
+
+                        }
+                        if (reader.GetValue(2).ToString() == "egyeb")
+                        {
+                            otherpets.Add(new OtherPets(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), breed: reader.GetValue(2).ToString(),
+                                gender: reader.GetValue(3).ToString(), castrated: Convert.ToBoolean(reader.GetValue(4)), imgUserDefine: reader.GetValue(5).ToString(),
+                                description: reader.GetValue(6).ToString(), contactInfo: reader.GetValue(7).ToString(),
                                 petbreedid: petBreadID, createdAt: currentDate,
                                 updatedAt: currentUpdated));
 
@@ -533,9 +543,132 @@ namespace PetAndCareDesktopApp
 
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+      
 
+        private async void saveAllOther_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> arrayOfcolumns = new List<string>();
+
+
+
+
+            if (adminSigned)
+            {
+
+
+                using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
+
+                string temp = petCatNameTB.Text;
+                await connection.OpenAsync();
+
+                MySqlCommand command_first = new MySqlCommand("SHOW COLUMNS FROM pets;", connection);
+                DbDataReader reader_first = await command_first.ExecuteReaderAsync();
+
+
+                while (await reader_first.ReadAsync())
+                {
+                    arrayOfcolumns.Add(reader_first.GetString(0));
+                }
+
+
+
+
+                await connection.CloseAsync();
+                int columnIndex = 1;
+                await connection.OpenAsync();
+                foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+                {
+                    temp = tb.Text;
+
+                    if (InputCheck(temp))
+                    {
+                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petOtherCounter].ID - 1};", connection);
+                        DbDataReader reader = await command.ExecuteReaderAsync();
+                        columnIndex++;
+
+                        reader.Close();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+                await connection.CloseAsync();
+                MessageBox.Show("Minden adat sikeresen megváltoztatva!");
+
+                adminLoginBT_Click(this, e);
+
+            }
+            else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
+
+            }
+
+        }
+
+        int petOtherCounter =0;
+        private void nextOtherPetBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (adminSigned)
+            {
+
+
+
+                if (petOtherCounter == otherpets.Count)
+                {
+
+                    petOtherCounter = 0;
+
+                }
+
+                try
+                {
+
+                    petOtherNameTB.Text = otherpets[petOtherCounter].PetName;
+
+                    petOtherGenderTB.Text = otherpets[petOtherCounter].Gender;
+                    petOtherCastratedTB.Text = otherpets[petOtherCounter].Castrated.ToString();
+                    if (otherpets[petOtherCounter].ImgUserDefine.ToString() == "")
+                    {
+                        petOtherImgUserDefineTB.Text = "NULL";
+                    }
+                    petOtherDescriptionTB.Text = otherpets[petOtherCounter].Description;
+                    PetBreedOtherTB.Text = otherpets[petOtherCounter].Breed;
+                    petOtherContactInfoTB.Text = otherpets[petOtherCounter].ContactInfo;
+                    petBreedOtherCB.SelectedIndex = otherpets[petOtherCounter].PetBreedId;
+
+                }
+                catch (PetException ex)
+
+                {
+                    MessageBox.Show(ex.Message);
+
+
+
+
+                }
+
+                finally
+                {
+                    petOtherCounter++;
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
+
+            }
         }
     }
 }

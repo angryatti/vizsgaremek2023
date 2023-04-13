@@ -119,6 +119,16 @@ class DatabasePetSeeder extends Seeder
 
 
 
+          DB::table('pets')->insert([
+            'pet_name' => 'Stuart Little',
+            'breed' => 'egyeb', //nem listázott érték / unlisted,
+            'gender' => 'Hím',
+            'castrated' => false,
+            'img_userdefine' => "stuart.jpg",
+            'contact_info' => "Pest megye",
+            'description' => "Háromhetes, jövő héten elvíhető"
+           // 'petbreed_id' => 55
+          ]);
 
 
     }
