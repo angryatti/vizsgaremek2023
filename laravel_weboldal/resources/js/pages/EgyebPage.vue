@@ -122,7 +122,8 @@ export default{
     methods:{
         async getOthers(){
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/others`)
-            this.others = response.others
+            this.others = response.data
+            console.log(this.others)
         }
     },
     mounted(){

@@ -16,5 +16,3 @@ use App\Http\Controllers\PetController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/',[PetController::class,'home'])->name("home");
