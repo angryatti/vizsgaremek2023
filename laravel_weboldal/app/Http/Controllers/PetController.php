@@ -21,5 +21,8 @@ class PetController extends Controller
         return Pet::where('id',$id)->firstOrFail();
     }
 
+    public function home(){
+        return route('home');
+    }
     
 }

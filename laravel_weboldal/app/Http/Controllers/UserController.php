@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,21 +20,17 @@ class UserController extends Controller
     }
     protected function authenticated(Request $request, $user) 
     {
-        return redirect()->route("#");
+        return redirect()->route("home");
     }
 
 
-    public function register(Request $request)
+    public function register(StoreUserRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email|unique:users,email',
-            'user_name' =>'required|unique:users,user_name',
-            'password' => 'required'
-        ]);
+        $validated = $request->validated();
         $user = User::create([
             'email' => $validated['email'],
             'user_name' => $validated['user_name'],
-            'password' => Hash::make($validated['password'])
+            'password' => $validated['password']
         ]);
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()->Json(['message'=>'Sikeresen Regisztráltál az Oldalra']);
@@ -47,10 +44,6 @@ class UserController extends Controller
      */
     public function logout()
     {
-        Session::flush();
-
-        Auth::logout();
-
 
     }
 

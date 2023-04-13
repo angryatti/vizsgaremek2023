@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dogs',[PetController::class,'dogs'])->name("#");
+Route::get('/',[PetController::class,'home'])->name("home");
