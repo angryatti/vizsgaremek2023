@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('settlement', function (Blueprint $table) {
             $table->id();
-            $table->integer('postcode');
             $table->string('state');
             $table->string('city');
             
