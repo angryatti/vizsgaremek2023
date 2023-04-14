@@ -63,14 +63,9 @@
 <input type="range" class="form-range" min="0" max="10" step="1" id="customRange3">
 </td>
 <td><div class="dropdown">
-  <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Megye
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
+  <select class="form-select" aria-label="Default select example">
+    <option selected v-for="settlement in cities" :key="settlement.state">{{ settlement.state }}</option>
+</select>
 </div></td>
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold;">szűrés</button></td>
     </tr>
@@ -106,5 +101,33 @@
   </div>
 </template>
 
-<script setup>
+<script>
+
+export default{
+
+    
+
+
+name: 'IndexPage',
+
+data(){
+    return{
+        
+        cities: []
+    }
+},
+methods:{
+   
+    async getSettlement(){
+        const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
+        this.cities = response2.data
+        console.log(this.cities)
+    }
+},
+mounted(){
+    
+    this.getSettlement();
+}
+}
 </script>
+

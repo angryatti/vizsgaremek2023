@@ -51,14 +51,9 @@
 <input type="range" class="form-range" min="0" max="10" step="1" id="customRange3">
 </td>
 <td><div class="dropdown">
-  <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Megye
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
+  <select class="form-select" aria-label="Default select example">
+    <option selected v-for="settlement in cities" :key="settlement.state">{{ settlement.state }}</option>
+</select>
 </div></td>
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold;">szűrés</button></td>
     </tr>
@@ -87,12 +82,14 @@
 </div>
 
 
+
 <div class="container containers">
             <div class="row">
                 <div class="col-12 mt-3 mb-3">
                     <div class="card-group">
             <div class="row d-flex mx-auto text-center" style="gap: 20px; justify-content: center;"> 
                 <advert-card v-for="pet in others" :key="pet.id" :id="pet.id" :pet="pet"/>
+                
             </div>
         </div>
                 </div>
@@ -116,7 +113,8 @@ export default{
     },
     data(){
         return{
-            others: []
+            others: [],
+            cities: []
         }
     },
     methods:{
@@ -124,22 +122,20 @@ export default{
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/others`)
             this.others = response.data
             console.log(this.others)
+        },
+        async getSettlement(){
+            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
+            this.cities = response2.data
+            
         }
     },
     mounted(){
         this.getOthers()
+        this.getSettlement()
     }
 }
 </script>
 
 <style scoped>
-input[type='range']::-webkit-slider-thumb {
-      
-      
-      background: #3E1600;
-      
-    }
-    input[type='range']::-webkit-slider-runnable-track{
-        background-color: white;
-    }
+
 </style>

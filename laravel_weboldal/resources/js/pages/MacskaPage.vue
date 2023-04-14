@@ -50,14 +50,9 @@
 <input type="range" class="form-range" min="0" max="10" step="1" id="customRange3">
 </td>
 <td><div class="dropdown">
-  <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Megye
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
+  <select class="form-select" aria-label="Default select example" placeholder="megye">
+  <option selected v-for="settlement in cities" :key="settlement.state">{{ settlement.state }}</option>
+</select>
 </div></td>
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold;">szűrés</button></td>
     </tr>
@@ -109,17 +104,24 @@ export default{
     },
     data(){
         return{
-            cats: []
+            cats: [],
+            cities: []
         }
     },
     methods:{
         async getCats(){
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/cats`)
             this.cats = response.data
+        },
+        async getSettlement(){
+            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
+            this.cities = response2.data
+            console.log(this.cities)
         }
     },
     mounted(){
         this.getCats()
+        this.getSettlement()
     }
 }
 </script>
@@ -130,13 +132,5 @@ export default{
 }
 
 
-input[type='range']::-webkit-slider-thumb {
-      
-      
-      background: #3E1600;
-      
-    }
-    input[type='range']::-webkit-slider-runnable-track{
-        background-color: white;
-    }
+
 </style>

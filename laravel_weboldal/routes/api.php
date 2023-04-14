@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettlementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/dogs',[PetController::class,'dogs']);
 Route::get('/cats',[PetController::class,'cats']);
 Route::get('/others',[PetController::class,'others']);
 Route::get('/allat/{id}',[PetController::class,'show']);
+Route::get('/settlement',[SettlementController::class, 'index']);
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login',[UserController::class,'login']);
