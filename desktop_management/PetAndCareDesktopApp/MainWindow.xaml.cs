@@ -200,8 +200,10 @@ namespace PetAndCareDesktopApp
 
                     await connection.CloseAsync();
 
-                    
 
+                    nextDogPetBT_Click(sender, e);
+                    nextCatPetBT_Click(sender, e);
+                    nextOtherPetBT_Click(sender, e);
 
 
 
@@ -344,27 +346,26 @@ namespace PetAndCareDesktopApp
 
         bool InputCheck(string input)
         {
-            string pattern = @"^[a-zA-Zéáöőóúüűí]+$";
-            string patternNum = "^[0-9]";
+            string pattern = @"^[a-zA-Zéáöőóúüűí,;'\\s]|[a-zA-Zéáöőóúüűí]+$";
+          //  string patternNum = "^[0-9]";
 
+            bool intBool = false;
 
             if (!string.IsNullOrEmpty(input))
             {
 
-                bool c = Char.IsUpper(input[0]);
-                if (!c)
-                {
-                    MessageBox.Show("Nagybetűvel kell kezdődnie!");
-                    return false;
+              
+                if (bool.TryParse(input, out intBool)){
+
+                    return true;
+
 
                 }
-                else
-                {
-
+                
 
                     Regex regex = new Regex(pattern);
-                    Regex regexNum = new Regex(patternNum);
-                    if (regex.IsMatch(input) && !regexNum.IsMatch(input))
+                 //   Regex regexNum = new Regex(patternNum);
+                    if (regex.IsMatch(input)) // && !regexNum.IsMatch(input))
                     {
                         return true;
 
@@ -375,15 +376,12 @@ namespace PetAndCareDesktopApp
                         return false;
 
                     }
-                }
+                
             }
 
             return true;
         }
-        bool InputCheckNum(string input) // még implementálni kell
-        {
-            return true;
-        }
+    
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
@@ -397,6 +395,25 @@ namespace PetAndCareDesktopApp
             }
         }
 
+
+        public bool isItIntorBool(string strbool) {
+
+
+            int integer= 0;
+
+            if (strbool.Length == 1 && int.TryParse(strbool,out integer))
+            {
+                return true;
+            
+            }
+            else
+            {
+
+                return false;
+            }
+
+        
+        }
         private async void saveAllDog_Click(object sender, RoutedEventArgs e)
         {
         
@@ -404,7 +421,7 @@ namespace PetAndCareDesktopApp
           List <string> arrayOfcolumns = new List<string>();
 
 
-
+          
 
             if (adminSigned)
             {
@@ -424,39 +441,46 @@ namespace PetAndCareDesktopApp
                  arrayOfcolumns.Add(reader_first.GetString(0));
                 }
                 
-
-           
+        
 
                 await connection.CloseAsync();
                 int columnIndex = 1;
+
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     temp = tb.Text;
+                 
+
+
+               
                     if (InputCheck(temp))
                     {
                     MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID-1};", connection);
                     DbDataReader reader = await command.ExecuteReaderAsync();
-                    columnIndex++;
+               
                     reader.Close();
                     }
-              
-              
-               
-                        
-                   
 
-                   
+                    columnIndex++;
 
-                    
-                   
-                        
-                     
-                
-
-                
                 }
+
+                temp = petBreedDogCB.SelectedIndex.ToString();
+
+
+
+                MySqlCommand command_cb = new MySqlCommand($"UPDATE pets SET `petbreed_id` =  '{Convert.ToInt32(temp)}' where id = {dogs[petDogCounter].ID - 1};", connection);
+                DbDataReader reader_cb = await command_cb.ExecuteReaderAsync();
+
+                reader_cb.Close();
                 await connection.CloseAsync();
+
+
+
+
+
+
                 MessageBox.Show("Minden adat sikeresen megváltoztatva!");
 
                 adminLoginBT_Click(this, e);
@@ -511,18 +535,17 @@ namespace PetAndCareDesktopApp
                     {
                         MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petCatCounter].ID - 1};", connection);
                         DbDataReader reader = await command.ExecuteReaderAsync();
-                        columnIndex++;
-
+                 
                         reader.Close();
                     }
 
 
+                    columnIndex++;
 
 
 
 
 
-                    
 
 
 
@@ -580,16 +603,20 @@ namespace PetAndCareDesktopApp
                 {
                     temp = tb.Text;
 
+
+                    
+
+
                     if (InputCheck(temp))
                     {
                         MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petOtherCounter].ID - 1};", connection);
                         DbDataReader reader = await command.ExecuteReaderAsync();
-                        columnIndex++;
+                  
 
                         reader.Close();
                     }
 
-
+                    columnIndex++;
 
 
 
@@ -669,6 +696,27 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show("Jelentkezzen be!");
 
             }
+        }
+
+        private void addDogBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void newDogBT_Click(object sender, RoutedEventArgs e)
+        {
+         
+            foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+            {
+                tb.Text ="";
+
+            }
+
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -13,27 +13,50 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function login(LoginRequest $request){
-        $creds = $request->GetCredentials();
-        $user = Auth::getProvider()->retrieveByCredentials($creds);
-        return $this->authenticated($request, $user);
-    }
-    protected function authenticated(Request $request, $user) 
-    {
-        return redirect()->route("home");
-    }
-
-
+    
     public function register(StoreUserRequest $request)
     {
         $validated = $request->validated();
         $user = User::create([
             'email' => $validated['email'],
             'user_name' => $validated['user_name'],
-            'password' => $validated['password']
+            'password' => bcrypt($validated['password'])
         ]);
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->Json(['message'=>'Sikeresen Regisztráltál az Oldalra']);
+        $success['token'] = $user->createToken('auth_token')->plainTextToken;
+        $success['user'] = $user->user_name;
+
+        $response = [
+            'success' => true,
+            'data' => $success,
+            'message'=>'Sikeresen Regisztráltál az Oldalra'
+        ];
+        return response()->Json([$response,200]);
+    }
+
+    public function login(Request $request){
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
+        {
+            //$user = Auth::user();
+            $user = $request->user();
+            $success['token'] = $user->createToken('auth_token')->plainTextToken;
+            $success['name'] = $user->user_name;
+
+            $response = [
+                'success' => true,
+                'data' => $success,
+                'message' => 'Sikeresen bejelentkeztél'
+            ];
+
+        return response()->json($response, 200);
+        }
+        else
+        {
+            $response = [
+                'success' => false,
+                'message' => 'Bejelentkezés nem sikerült'
+            ];
+            return response()->json($response);
+        }
     }
 
     /**
