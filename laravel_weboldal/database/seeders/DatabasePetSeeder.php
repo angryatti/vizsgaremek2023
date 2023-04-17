@@ -124,7 +124,7 @@ class DatabasePetSeeder extends Seeder
             'breed' => 'egyeb', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
-           // 'img_userdefine' => "stuart.jpg",
+            'img_userdefine' => "others.jpg",
             'contact_info' => "Pest megye",
             'description' => "Háromhetes, jövő héten elvíhető"
            // 'petbreed_id' => 55
