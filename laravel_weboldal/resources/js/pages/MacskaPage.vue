@@ -1,4 +1,5 @@
 <template>
+<div class="container-fluid">
     <div class="box">
         
         <div class="container mb-3" style="background-color: #F5EDD8; border-radius: 50px;">
@@ -92,6 +93,7 @@
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
