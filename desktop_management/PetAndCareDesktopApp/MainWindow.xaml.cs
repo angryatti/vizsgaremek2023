@@ -422,7 +422,24 @@ namespace PetAndCareDesktopApp
 
             List<string> arrayOfcolumns = new List<string>();
 
+            foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+            {
 
+                if (tb.Text == "")
+                {
+
+                    MessageBox.Show("Üres mezőt nem lehet menteni!");
+
+
+                    return;
+
+
+                }
+
+
+
+
+            }
 
 
             if (adminSigned)
@@ -704,10 +721,28 @@ namespace PetAndCareDesktopApp
         {
             List<string> arrayOfcolumns = new List<string>();
 
+            foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+            {
+            
+            if (tb.Text == "")
+                {
+
+                    MessageBox.Show("Üres mezőt nem lehet menteni!");
+
+
+                   return;
+
+
+                }
+            
+
+
+            
+            }
 
 
 
-            if (adminSigned)
+                if (adminSigned)
             {
 
 
@@ -738,16 +773,6 @@ namespace PetAndCareDesktopApp
                     tempList.Add(tb.Text);
 
                 }
-
-
-                /*
-                foreach (string st in tempList)
-                {
-
-                    MessageBox.Show(st);
-                }
-                */
-                //  MessageBox.Show(arrayOfcolumns.Count.ToString());
 
 
 
@@ -807,6 +832,7 @@ namespace PetAndCareDesktopApp
 
             }
             PetBreedDogTB.Text = "kutya";
+            petBreedDogCB.SelectedIndex = 0;
         }
 
 
