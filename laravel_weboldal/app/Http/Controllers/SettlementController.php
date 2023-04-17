@@ -15,7 +15,9 @@ class SettlementController extends Controller
     public function index()
     {
 
-       return Settlement::all()->unique('state')->sortBy(['state', 'asc']);
+       $sorted  = collect(Settlement::all()->unique('state')->sortBy('state'));
+       return $sorted->values('state')->all();
+        
         
        
         
