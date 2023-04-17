@@ -1,6 +1,6 @@
 <template>
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="kép később">
+        <img :src="`pet_imgs/${pet.img_userdefine}`" class="card-img-top" >
         <div class="card-body">
             <h5 class="card-title">{{pet.pet_name}}</h5>
             <p class="card-text">{{pet.breed}}<br>
