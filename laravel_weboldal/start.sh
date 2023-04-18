@@ -26,5 +26,6 @@ $COMPOSE exec app php artisan key:generate
 $COMPOSE exec app npm install
 $COMPOSE exec app php artisan migrate:refresh
 $COMPOSE exec app php artisan db:seed
+$COMPOSE exec app php artisan storage:link
 $COMPOSE exec app npm run build
 $COMPOSE exec app npm run dev

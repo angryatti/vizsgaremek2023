@@ -26,5 +26,6 @@ winpty $COMPOSE exec app php artisan key:generate
 winpty $COMPOSE exec app npm install
 winpty $COMPOSE exec app php artisan migrate:refresh
 winpty $COMPOSE exec app php artisan db:seed
+winpty $COMPOSE exec app php artisan storage:link
 winpty $COMPOSE exec app npm run build
 winpty $COMPOSE exec app npm run dev
