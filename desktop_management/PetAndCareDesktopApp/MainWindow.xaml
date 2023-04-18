@@ -76,16 +76,22 @@
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="petDogGenderTB" TextWrapping="Wrap" Text="ivar" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="2" x:Name="PetDogCastratedLB" Content="Kasztrált:"/>
                     <TextBox Grid.Column="1" Grid.Row="2" x:Name="petDogCastratedTB" TextWrapping="Wrap" Text="Bool" ForceCursor="True" />
-                    <Label Grid.Column="0" Grid.Row="3" x:Name="PetDogImgUserDefineLB" Content="Kép (jpg):" />
+                    <Label Grid.Column="0" Grid.Row="3" x:Name="PetDogImgUserDefineLB" Content="Képfájl:" />
                     <TextBox Grid.Column="1" Grid.Row="3" x:Name="petDogImgUserDefineTB" TextWrapping="Wrap" Text="Képfájl" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="4" x:Name="PetDogDescriptionLB" Content="Leírás" />
                     <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" x:Name="petDogDescriptionTB" />
                     <Label Grid.Column="0" Grid.Row="5" x:Name="PetDogContactInfoLB" Content="Gazda elérhetősége: " />
                     <TextBox Grid.Column="1" Grid.Row="5" x:Name="petDogContactInfoTB" TextWrapping="Wrap" Text="Kapcsolat" ForceCursor="True" />
-                    <Button Grid.Column="1" Grid.Row="6" x:Name="nextDogPetBT" Click="nextDogPetBT_Click">Következő kisállat</Button>
-                    <Button Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2"   x:Name="saveAllDog" Click="saveAllDog_Click">Minden módosítás mentése</Button>
+                    <Label Grid.Column="4" Grid.Row="3" Content="Kép előnézet:"/>
+                    <Image Grid.Column="4" Grid.Row="4" x:Name="showDogImg" />
+                    <Button Grid.Column="2" Grid.Row="6" x:Name="nextDogPetBT" Click="nextDogPetBT_Click">Következő kisállat</Button>
+                    <Button Grid.Column="1" Grid.Row="6" x:Name="previousDogPetBT" Click="previousDogPetBT_Click">Előző kisállat</Button>
+                    <Button Grid.Column="3" Grid.Row="6" x:Name="saveAllDog" Click="saveAllDog_Click">Minden módosítás mentése</Button>
                     <Button Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" x:Name="addDogBT" Click="addDogBT_Click">Kutya hozzáadás</Button>
                     <Button Grid.Column="1" Grid.Row="7" x:Name="newDogBT" Click="newDogBT_Click">Új kutya</Button>
+                    <Label Grid.Column="5" Grid.Row="2" Content="kép url" x:Name="pathImgTheDogLB"/>
+                    <Button Grid.Column="5" Grid.Row="3" Content="Tallózás" x:Name="browseImgForDogBT" Click="browseImgForDogBT_Click" />
+                    <Button Grid.Column="6" Grid.Row="3" Content="Feltöltés" x:Name="doImgUploadToDogBT" Click="doImgUploadToDogBT_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Cicák" x:Name="CatTabItem"  Visibility="Hidden">
@@ -169,7 +175,7 @@
                     <TextBox Grid.Column="1" Grid.Row="5" x:Name="petOtherContactInfoTB" TextWrapping="Wrap" Text="Kapcsolat" ForceCursor="True" />
                     <Button Grid.Column="1" Grid.Row="6" x:Name="nextOtherPetBT" Click="nextOtherPetBT_Click">Következő kisállat</Button>
                     <Button Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3"   x:Name="saveAllOther" Click="saveAllOther_Click">Minden módosítás mentése</Button>
-
+               
                 </Grid>
 
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\ImageUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,5 @@ use App\Http\Controllers\PetController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('/upload',[ImageUploadController::class,'upload'] )->name('upload');

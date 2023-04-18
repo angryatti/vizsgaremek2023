@@ -9,6 +9,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace PetAndCareDesktopApp
 {
@@ -27,15 +30,15 @@ namespace PetAndCareDesktopApp
         List<Dog> dogs = new List<Dog>();
         List<Cat> cats = new List<Cat>();
         List<OtherPets> otherpets = new List<OtherPets>();
+        string portNumber = ConfigurationManager.AppSettings["DefaultLocalHostPort"];
         private async void adminLoginBT_Click(object sender, RoutedEventArgs e)
         {
-
+           
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
 
             string checkUser = connection.ConnectionString.ToString().Split(';')[3].Split('=')[1];
             string checkPassword = connection.ConnectionString.ToString().Split(';')[4].Split('=')[1];
-
-
+            
             if ((checkUser == usernameTB.Text) && (checkPassword == passwordPB.Password))
             {
 
@@ -201,9 +204,9 @@ namespace PetAndCareDesktopApp
                     await connection.CloseAsync();
 
 
-                    nextDogPetBT_Click(sender, e);
-                    nextCatPetBT_Click(sender, e);
-                    nextOtherPetBT_Click(sender, e);
+                  nextDogPetBT_Click(sender, e);
+                  nextCatPetBT_Click(sender, e);
+                  nextOtherPetBT_Click(sender, e);
 
 
 
@@ -256,10 +259,23 @@ namespace PetAndCareDesktopApp
                     {
                         petDogImgUserDefineTB.Text = "NULL";
                     }
+                    else
+                    {
+                        petDogImgUserDefineTB.Text = dogs[petDogCounter].ImgUserDefine;
+
+                    }
                     petDogDescriptionTB.Text = dogs[petDogCounter].Description;
                     PetBreedDogTB.Text = dogs[petDogCounter].Breed;
                     petDogContactInfoTB.Text = dogs[petDogCounter].ContactInfo;
                     petBreedDogCB.SelectedIndex = dogs[petDogCounter].PetBreedId;
+
+                  
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri("http://localhost:"+portNumber+"/pet_imgs/"+petDogImgUserDefineTB.Text, UriKind.Absolute);
+                    bmp.EndInit();
+                    showDogImg.Source = bmp;
+
 
                 }
                 catch (PetException ex)
@@ -347,7 +363,7 @@ namespace PetAndCareDesktopApp
         bool InputCheck(string input)
         {
             string pattern = @"^[a-zA-Zéáöőóúüűí,;'\\s]|[a-zA-Zéáöőóúüűí]+$";
-            //  string patternNum = "^[0-9]";
+           
 
             bool intBool = false;
 
@@ -365,8 +381,8 @@ namespace PetAndCareDesktopApp
 
 
                 Regex regex = new Regex(pattern);
-                //   Regex regexNum = new Regex(patternNum);
-                if (regex.IsMatch(input)) // && !regexNum.IsMatch(input))
+           
+                if (regex.IsMatch(input))
                 {
                     return true;
 
@@ -809,7 +825,7 @@ namespace PetAndCareDesktopApp
 
 
 
-                MessageBox.Show("Minden adat sikeresen megváltoztatva!");
+                MessageBox.Show("Minden adat sikeresen feltöltve!");
 
                 adminLoginBT_Click(this, e);
 
@@ -835,6 +851,144 @@ namespace PetAndCareDesktopApp
             petBreedDogCB.SelectedIndex = 0;
         }
 
+        private void previousDogPetBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (adminSigned)
+            {
 
+                petDogCounter--;
+
+                if (petDogCounter <0)
+                {
+
+                    petDogCounter = dogs.Count-1;
+
+                }
+
+                try
+                {
+
+                    petDogNameTB.Text = dogs[petDogCounter].PetName;
+
+                    petDogGenderTB.Text = dogs[petDogCounter].Gender;
+                    petDogCastratedTB.Text = dogs[petDogCounter].Castrated.ToString();
+                    if (dogs[petDogCounter].ImgUserDefine.ToString() == "")
+                    {
+                        petDogImgUserDefineTB.Text = "NULL";
+                    }
+                    else
+                    {
+                        petDogImgUserDefineTB.Text = dogs[petDogCounter].ImgUserDefine;
+
+                    }
+                    petDogDescriptionTB.Text = dogs[petDogCounter].Description;
+                    PetBreedDogTB.Text = dogs[petDogCounter].Breed;
+                    petDogContactInfoTB.Text = dogs[petDogCounter].ContactInfo;
+                    petBreedDogCB.SelectedIndex = dogs[petDogCounter].PetBreedId;
+
+
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
+                    bmp.EndInit();
+                    showDogImg.Source = bmp;
+
+
+                }
+                catch (PetException ex)
+
+                {
+                    MessageBox.Show(ex.Message);
+
+
+
+
+                }
+
+      
+
+            
+
+            }
+            else
+            {
+
+                MessageBox.Show("Jelentkezzen be!");
+
+            }
+
+        }
+        public async void UploadImageDog()
+        {
+            System.Net.WebClient Client = new System.Net.WebClient();
+         //  List<string> arrayOfcolumns = new List<string>();
+
+            Client.Headers.Add("Content-Type", "binary/octet-stream");
+          
+           
+            byte[] result = Client.UploadFile($"http://localhost:"+portNumber+"/upload", "POST", UploadFilePath);
+
+           
+            
+            string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
+            using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
+
+            await connection.OpenAsync();
+
+            string temp = DialogFileName;
+
+            MessageBox.Show(temp);
+
+            MySqlCommand command = new MySqlCommand($"UPDATE pets SET  img_userdefine =  '{temp}' where id = {dogs[petDogCounter].ID - 1};", connection);
+            DbDataReader reader = await command.ExecuteReaderAsync();
+
+
+            reader.Close();
+            await connection.CloseAsync();
+
+
+
+
+            adminLoginBT_Click(sender: this, e:null);
+
+            MessageBox.Show("A kép sikeresen feltöltve");
+        
+        }   
+
+        public string UploadFilePath { get; set; }
+        public string DialogFileName { get; set; }
+
+        private void browseImgForDogBT_Click(object sender, RoutedEventArgs e)
+        {
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "dogcucc";
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "JPG fájl (.jpg)|*.jpg";
+
+            
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            if (result == true)
+            {
+                DialogFileName = dlg.SafeFileName;
+                UploadFilePath = dlg.FileName;
+                pathImgTheDogLB.Content = UploadFilePath;
+            }
+
+
+
+        }
+
+        private void doImgUploadToDogBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (UploadFilePath != null)
+            {
+
+                UploadImageDog();
+
+            }
+        }
     }
-}
+    }
