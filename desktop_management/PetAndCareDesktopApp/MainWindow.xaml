@@ -23,41 +23,48 @@
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
-                        <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="30"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label  Grid.Row="0" x:Name="userName" Foreground="#3E1600" Content="Felhasználónév:" Target="{Binding ElementName=usernameTB}" Grid.ColumnSpan="3"  Grid.RowSpan="1" Margin="158,100,158,0" HorizontalContentAlignment="Center"/>
                     <TextBox Grid.Row="1" x:Name="usernameTB" TextWrapping="Wrap" Text="root" ForceCursor="True" VerticalAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="158,0,158,0" HorizontalContentAlignment="Center"/>
-                    <Label  Grid.Row="2"  x:Name="password" Foreground="#3E1600" Content="Jelszó:" Target="{Binding ElementName=passwordPB}" Grid.ColumnSpan="1" Margin="158,0,158,0" Grid.RowSpan="2" HorizontalContentAlignment="Center"/>
+                    <Label  Grid.Row="2"  x:Name="password" Foreground="#3E1600" Content="Jelszó:" Target="{Binding ElementName=passwordPB}" Grid.ColumnSpan="1" Margin="158,0,158,0" Grid.RowSpan="1" HorizontalContentAlignment="Center"/>
                     <PasswordBox  Grid.Row="3" x:Name="passwordPB" Grid.ColumnSpan="2" Margin="158,0,158,0" Grid.RowSpan="1" HorizontalContentAlignment="Center"/>
-                    <Button  Grid.Row="4"  x:Name="adminLoginBT" Content="MySQL Connect" Background="Green" Foreground="White" Click="adminLoginBT_Click" IsDefault="True" Grid.ColumnSpan="2" Margin="158,0,158,0" Grid.RowSpan="1" HorizontalContentAlignment="Center"/>
-
+                    
+                    <Button  Grid.Row="4"  x:Name="adminLoginBT" Content="MySQL Connect"  Background="Green" Foreground="White" Click="adminLoginBT_Click" IsDefault="True" Grid.ColumnSpan="2" Margin="158,5,158,0" Grid.RowSpan="1" HorizontalContentAlignment="Center">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"></Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                   
                     <Label  Grid.Row="5" x:Name="loginMessage" Content="Jelentkezzen be!" Foreground="Red" Grid.ColumnSpan="2" Margin="158,0,158,0" Grid.RowSpan="1" HorizontalContentAlignment="Center"/>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Kutyák" x:Name="DogTabItem"  Visibility="Hidden">
-                <Grid Background="#FFE5E5E5" >
+                <Grid Background="#F5EDD8" >
 
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition MinWidth="100"  Width="20*"/>
+                        <ColumnDefinition MinWidth="150"  Width="20*"/>
                         <ColumnDefinition MinWidth="150" Width="20*" />
                         <ColumnDefinition MinWidth="150" Width="20*" />
                         <ColumnDefinition MinWidth="200" Width="20*" />
                         <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
+                        
+                        
                         
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="50"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
@@ -72,15 +79,15 @@
                     </Grid.Resources>
                     
                     <Label Grid.Column="2" Grid.Row="0" x:Name="PetDogIDLB" Content="ID:"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="petDogIDTB" TextWrapping="Wrap" Text="id" ForceCursor="True" IsReadOnly="True"/>
-                    <Label Grid.Column="4" Grid.Row="0" x:Name="PetDogSortLB" Content="Kutyára szűrés"/>
-                    <ComboBox Grid.Column="5" Grid.Row="0" x:Name="PetDogSortCB" SelectionChanged="PetDogSortCB_SelectionChanged"  />
+                    <TextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2" x:Name="petDogIDTB" TextWrapping="Wrap" Text="id" ForceCursor="True" IsReadOnly="True"/>
+                    <Label Grid.Column="2" Grid.Row="5" x:Name="PetDogSortLB" Content="Kutyára szűrés"/>
+                    <ComboBox Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" x:Name="PetDogSortCB" SelectionChanged="PetDogSortCB_SelectionChanged"  />
                     <Label Grid.Column="0" Grid.Row="0" x:Name="PetDogNameLB" Content="Kisállat neve:" />
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="petDogNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" />
                     <Label Grid.Column="2" Grid.Row="1" x:Name="PetBreedDogLB" Content="Kutya Fajtája:" />
-                    <Label Grid.Column="4" Grid.Row="4" x:Name="PetBreedDogLBNOSEE" Content="kutya?" Visibility="Hidden"/>
-                    <TextBox Grid.Column="4" Grid.Row="5" x:Name="PetBreedDogTB" IsReadOnly="True" Visibility="Hidden" Text="kutya"/>
-                    <ComboBox Grid.Column="3" Grid.Row="1" x:Name="petBreedDogCB"  ForceCursor="True" />
+                    <Label Grid.Column="3" Grid.Row="4" x:Name="PetBreedDogLBNOSEE" Content="kutya?" Visibility="Hidden"/>
+                    <TextBox Grid.Column="2" Grid.Row="4" x:Name="PetBreedDogTB" IsReadOnly="True" Visibility="Hidden" Text="kutya"/>
+                    <ComboBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" x:Name="petBreedDogCB"  ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="1" x:Name="PetDogGenderLB" Content="Ivar:"/>
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="petDogGenderTB" TextWrapping="Wrap" Text="ivar" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="2" x:Name="PetDogCastratedLB" Content="Kasztrált:"/>
@@ -88,40 +95,39 @@
                     <Label Grid.Column="0" Grid.Row="3" x:Name="PetDogImgUserDefineLB" Content="Képfájl:" />
                     <TextBox Grid.Column="1" Grid.Row="3" x:Name="petDogImgUserDefineTB" TextWrapping="Wrap" Text="Képfájl" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="4" x:Name="PetDogDescriptionLB" Content="Leírás" />
-                    <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" x:Name="petDogDescriptionTB" />
+                    <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" x:Name="petDogDescriptionTB" />
                     <Label Grid.Column="0" Grid.Row="5" x:Name="PetDogContactInfoLB" Content="Gazda elérhetősége: " />
                     <TextBox Grid.Column="1" Grid.Row="5" x:Name="petDogContactInfoTB" TextWrapping="Wrap" Text="Kapcsolat" ForceCursor="True" />
-                    <Label Grid.Column="4" Grid.Row="3" Content="Kép előnézet:"/>
-                    <Image Grid.Column="4" Grid.Row="4" x:Name="showDogImg" />
-                    <Button Grid.Column="2" Grid.Row="6" x:Name="nextDogPetBT" Click="nextDogPetBT_Click">Következő kisállat</Button>
-                    <Button Grid.Column="1" Grid.Row="6" x:Name="previousDogPetBT" Click="previousDogPetBT_Click">Előző kisállat</Button>
-                    <Button Grid.Column="3" Grid.Row="6" x:Name="saveAllDog" Click="saveAllDog_Click">Minden módosítás mentése</Button>
-                    <Button Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" x:Name="addDogBT" Click="addDogBT_Click">Kutya hozzáadás</Button>
-                    <Button Grid.Column="1" Grid.Row="7" x:Name="newDogBT" Click="newDogBT_Click">Új kutya</Button>
-                    <Label Grid.Column="5" Grid.Row="2" Content="kép url" x:Name="pathImgTheDogLB"/>
-                    <Button Grid.Column="5" Grid.Row="3" Content="Tallózás" x:Name="browseImgForDogBT" Click="browseImgForDogBT_Click" />
-                    <Button Grid.Column="6" Grid.Row="3" Content="Feltöltés" x:Name="doImgUploadToDogBT" Click="doImgUploadToDogBT_Click" />
-                    <Button Grid.Column="2" Grid.Row="8" Content="Kutya törlése" x:Name="removeDogBT" Click="removeDogBT_Click"/>
+                    <Label Grid.Column="2" Grid.Row="7" Content="Kép előnézet:"/>
+                    <Image Grid.Column="3" Grid.Row="7" Grid.RowSpan="3" x:Name="showDogImg" />
+                    <Button Grid.Column="1" Grid.Row="6" x:Name="nextDogPetBT" Background="CornflowerBlue" Click="nextDogPetBT_Click">Következő kisállat</Button>
+                    <Button Grid.Column="0" Grid.Row="6" x:Name="previousDogPetBT" Background="LightGoldenrodYellow" Click="previousDogPetBT_Click">Előző kisállat</Button>
+                    <Button Grid.Column="0" Grid.Row="10"   Background="#FFC107" Grid.ColumnSpan="2" x:Name="saveAllDog" Click="saveAllDog_Click">Minden módosítás mentése</Button>
+                    <Button Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Foreground="White" Background="Green" x:Name="addDogBT" Click="addDogBT_Click">Kutya hozzáadás</Button>
+                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"  Background="LightGreen" x:Name="newDogBT" Click="newDogBT_Click">Új kutya</Button>
+                    <Label Grid.Column="2" Grid.Row="3" Content="kép url" x:Name="pathImgTheDogLB"/>
+                    <Button Grid.Column="4" Grid.Row="3" Background="#FFC107" Content="Tallózás" x:Name="browseImgForDogBT" Click="browseImgForDogBT_Click" />
+                    <Button Grid.Column="3" Grid.Row="3" Foreground="White" Background="Green" Content="Feltöltés" x:Name="doImgUploadToDogBT" Click="doImgUploadToDogBT_Click" />
+                    <Button Grid.Column="0" Grid.Row="9" Foreground="White" Background="Red" Grid.ColumnSpan="2" Content="Kutya törlése" x:Name="removeDogBT" Click="removeDogBT_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Cicák" x:Name="CatTabItem"  Visibility="Hidden">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#F5EDD8">
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition MinWidth="100"  Width="20*"/>
+                        <ColumnDefinition MinWidth="150"  Width="20*"/>
+                        <ColumnDefinition MinWidth="150" Width="20*" />
+                        <ColumnDefinition MinWidth="150" Width="20*" />
+                        <ColumnDefinition MinWidth="200" Width="20*" />
                         <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
+                        
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="25"  Height="Auto"/>
+                        <RowDefinition MinHeight="50"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
@@ -129,16 +135,22 @@
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid.Resources >
+                        <Style TargetType="Button" >
+                            <Setter Property="Margin" Value="10,10,10,10" />
+                        </Style>
+                    </Grid.Resources>
+                    
                     <Label Grid.Column="2" Grid.Row="0" x:Name="PetCatIDLB" Content="ID:"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="petCatIDTB" TextWrapping="Wrap" Text="id" ForceCursor="True" IsReadOnly="True"/>
-                    <Label Grid.Column="4" Grid.Row="0" x:Name="PetCatSortLB" Content="Macskára szűrés"/>
-                    <ComboBox Grid.Column="5" Grid.Row="0" x:Name="PetCatSortCB" SelectionChanged="PetCatSortCB_SelectionChanged"  />
+                    <TextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2" x:Name="petCatIDTB" TextWrapping="Wrap" Text="id" ForceCursor="True" IsReadOnly="True"/>
+                    <Label Grid.Column="2" Grid.Row="5" x:Name="PetCatSortLB" Content="Macskára szűrés"/>
+                    <ComboBox Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" x:Name="PetCatSortCB" SelectionChanged="PetCatSortCB_SelectionChanged"  />
                     <Label Grid.Column="0" Grid.Row="0" x:Name="PetCatNameLB" Content="Kisállat neve:" />
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="petCatNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" />
                     <Label Grid.Column="2" Grid.Row="1" x:Name="PetBreedCatLB" Content="Macska Fajtája:" />
-                    <Label Grid.Column="4" Grid.Row="4" x:Name="PetBreedCatLBNOSEE" Content="macska?" Visibility="Hidden"/>
+                    <Label Grid.Column="4" Grid.Row="4"  x:Name="PetBreedCatLBNOSEE" Content="macska?" Visibility="Hidden"/>
                     <TextBox Grid.Column="4" Grid.Row="5" x:Name="PetBreedCatTB" IsReadOnly="True" Visibility="Hidden" />
-                    <ComboBox Grid.Column="3" Grid.Row="1" x:Name="petBreedCatCB"  ForceCursor="True" />
+                    <ComboBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" x:Name="petBreedCatCB"  ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="1" x:Name="PetCatGenderLB" Content="Ivar:"/>
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="petCatGenderTB" TextWrapping="Wrap" Text="ivar" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="2" x:Name="PetCatCastratedLB" Content="Kasztrált:"/>
@@ -146,20 +158,20 @@
                     <Label Grid.Column="0" Grid.Row="3" x:Name="PetCatImgUserDefineLB" Content="Kép (jpg):" />
                     <TextBox Grid.Column="1" Grid.Row="3" x:Name="petCatImgUserDefineTB" TextWrapping="Wrap" Text="Képfájl" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="4" x:Name="PetCatDescriptionLB" Content="Leírás" />
-                    <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" x:Name="petCatDescriptionTB" />
+                    <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" x:Name="petCatDescriptionTB" />
                     <Label Grid.Column="0" Grid.Row="5" x:Name="PetCatContactInfoLB" Content="Gazda elérhetősége: " />
                     <TextBox Grid.Column="1" Grid.Row="5" x:Name="petCatContactInfoTB" TextWrapping="Wrap" Text="Kapcsolat" ForceCursor="True" />
-                    <Label Grid.Column="4" Grid.Row="3" Content="Kép előnézet:"/>
-                    <Image Grid.Column="4" Grid.Row="4" x:Name="showCatImg" />
-                    <Button Grid.Column="2" Grid.Row="6" x:Name="nextCatPetBT" Click="nextCatPetBT_Click">Következő kisállat</Button>
-                    <Button Grid.Column="1" Grid.Row="6" x:Name="previousCatPetBT" Click="previousCatPetBT_Click">Előző kisállat</Button>
-                    <Button Grid.Column="3" Grid.Row="6" x:Name="saveAllCat" Click="saveAllCat_Click">Minden módosítás mentése</Button>
-                    <Button Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" x:Name="addCatBT" Click="addCatBT_Click">Macska hozzáadás</Button>
-                    <Button Grid.Column="1" Grid.Row="7" x:Name="newCatBT" Click="newCatBT_Click">Új Macska</Button>
-                    <Label Grid.Column="5" Grid.Row="2" Content="kép url" x:Name="pathImgTheCatLB"/>
-                    <Button Grid.Column="5" Grid.Row="3" Content="Tallózás" x:Name="browseImgForCatBT" Click="browseImgForCatBT_Click" />
-                    <Button Grid.Column="6" Grid.Row="3" Content="Feltöltés" x:Name="doImgUploadToCatBT" Click="doImgUploadToCatBT_Click" />
-                    <Button Grid.Column="2" Grid.Row="8" Content="Cica törlése" x:Name="removeCatBT" Click="removeCatBT_Click"/>
+                    <Label Grid.Column="2" Grid.Row="7" Content="Kép előnézet:"/>
+                    <Image Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2" x:Name="showCatImg" />
+                    <Button Grid.Column="1" Grid.Row="6" x:Name="nextCatPetBT" Background="CornflowerBlue" Click="nextCatPetBT_Click">Következő kisállat</Button>
+                    <Button Grid.Column="0" Grid.Row="6" x:Name="previousCatPetBT" Background="LightGoldenrodYellow" Click="previousCatPetBT_Click">Előző kisállat</Button>
+                    <Button Grid.Column="0" Grid.Row="10" Background="#FFC107" Grid.ColumnSpan="2" x:Name="saveAllCat" Click="saveAllCat_Click">Minden módosítás mentése</Button>
+                    <Button Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Foreground="White" Background="Green" x:Name="addCatBT" Click="addCatBT_Click">Macska hozzáadás</Button>
+                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Background="LightGreen" x:Name="newCatBT" Click="newCatBT_Click">Új Macska</Button>
+                    <Label Grid.Column="2" Grid.Row="3" Content="kép url" x:Name="pathImgTheCatLB"/>
+                    <Button Grid.Column="5" Grid.Row="3" Content="Tallózás" Background="#FFC107" x:Name="browseImgForCatBT" Click="browseImgForCatBT_Click" />
+                    <Button Grid.Column="3" Grid.Row="3" Content="Feltöltés" Foreground="White" Background="Green" x:Name="doImgUploadToCatBT" Click="doImgUploadToCatBT_Click" />
+                    <Button Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Foreground="White" Background="Red" Content="Cica törlése" x:Name="removeCatBT" Click="removeCatBT_Click"/>
                     
 
                 </Grid>
