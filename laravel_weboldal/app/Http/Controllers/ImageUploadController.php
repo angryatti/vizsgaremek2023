@@ -12,7 +12,11 @@ class ImageUploadController extends Controller
             $file = $request->file('file');
 
             if($file->isValid()) {
-                $filePath = $file->storeAs('public/pet_imgs','dogs_template.jpg');
+                    //saját hash-re cseréljük majd
+                $dbName = md5($file->getClientOriginalName()).".jpg";
+
+
+                $filePath = $file->storeAs('public/pet_imgs',$dbName);
                // $fileName= basename($filePath);
             
                 return redirect()->back()->with('message','Fájl feltöltve.');

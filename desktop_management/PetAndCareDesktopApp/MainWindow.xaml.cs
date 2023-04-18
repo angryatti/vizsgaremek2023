@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static Org.BouncyCastle.Math.EC.ECCurve;
-
+using System.Security.Cryptography;
 namespace PetAndCareDesktopApp
 {
     /// <summary>
@@ -858,10 +858,10 @@ namespace PetAndCareDesktopApp
 
                 petDogCounter--;
 
-                if (petDogCounter <0)
+                if (petDogCounter < 0)
                 {
 
-                    petDogCounter = dogs.Count-1;
+                    petDogCounter = dogs.Count - 1;
 
                 }
 
@@ -905,9 +905,9 @@ namespace PetAndCareDesktopApp
 
                 }
 
-      
 
-            
+
+
 
             }
             else
@@ -916,6 +916,18 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show("Jelentkezzen be!");
 
             }
+
+        }
+
+        public string hashforimg(string input)
+        {
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            MD5 md5 = MD5.Create();
+            
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+           
+
+            return Convert.ToHexString(hashBytes);
 
         }
         public async void UploadImageDog()
@@ -927,15 +939,16 @@ namespace PetAndCareDesktopApp
           
            
             byte[] result = Client.UploadFile($"http://localhost:"+portNumber+"/upload", "POST", UploadFilePath);
-
-           
+         
             
+
+
             string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
 
             await connection.OpenAsync();
 
-            string temp = DialogFileName;
+            string temp = hashforimg(DialogFileName)+".jpg";
 
             MessageBox.Show(temp);
 
@@ -946,12 +959,12 @@ namespace PetAndCareDesktopApp
             reader.Close();
             await connection.CloseAsync();
 
-
+            MessageBox.Show("A kép sikeresen feltöltve");
 
 
             adminLoginBT_Click(sender: this, e:null);
 
-            MessageBox.Show("A kép sikeresen feltöltve");
+       
         
         }   
 
