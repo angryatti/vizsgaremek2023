@@ -15,9 +15,9 @@ git clone https://github.com/angryatti/vizsgaremek2023.git projekt_neve
 
 **Ezzel adunk futtatási jogot a start.sh-hoz**  
 ```
-chmod u+x larvel_weboldal/start.sh
+chmod u+x laravel_weboldal/start.sh
 ```
-
+**Ezzel indítjuk a projektet**
 ```
 cd laravel_weboldal && ./start.sh
 ```
@@ -26,6 +26,8 @@ cd laravel_weboldal && ./start.sh
 ```
 cd laravel_weboldal && ./start_win.sh
 ```
+
+## A C# Admin felület .start.sh nélkül is működésre bírható, de nem működik adatbázis kapcsolat nélkül a lényeges funkciói
 
 Amennyiben nem lenne git a gépünkön telepítve, az előbbi műveletet docker segítségével is megtehetjük:
 
