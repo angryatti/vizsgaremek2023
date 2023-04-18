@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetAndCareDesktopApp"
         mc:Ignorable="d"
-        Title="Pet and Care Admin felület" Height="450" Width="800">
+        Title="Pet and Care Admin felület" Height="500" Width="950">
     <Grid>
         <TabControl>
             <TabItem Header="Bejelentkezés">
@@ -48,9 +48,9 @@
                     <Grid.ColumnDefinitions>
 
                         <ColumnDefinition MinWidth="100"  Width="20*"/>
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
-                        <ColumnDefinition MinWidth="100" Width="20*" />
+                        <ColumnDefinition MinWidth="150" Width="20*" />
+                        <ColumnDefinition MinWidth="150" Width="20*" />
+                        <ColumnDefinition MinWidth="200" Width="20*" />
                         <ColumnDefinition MinWidth="100" Width="20*" />
                         <ColumnDefinition MinWidth="100" Width="20*" />
                         <ColumnDefinition MinWidth="100" Width="20*" />
@@ -69,6 +69,12 @@
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                         <RowDefinition MinHeight="25"  Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid.Resources >
+                        <Style TargetType="Button" >
+                            <Setter Property="Margin" Value="10,10,10,10" />
+                        </Style>
+                    </Grid.Resources>
+                    
                     <Label Grid.Column="2" Grid.Row="0" x:Name="PetDogIDLB" Content="ID:"/>
                     <TextBox Grid.Column="3" Grid.Row="0" x:Name="petDogIDTB" TextWrapping="Wrap" Text="id" ForceCursor="True" IsReadOnly="True"/>
                     <Label Grid.Column="4" Grid.Row="0" x:Name="PetDogSortLB" Content="Kutyára szűrés"/>

@@ -101,7 +101,7 @@ namespace PetAndCareDesktopApp
                     dogs.Clear();
                     cats.Clear();
                     PetDogSortCB.Items.Clear();
-                  
+                    PetCatSortCB.Items.Clear();
                  //   PetDogSortCB.SelectedIndex = 0;
                     while (await reader.ReadAsync())
                     {
@@ -180,6 +180,16 @@ namespace PetAndCareDesktopApp
 
                     }
 
+
+                    foreach (Cat cat in cats)
+                    {
+                        PetCatSortCB.Items.Add(cat.PetName);
+
+
+                    }
+
+
+
                     command = new MySqlCommand("SELECT `dogbreed` FROM `doglist`;", connection);
                     reader = await command.ExecuteReaderAsync();
 
@@ -217,11 +227,12 @@ namespace PetAndCareDesktopApp
                     await connection.CloseAsync();
 
 
-                    nextDogPetBT_Click(sender, e);
-                    nextCatPetBT_Click(sender, e);
-                    nextOtherPetBT_Click(sender, e);
-                
-                
+                    //  nextDogPetBT_Click(sender, e);
+                    //  nextCatPetBT_Click(sender, e);
+                    //   nextOtherPetBT_Click(sender, e);
+
+                    newDogBT_Click(this, e);
+                    newCatBT_Click(this, e);
 
                 }
                 else
@@ -1022,7 +1033,7 @@ namespace PetAndCareDesktopApp
                 tb.Text = "";
 
             }
-            PetBreedCatTB.Text = "cica";
+            PetBreedCatTB.Text = "macska";
             petBreedCatCB.SelectedIndex = 0;
             petCatIDTB.Text = "zárolt";
             PetCatSortCB.SelectedIndex = 0;
@@ -1218,7 +1229,7 @@ namespace PetAndCareDesktopApp
 
 
 
-            string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
+         //   string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
 
             await connection.OpenAsync();
@@ -1256,7 +1267,7 @@ namespace PetAndCareDesktopApp
 
 
 
-            string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
+           // string resultString = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
             using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
 
             await connection.OpenAsync();
@@ -1443,12 +1454,7 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show(ex.Message);
 
             }
-            finally
-            {
-
-            //    adminLoginBT_Click(this, e: null);
-
-            }
+         
 
         }
 
@@ -1503,12 +1509,7 @@ namespace PetAndCareDesktopApp
                 MessageBox.Show(ex.Message);
 
             }
-            finally
-            {
-
-                //    adminLoginBT_Click(this, e: null);
-
-            }
+        
 
         }
     }
