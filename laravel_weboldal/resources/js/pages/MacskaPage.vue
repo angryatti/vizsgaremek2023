@@ -55,7 +55,7 @@
   <option selected v-for="settlement in cities" :key="settlement.state">{{ settlement.state }}</option>
 </select>
 </div></td>
-<td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold;">szűrés</button></td>
+<td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold; height:40pt; width:100px;">szűrés</button></td>
     </tr>
     <tr>
       
