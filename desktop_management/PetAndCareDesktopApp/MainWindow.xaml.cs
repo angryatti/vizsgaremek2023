@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 using System.Security.Cryptography;
+using Mysqlx.Crud;
+
 namespace PetAndCareDesktopApp
 {
     /// <summary>
@@ -247,9 +249,16 @@ namespace PetAndCareDesktopApp
                     petDogCounter = 0;
 
                 }
+                if (dogs.Count == 0)
+                {
+                    MessageBox.Show("Nincs kutya az adatbázisban");
+                    return;
 
+
+                }
                 try
                 {
+                    petDogIDTB.Text = dogs[petDogCounter].ID.ToString();
 
                     petDogNameTB.Text = dogs[petDogCounter].PetName;
 
@@ -479,7 +488,10 @@ namespace PetAndCareDesktopApp
 
 
                 await connection.CloseAsync();
-                int columnIndex = 1;
+
+                int columnIndex = 0;
+
+
 
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
@@ -489,13 +501,12 @@ namespace PetAndCareDesktopApp
 
 
 
-                    if (InputCheck(temp))
-                    {
-                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter].ID - 1};", connection);
+                 
+                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter-1].ID};", connection);
                         DbDataReader reader = await command.ExecuteReaderAsync();
 
                         reader.Close();
-                    }
+                    
 
                     columnIndex++;
 
@@ -560,19 +571,18 @@ namespace PetAndCareDesktopApp
 
 
                 await connection.CloseAsync();
-                int columnIndex = 1;
+                int columnIndex = 0;
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     temp = tb.Text;
 
-                    if (InputCheck(temp))
-                    {
+                  
                         MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petCatCounter].ID - 1};", connection);
                         DbDataReader reader = await command.ExecuteReaderAsync();
 
                         reader.Close();
-                    }
+                    
 
 
                     columnIndex++;
@@ -632,7 +642,7 @@ namespace PetAndCareDesktopApp
 
 
                 await connection.CloseAsync();
-                int columnIndex = 1;
+                int columnIndex = 0;
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
@@ -644,7 +654,7 @@ namespace PetAndCareDesktopApp
 
                     if (InputCheck(temp))
                     {
-                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {cats[petOtherCounter].ID - 1};", connection);
+                        MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {otherpets[petOtherCounter-1].ID};", connection);
                         DbDataReader reader = await command.ExecuteReaderAsync();
 
 
@@ -781,20 +791,21 @@ namespace PetAndCareDesktopApp
                 await connection.CloseAsync();
                 List<string> tempList = new List<string>();
                 int temp;
-                int columnIndex = 1;
+             //   int columnIndex = 2;
 
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
+                 
                     tempList.Add(tb.Text);
 
                 }
 
-
+               
 
                 tempList.Add(petBreedDogCB.SelectedIndex.ToString());
 
-                if (tempList[3] == "True")
+                if (tempList[4] == "True")
                 {
 
                     temp = 1;
@@ -809,13 +820,13 @@ namespace PetAndCareDesktopApp
 
 
 
-                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES(NULL,'{tempList[0]}','{tempList[1]}','{tempList[2]}',{temp},'{tempList[4]}','{tempList[5]}','{tempList[6]}','{tempList[7].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{tempList[2]}','{tempList[3]}',{temp},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
 
                 reader.Close();
 
 
-                columnIndex++;
+               
 
 
                 await connection.CloseAsync();
@@ -849,6 +860,7 @@ namespace PetAndCareDesktopApp
             }
             PetBreedDogTB.Text = "kutya";
             petBreedDogCB.SelectedIndex = 0;
+            petDogIDTB.Text = "locked";
         }
 
         private void previousDogPetBT_Click(object sender, RoutedEventArgs e)
@@ -865,9 +877,17 @@ namespace PetAndCareDesktopApp
 
                 }
 
+                if (dogs.Count== 0)
+                {
+                    MessageBox.Show("Nincs kutya az adatbázisban");
+                    return;
+
+
+                }
+
                 try
                 {
-
+                    petDogIDTB.Text = dogs[petDogCounter].ID.ToString();
                     petDogNameTB.Text = dogs[petDogCounter].PetName;
 
                     petDogGenderTB.Text = dogs[petDogCounter].Gender;
@@ -921,6 +941,7 @@ namespace PetAndCareDesktopApp
 
         public string hashforimg(string input)
         {
+            // saját hash lesz!!
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
             MD5 md5 = MD5.Create();
             
@@ -950,9 +971,9 @@ namespace PetAndCareDesktopApp
 
             string temp = hashforimg(DialogFileName)+".jpg";
 
-            MessageBox.Show(temp);
+           
 
-            MySqlCommand command = new MySqlCommand($"UPDATE pets SET  img_userdefine =  '{temp}' where id = {dogs[petDogCounter].ID - 1};", connection);
+            MySqlCommand command = new MySqlCommand($"UPDATE pets SET  img_userdefine =  '{temp}' where id = {dogs[petDogCounter-1].ID};", connection);
             DbDataReader reader = await command.ExecuteReaderAsync();
 
 
@@ -1002,6 +1023,26 @@ namespace PetAndCareDesktopApp
                 UploadImageDog();
 
             }
+        }
+
+        private async void removeDogBT_Click(object sender, RoutedEventArgs e)
+        {
+            using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
+
+            await connection.OpenAsync();
+
+
+            
+            MySqlCommand command = new MySqlCommand($"DELETE FROM pets WHERE id={petDogIDTB.Text};", connection);
+            DbDataReader reader = await command.ExecuteReaderAsync();
+
+         //   adminLoginBT_Click(sender, e);
+
+            reader.Close();
+            await connection.CloseAsync();
+            adminLoginBT_Click(sender: this, e: null);
+
+
         }
     }
     }
