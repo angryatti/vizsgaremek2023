@@ -733,7 +733,20 @@ namespace PetAndCareDesktopApp
                     petOtherCounter = 0;
 
                 }
+                if (cats.Count == 0)
+                {
+                    foreach (TextBox tb in FindVisualChildren<TextBox>(this))
+                    {
 
+                        tb.Text = "";
+
+                    }
+
+                    MessageBox.Show("Nincs egyéb állat az adatbázisban");
+                    return;
+
+
+                }
                 try
                 {
 
