@@ -10,6 +10,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 using System.Security.Cryptography;
 
 namespace PetAndCareDesktopApp
@@ -37,7 +40,7 @@ namespace PetAndCareDesktopApp
 
             string checkUser = connection.ConnectionString.ToString().Split(';')[3].Split('=')[1];
             string checkPassword = connection.ConnectionString.ToString().Split(';')[4].Split('=')[1];
-
+            
             if ((checkUser == usernameTB.Text) && (checkPassword == passwordPB.Password))
             {
                 adminSigned = true;
