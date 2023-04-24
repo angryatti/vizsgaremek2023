@@ -100,7 +100,7 @@
 import axios from 'axios';
 import AdvertCard from '../components/layout/AdvertCard.vue';
 export default{
-    name: 'MacskaPage',
+    
     components:{
         AdvertCard,
     },
