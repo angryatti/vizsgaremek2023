@@ -104,7 +104,7 @@ export default{
     
 
 
-    name: 'KutyaPage',
+   
     components:{
         AdvertCard,
     },
