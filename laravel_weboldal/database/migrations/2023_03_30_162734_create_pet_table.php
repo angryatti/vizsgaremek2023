@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
+           
+    
             $table->id();
             $table->string('pet_name',35)->nullable(false);
+            $table->integer('born')->nullable(false);
             $table->string('breed',6)->nullable(false);
             $table->string('gender',7)->nullable(false);
             $table->boolean('castrated')->nullable(false);
@@ -23,7 +26,7 @@ return new class extends Migration
             $table->text('description')->nullable(false);
             $table->string('contact_info',200)->nullable(false);
             $table->integer('petbreed_id',false,false)->nullable(true);
-       //     $table->foreignId('user_id')->references('id')->on('users');;
+      //      $table->foreign('user_id')->references('id')->on('adverts');
 
             $table->timestamps();
         });

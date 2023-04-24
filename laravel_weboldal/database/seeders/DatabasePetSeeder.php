@@ -17,6 +17,7 @@ class DatabasePetSeeder extends Seeder
     {
         DB::table('pets')->insert([
             'pet_name' => 'Morzsi',
+            'born' => 2012,
             'breed' => 'kutya', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -28,8 +29,9 @@ class DatabasePetSeeder extends Seeder
             'updated_at' => '2023-01-06'
         ]);
 
-        DB::table('pets')->insert([
+ DB::table('pets')->insert([
             'pet_name' => 'Csípi',
+            'born' => 2003,
             'breed' => 'kutya', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -38,9 +40,10 @@ class DatabasePetSeeder extends Seeder
             'description' => "A kiskutya két hete született, jövő héten nagy eséllyel elvihető.",
             'petbreed_id' => 31,
         ]);
-
+    
         DB::table('pets')->insert([
             'pet_name' => 'Pannus',
+            'born' => 2012,
             'breed' => 'kutya', //nem listázott érték / unlisted,
             'gender' => 'Nőstény',
             'castrated' => true,
@@ -52,6 +55,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Bogyóka',
+            'born' => 2012,
             'breed' => 'kutya', //nem listázott érték / unlisted,
             'gender' => 'Nőstény',
             'castrated' => true,
@@ -63,6 +67,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Zeusz',
+            'born' => 2014,
             'breed' => 'kutya', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => true,
@@ -75,6 +80,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Mirci',
+            'born' => 2017,
             'breed' => 'macska', //nem listázott érték / unlisted,
             'gender' => 'Nőstény',
             'castrated' => true,
@@ -86,6 +92,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Merkuri',
+            'born' => 2018,
             'breed' => 'macska', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -97,6 +104,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Picur',
+            'born' => 2020,
             'breed' => 'macska', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -108,6 +116,7 @@ class DatabasePetSeeder extends Seeder
 
         DB::table('pets')->insert([
             'pet_name' => 'Garfield',
+            'born' => 2021,
             'breed' => 'macska', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -121,6 +130,7 @@ class DatabasePetSeeder extends Seeder
 
           DB::table('pets')->insert([
             'pet_name' => 'Stuart Little',
+            'born' => 2020,
             'breed' => 'egyeb', //nem listázott érték / unlisted,
             'gender' => 'Hím',
             'castrated' => false,
@@ -129,7 +139,8 @@ class DatabasePetSeeder extends Seeder
             'description' => "Háromhetes, jövő héten elvíhető"
            // 'petbreed_id' => 55
           ]);
-
+          
+        
 
     }
 }
