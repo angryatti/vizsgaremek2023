@@ -5,10 +5,10 @@
 
 
 
-        <table class="table m-0 mx-auto text-center">
+        <table class="table table-borderless m-0 mx-auto text-center">
   <thead>
     <tr>
-      <th class="fs-3" scope="col" style="text-decoration: underline;">Faj</th>
+      
       <th class="fs-3" scope="col" style="text-decoration: underline;">Ivar</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Termet</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Kor</th>
@@ -20,13 +20,10 @@
     <tr>
       <th scope="row"><div class="form-check">
   
-  <label class="form-check-label" for="flexCheckDefault">
-    Kutya
-  </label>
-  <input class="form-check-input" type="checkbox" v-model="values.kutya" value="" :data="filteredData" id="flexCheckDefault">
+  
+  
 </div></th>
-      <td>
-        </td>
+      
 
       <td><div class="form-check">
   
@@ -35,16 +32,10 @@
   </label>
   <input class="form-check-input" type="checkbox"  v-model="values.kicsi" value="" id="flexCheckDefault">
 </div></td>
-      <td></td>
+      
     </tr>
     <tr>
-      <th scope="row"><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Macska
-  </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.macska" value="" id="flexCheckDefault">
-</div></th>
+      
       <td><div class="form-check">
   
   <label class="form-check-label" for="flexCheckDefault">
@@ -70,13 +61,7 @@
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold; height:40pt; width:100px;">szűrés</button></td>
     </tr>
     <tr>
-      <th scope="row"><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Egyéb
-  </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.egyeb" value="" id="flexCheckDefault">
-</div></th>
+      
       <td><div class="form-check">
   
   <label class="form-check-label" for="flexCheckDefault">
@@ -144,3 +129,7 @@ mounted(){
 }
 }
 </script>
+
+<style scoped>
+  
+</style>
