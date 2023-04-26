@@ -104,6 +104,9 @@ laravel_weboldal/.phpunit.result.cache
 desktop_management/PetAndCareDesktopApp/bin/*
 desktop_management/PetAndCareDesktopApp/obj/*
 desktop_management/PetAndCareDesktopApp/.vs/*
+desktop_management/PetAndCareTest/bin/*
+desktop_management/PetAndCareTest/obj/*
+desktop_management/PetAndCareTest/.vs/*
 desktop_management/.vs/*
 
 >>>>>>> f25b96c4c777fc57c2b362205e43f30164ed232d

@@ -33,12 +33,7 @@ data(){
         
     }
 },
-components:{
-  
-},
-computed:{
-  
-},
+
 
 methods:{
    

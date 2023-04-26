@@ -84,7 +84,7 @@ namespace PetAndCareDesktopApp
                     PetDogSortCB.Items.Clear();
                     PetCatSortCB.Items.Clear();
                     PetDogSortCB.SelectedIndex = Convert.ToInt32(petDogIDTB.Text == "" ? 0 : petDogIDTB.Text);
-                    PetCatSortCB.SelectedIndex = Convert.ToInt32(petDogIDTB.Text == "" ? 0 : petDogIDTB.Text);
+                    PetCatSortCB.SelectedIndex = Convert.ToInt32(petCatIDTB.Text == "" ? 0 : petCatIDTB.Text);
                     while (await reader.ReadAsync())
                     {
                         if (reader.GetValue(9).ToString() == string.Empty)
@@ -144,6 +144,11 @@ namespace PetAndCareDesktopApp
                         PetCatSortCB.Items.Add(cat.PetName);
                     }
 
+                    foreach (OtherPets other in otherpets)
+                    {
+                        PetOtherSortCB.Items.Add(other.PetName);
+                    }
+
                     command = new MySqlCommand("SELECT `dogbreed` FROM `doglist`;", connection);
                     reader = await command.ExecuteReaderAsync();
 
@@ -194,7 +199,7 @@ namespace PetAndCareDesktopApp
                 try
                 {
                     petDogIDTB.Text = dogs[petDogCounter].ID.ToString();
-                    petDogAgeTB.Text = (2023 - dogs[petDogCounter].Age).ToString();
+                    petDogAgeTB.Text = (2023-dogs[petDogCounter].Age).ToString();
                     petDogNameTB.Text = dogs[petDogCounter].PetName;
                     petDogGenderTB.Text = dogs[petDogCounter].Gender;
                     petDogCastratedTB.Text = dogs[petDogCounter].Castrated.ToString();
@@ -367,7 +372,7 @@ namespace PetAndCareDesktopApp
                     temp = tb.Text;
                     if (columnIndex == 2)
                     {
-                        temp = (Convert.ToInt32(temp)+2023).ToString();
+                        temp = (2023-Convert.ToInt32(temp)).ToString();
                     }
                     MySqlCommand command = new MySqlCommand($"UPDATE pets SET {arrayOfcolumns.ElementAt(columnIndex)} =  '{temp}' where id = {dogs[petDogCounter - 1].ID};", connection);
                     DbDataReader reader = await command.ExecuteReaderAsync();
