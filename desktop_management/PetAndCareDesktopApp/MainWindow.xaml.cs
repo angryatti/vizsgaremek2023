@@ -214,7 +214,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showDogImg.Width = 200;
+                    //showDogImg.Width = 200;
                     showDogImg.Source = bmp;
                 }
                 catch (PetException ex)
@@ -276,7 +276,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petCatImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showCatImg.Width = 200;
+                  //  showCatImg.Width = 200;
                     showCatImg.Source = bmp;
 
                 }
@@ -701,7 +701,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showDogImg.Width = Width / 3;
+                 //   showDogImg.Width = Width / 3;
                     showDogImg.Source = bmp;
                 }
                 catch (PetException ex)
@@ -760,7 +760,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petCatImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showCatImg.Width = Width / 3;
+                  //  showCatImg.Width = Width / 3;
                     showCatImg.Source = bmp;
                 }
                 catch (PetException ex)
@@ -920,7 +920,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showDogImg.Width = Width / 3;
+              //      showDogImg.Width = Width / 3;
                     showDogImg.Source = bmp;
                 }
             }
@@ -957,7 +957,7 @@ namespace PetAndCareDesktopApp
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petCatImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    showCatImg.Width = Width / 3;
+             //       showCatImg.Width = Width / 3;
                     showCatImg.Source = bmp;
 
                 }
