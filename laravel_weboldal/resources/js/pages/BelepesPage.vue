@@ -24,6 +24,7 @@
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import {ref} from 'vue'
 import * as yup from 'yup';
+import { router } from '../router';
   const schema = yup.object({
     email: yup.string().required("kötelező kitölteni!").email("valós E-mail címnek kell lennie!"),
     password: yup.string().required("kötelező kitölteni!").min(8, "minimum 8 karakternek kell lennie!"),
@@ -47,6 +48,7 @@ import * as yup from 'yup';
     localStorage.setItem('user_info',response.data.data.token)
     localStorage.setItem('logged_in',true)
     alert(response.data.message)
+    router.push(`/profil`);
     submitting = false
 }
     catch(response){
