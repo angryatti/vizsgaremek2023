@@ -74,6 +74,15 @@ const routes = [
     }
   },
   {
+    path: '/profil',
+    name: 'profil',
+    component: () => import('@/pages/ProfilePage.vue'),
+    meta: {
+      title: "Profilom",
+      requiesAuth: true
+    }
+  },
+  {
     path: '/allat/:id',
     name: 'kisallat',
     component: () => import('@/pages/AdvertPage.vue'),
@@ -81,7 +90,7 @@ const routes = [
       title: "Egy adott kisállat",
       requiesAuth: false
     }
-  },
+  }
 ]
 
 export const router = createRouter({

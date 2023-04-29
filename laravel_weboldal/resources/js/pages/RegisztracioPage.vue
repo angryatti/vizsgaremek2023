@@ -52,7 +52,7 @@ const submitForm = async() =>{
       email:email.value,
       password:password.value
     })
-
+    console.log(response)
     alert(response.data.message)
   }catch(error){
     alert(error.response.data.message)

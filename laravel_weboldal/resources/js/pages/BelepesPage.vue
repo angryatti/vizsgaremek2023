@@ -36,25 +36,24 @@ import * as yup from 'yup';
   const submitting = ref(false)
   const errors = ref({})
 
-  const submitForm = () =>{
+  const submitForm = async() =>{
     submitting.value = true
     errors.value = {}
-
-    axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
+    try{
+    const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,
       password:password.value
     })
-    .catch(error =>{
-      if(error.response.success = false){
+    localStorage.setItem('user_info',response.data.data.token)
+    localStorage.setItem('logged_in',true)
+    alert(response.data.message)
+    submitting = false
+}
+    catch(response){
+      if(response.data.data.success === false){
         alert('Login attempt failed')
-      }else{
-
-      }
-    })
-    .finally(()=>{
-      submitting.value = false
-      
-    })
+        submitting = false
+      }}
   }
 </script>
 

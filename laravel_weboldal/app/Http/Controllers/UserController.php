@@ -47,7 +47,7 @@ class UserController extends Controller
                 'message' => 'Sikeresen bejelentkeztél'
             ];
 
-        return response()->json($response, 200);
+        return response()->Json($response, 200);
         }
         else
         {
@@ -55,7 +55,7 @@ class UserController extends Controller
                 'success' => false,
                 'message' => 'Bejelentkezés nem sikerült'
             ];
-            return response()->json($response);
+            return response()->Json($response);
         }
     }
 
