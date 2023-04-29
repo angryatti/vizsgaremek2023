@@ -17,9 +17,7 @@ use App\Http\Controllers\SettlementController;
 |
 */
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
+
 
 Route::get('/dogs',[PetController::class,'dogs']);
 Route::get('/cats',[PetController::class,'cats']);

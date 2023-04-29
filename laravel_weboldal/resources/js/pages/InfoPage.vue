@@ -27,6 +27,7 @@ Továbbá egy kérdéssor megválaszolásával és annak megerősítésével egy
         text-align: justify;
         background-color: #3E1600;
         color: white;
+        border-radius: 50px;
     }
    h1{
     text-decoration:underline;

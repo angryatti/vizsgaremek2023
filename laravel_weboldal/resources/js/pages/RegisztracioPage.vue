@@ -79,4 +79,8 @@ const submitForm = async() =>{
 button, input {
   display: block;
 }
+
+.container{
+  border-radius: 50px;
+}
 </style>
