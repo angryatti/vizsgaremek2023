@@ -18,6 +18,7 @@ use App\Http\Controllers\SettlementController;
 */
 
 
+
 Route::get('/dogs',[PetController::class,'dogs']);
 Route::get('/cats',[PetController::class,'cats']);
 Route::get('/others',[PetController::class,'others']);

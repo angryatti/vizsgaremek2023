@@ -70,7 +70,8 @@ justify-content: center;
 }
 .container{
     background-color: #3E1600;
-    color: white
+    color: white;
+    border-radius: 50px;
 }
 span {
   display: block;
