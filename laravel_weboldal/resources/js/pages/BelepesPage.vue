@@ -34,7 +34,7 @@ import { router } from '../router';
   const email = ref('')
   const password = ref('')
 
-  const submitting = ref(false)
+  var submitting = ref(false)
   const errors = ref({})
 
   const submitForm = async() =>{
@@ -43,18 +43,23 @@ import { router } from '../router';
     try{
     const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,
-      password:password.value
+      password:password.value,
+      
     })
+    console.log(response);
     localStorage.setItem('user_info',response.data.data.token)
     localStorage.setItem('logged_in',true)
     alert(response.data.message)
-    router.push(`/profil`);
+    //router.push(`/profil`);
+    location.replace(`#/profil`);
+    router.go(0);
     submitting = false
 }
     catch(response){
-      if(response.data.data.success === false){
-        alert('Login attempt failed')
+      if(response.data.success === false){
+        alert(response.data.message)
         submitting = false
+        
       }}
   }
 </script>
