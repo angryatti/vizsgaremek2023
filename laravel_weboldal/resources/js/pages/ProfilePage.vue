@@ -14,22 +14,13 @@
     <hr>
     <ul class="nav  flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link fs-3" aria-current="page">
-          
-          Adataim
-        </a>
+        <button class="nav-link fs-3">Adataim</button>
       </li>
       <li>
-        <a href="#" class="nav-link fs-3">
-          
-          Feltöltéseim
-        </a>
+        <button class="nav-link fs-3">Feltöltéseim</button>
       </li>
       <li>
-        <a href="#" class="nav-link fs-3">
-          
-          Új állat feltöltése
-        </a>
+        <button class="nav-link fs-3">Új állat feltöltése</button>
       </li>
       
     </ul>
@@ -39,16 +30,39 @@
 
   <div class="content" style="margin-left:30%">
 
-<div >
-  <h1>Az Adataim</h1>
-</div>
+ 
+  <!-- ><div>
+    <h1 class="text-center mb-5 text-decoration-underline">Az Adataim</h1>
+    <Form @submit="submitForm" >
+
+<h2>Felhasználónév: {{ user.user_name }}</h2>
+<br> 
+<Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+  
+  
+<h2 class="mx-auto mb-3">Email: {{ user.email }}</h2>  
+<br>
+<Field name="email" v-model="email" class="form-control mb-3" style="justify-content: center;"/> 
+  
 
 
+  
+<button class="btn btn-warning d-block w-100 p-3 mx-auto mt-3">Mentés</button>
 
+</Form>
+    
+</div> -->
+
+
+ <!-- <div>
+    <h1 class="text-center text-decoration-underline">Feltöltéseim</h1>
+
+
+  </div>-->
+ 
 <div>
-<h2>Adatok</h2>
-<h3>Az adataimról később</h3>
-<h3>most még nem tartunk ott</h3>
+  <h1 class="text-center text-decoration-underline">Új állat feltöltése</h1>
+  
 </div>
 
 </div>
@@ -63,14 +77,22 @@
 </template>
 
 
-<script>
+
+
+<script >
+
 import axios from 'axios'
+import {Form, Field} from 'vee-validate'
 export default{
     data(){
         return{
             user_token : null,
             user : {}
         }
+    },
+    components:{
+      Form,
+      Field
     },
     methods:{
         async getUserInfo(){
@@ -90,12 +112,17 @@ export default{
 }
 </script>
 
+
+
 <style scoped>
 
 a{
     color: white;
 }
-
+button{
+ 
+  
+}
 
 li:hover{
     background-color: #F5EDD8;
@@ -103,8 +130,16 @@ li:hover{
     transform: scale(1.1);
     
 }
+.nav-link{
+  color: white;
+  border: none;
+  background-color: transparent;
+}
 .nav-link:hover{
    color:#3E1600; 
+}
+.nav-link:focus{
+  color:white; 
 }
 span{
     text-decoration: underline;
@@ -121,11 +156,16 @@ span{
     position: absolute;
     background-color: #F5EDD8;
     width: 60%;
-    height: 50%; 
+    height: 75%; 
     padding: 10px;
     border-color: black;
     border-style: solid;
     border-radius: 50px;
     color: #3E1600;
+}
+
+.form-control{
+  
+  margin-right: 10px;
 }
 </style>
