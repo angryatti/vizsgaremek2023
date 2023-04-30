@@ -1,6 +1,6 @@
 <template>
-    <div class="sidebar">
-        <ul class="nav  flex-column mb-auto">
+    <div class="d-flex flex-column w-100">
+        <ul class="nav d-block mb-auto">
             <li class="nav-item">
                 <button class="nav-link fs-3" @click="loadSection('profile-data')">Adataim</button></li>
             <li class="nav-item">
@@ -26,7 +26,9 @@
 <style>
 li:hover{
     background-color: #F5EDD8;
-    border-radius: 10px;
+    width: 100%;
+    
+    border-radius: 50px;
     transform: scale(1.1);
     
 }
@@ -37,6 +39,7 @@ li:hover{
 }
 .nav-link:hover{
    color:#3E1600; 
+   
 }
 .nav-link:focus{
   color:white; 
@@ -48,7 +51,8 @@ span{
 .sidebar {
     position: absolute;
     padding: 20px;
-    height: 50%;
+    display: block;
+    height: 30%;
     border-radius: 50px;
     background-color: #3E1600;
 }
