@@ -2,97 +2,41 @@
 
      <div class="box">
             <h1 v-if="logged===null">Jelentlezz be!!</h1>
-
-            <div v-else>
-                
-                <div class=" sidebar d-flex flex-column flex-shrink-0 " style="width: 25%; ;
-    color: white; ">
-    
-      
-      <span class="fs-2 text-center">Profilom</span>
-    
-    <hr>
-    <ul class="nav  flex-column mb-auto">
-      <li class="nav-item">
-        <button class="nav-link fs-3">Adataim</button>
-      </li>
-      <li>
-        <button class="nav-link fs-3">Feltöltéseim</button>
-      </li>
-      <li>
-        <button class="nav-link fs-3">Új állat feltöltése</button>
-      </li>
-      
-    </ul>
-
-    
-  </div>
-
+            <div v-else>  
+                <div class=" sidebar d-flex flex-column flex-shrink-0 " style="width: 25%; color: white; ">
+                  <pside-bar @load-section="loadSection"/>
+                </div>
   <div class="content" style="margin-left:30%">
-
- 
-  <!-- ><div>
-    <h1 class="text-center mb-5 text-decoration-underline">Az Adataim</h1>
-    <Form @submit="submitForm" >
-
-<h2>Felhasználónév: {{ user.user_name }}</h2>
-<br> 
-<Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
-  
-  
-<h2 class="mx-auto mb-3">Email: {{ user.email }}</h2>  
-<br>
-<Field name="email" v-model="email" class="form-control mb-3" style="justify-content: center;"/> 
-  
-
-
-  
-<button class="btn btn-warning d-block w-100 p-3 mx-auto mt-3">Mentés</button>
-
-</Form>
-    
-</div> -->
-
-
- <!-- <div>
-    <h1 class="text-center text-decoration-underline">Feltöltéseim</h1>
-
-
-  </div>-->
- 
-<div>
-  <h1 class="text-center text-decoration-underline">Új állat feltöltése</h1>
+      <component :is="currentSection"></component>
   
 </div>
-
 </div>
 </div>
-
-<div>
-    
-</div>
-     </div>
-
-
 </template>
-
-
 
 
 <script >
 
 import axios from 'axios'
-import {Form, Field} from 'vee-validate'
+import ProfileData from '../components/layout/ProfileData.vue'
+import PsideBar from '../components/layout/PSideBar.vue'
+import ProfileNewPet from '../components/layout/ProfileNewPet.vue'
+import ProfilePets from '../components/layout/ProfilePets.vue'
 export default{
     data(){
         return{
             user_token : null,
-            user : {}
+            user : {},
+            currentSection: 'profile-data'
         }
     },
     components:{
       Form,
-      Field
+      Field,
+      ProfileData,
+      PsideBar,
+      ProfileNewPet,
+      ProfilePets
     },
     methods:{
         async getUserInfo(){
@@ -101,10 +45,25 @@ export default{
             console.log(logged)
             if(logged===null){
                 alert('Hahó, te itt nem lehetsz, először jelentkezz be!!!!!!!!!!!!')
-            }else{
-            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
-            this.user = response.data}
+            }
+            else{
+              const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
+              this.user = response.data
+              console.log(this.user)
+            } 
         },
+        loadSection(section){
+          if(section==='profile-data'){
+            this.currentSection = {
+              component: ProfileData,
+              props:{
+                user: this.user
+              }
+            }
+          }else{
+            this.currentSection = section
+          }
+        }
     },
     mounted(){
         this.getUserInfo()
@@ -119,10 +78,7 @@ export default{
 a{
     color: white;
 }
-button{
- 
-  
-}
+
 
 li:hover{
     background-color: #F5EDD8;
