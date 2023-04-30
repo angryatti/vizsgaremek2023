@@ -31,8 +31,6 @@ export default{
         }
     },
     components:{
-      Form,
-      Field,
       ProfileData,
       PsideBar,
       ProfileNewPet,
