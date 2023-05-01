@@ -101,7 +101,7 @@ span{
 
 .sidebar {
     position: absolute;
-    padding: 20px;
+    
     height: 50%;
     border-radius: 50px;
     background-color: #3E1600;
