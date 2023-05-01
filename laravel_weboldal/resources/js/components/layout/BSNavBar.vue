@@ -15,9 +15,9 @@
       <ul class="navbar-nav me-2  mb-0">
         <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;"  v-for="link in routes.slice(5, 7)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
-        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-if="logged===false"  v-for="link in routes.slice(7,9)" :key="link.name">
+        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===false"  v-for="link in routes.slice(7,9)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
-          <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-else-if="logged===true" v-for="links in routes.slice(9)" :key="links.name">
+          <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===true" v-for="links in routes.slice(9)" :key="links.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: links.name}">{{links.meta.title}}</router-link></li>
       </ul>
   </div>

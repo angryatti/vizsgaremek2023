@@ -88,18 +88,11 @@
 <script>
 export default{
 
- 
-
-
-
-
-data(){
+  data(){
     return{
         
-        cities: [],
-       values:{
-
-       
+      states: [],
+      values:{
         kutya: false,
         macska: false,
         egyeb: false,
@@ -110,23 +103,15 @@ data(){
         nagy: false,
         }
     }
-},
-methods:{
-   
-    async getSettlement(){
-        const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
-        this.cities = response2.data
-       
-    },
+  },
+  methods:{
     submit(){
       this.$emit("filter", this.values)
     }
-},
-
-mounted(){
+  },
+  mounted(){
     
-    this.getSettlement();
-}
+  }
 }
 </script>
 

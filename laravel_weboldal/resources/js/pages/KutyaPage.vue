@@ -42,7 +42,7 @@ export default{
     data(){
         return{
             dogs: [],
-            cities: []
+            states: []
         }
     },
     methods:{
@@ -50,15 +50,15 @@ export default{
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/dogs`)
             this.dogs = response.data
         },
-        async getSettlement(){
-            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
-            this.cities = response2.data
+        async getStates(){
+            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
+            this.states = response2.data
             
         }
     },
     mounted(){
         this.getDogs()
-        this.getSettlement();
+        this.getStates();
     }
 }
 </script>

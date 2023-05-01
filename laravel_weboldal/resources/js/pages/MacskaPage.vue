@@ -46,15 +46,15 @@ export default{
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/cats`)
             this.cats = response.data
         },
-        async getSettlement(){
-            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
-            this.cities = response2.data
-            console.log(this.cities)
+        async getStates(){
+            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
+            this.states = response2.data
+            
         }
     },
     mounted(){
         this.getCats()
-        this.getSettlement()
+        this.getStates()
     }
 }
 </script>

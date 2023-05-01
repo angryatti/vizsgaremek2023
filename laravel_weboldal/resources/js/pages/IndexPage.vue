@@ -37,19 +37,10 @@ data(){
 
 methods:{
    
-    async getSettlement(){
-        const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/settlement`)
-        this.cities = response2.data
-       
-    },
-    submit(){
-      this.$emit("filter", this.values);
-    }
 },
 
 mounted(){
     
-    this.getSettlement();
 }
 }
 </script>

@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('pet_id');
-            $table->integer('settlement_id');
+            $table->foreignid('user_id');
+            $table->foreignid('pet_id');
+            $table->foreignid('state_id');
+            $table->text('contact_info');
+            $table->timestamp('created_at')->nullable();
         });
     }
 

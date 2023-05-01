@@ -11,6 +11,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+
+    /**
+     * Get all of the adverts for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function adverts()
+    {
+        return $this->hasMany(Advert::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -39,7 +49,4 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }

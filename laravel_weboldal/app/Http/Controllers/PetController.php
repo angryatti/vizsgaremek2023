@@ -5,24 +5,47 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePetRequest;
 use Illuminate\Http\Request;
 use App\Models\Pet;
+use App\Models\Advert;
 
 class PetController extends Controller
 {
     public function dogs()
     {
-        return Pet::where('breed','kutya')->get();
+        $dog = 'kutya';
+        $adverts = Advert::whereHas('pet', function($query) use ($dog) {
+            $query->where('breed', $dog);
+        })
+        ->with('pet','state')
+        ->get();
+        return $adverts;
     }
     public function cats()
     {
-        return Pet::where('breed','macska')->get();
+        $cat = 'macska';
+        $adverts = Advert::whereHas('pet', function($query) use ($cat) {
+            $query->where('breed', $cat);
+        })
+        ->with('pet','state')
+        ->get();
+        return $adverts;
     }
     public function others()
     {
-        return Pet::where('breed','egyeb')->get();
+        $other = 'egyeb';
+        $adverts = Advert::whereHas('pet', function($query) use ($other) {
+            $query->where('breed', $other);
+        })
+        ->with('pet','state')
+        ->get();
+        return $adverts;
     }
     public function show($id)
     {
-        return Pet::where('id',$id)->firstOrFail();
+       $advert = Advert::where('id',$id)
+        ->with('user','pet','state')
+        ->firstOrFail();
+        
+        return $advert;
     }
 
     public function home(){
