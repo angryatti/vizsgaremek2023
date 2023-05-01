@@ -55,7 +55,7 @@
 </td>
 <td><div class="dropdown">
   <select class="form-select" aria-label="Default select example">
-    <option selected v-for="settlement in cities" :key="settlement.state">{{ settlement.state }}</option>
+    <option selected v-for="settlement in states" :key="settlement.id">{{ settlement.name }}</option>
 </select>
 </div></td>
 <td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold; height:40pt; width:100px;">szűrés</button></td>
@@ -107,11 +107,19 @@ export default{
   methods:{
     submit(){
       this.$emit("filter", this.values)
+    },
+      async getStates(){
+            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
+            this.states = response2.data
+            console.log(this.states)
+        }
+    },
+    mounted(){
+        
+        this.getStates();
     }
-  },
-  mounted(){
-    
-  }
+  ,
+  
 }
 </script>
 
