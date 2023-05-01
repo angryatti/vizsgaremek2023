@@ -14,7 +14,7 @@ CREATE TABLE `adverts` (
   `id` bigint PRIMARY KEY NOT NULL,
   `user_id` bigint NOT NULL,
   `pet_id` bigint NOT NULL,
-  `state_id` bigint NOT NULL,
+  `city_id` bigint NOT NULL,
   `created_at` timestamp
 );
 
@@ -60,6 +60,6 @@ ALTER TABLE `pets` ADD FOREIGN KEY (`petbreed_id`) REFERENCES `catlist` (`id`);
 
 ALTER TABLE `pets` ADD FOREIGN KEY (`petbreed_id`) REFERENCES `doglist` (`id`);
 
-ALTER TABLE `adverts` ADD FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
+ALTER TABLE `adverts` ADD FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
 
 ALTER TABLE `states` ADD FOREIGN KEY (`id`) REFERENCES `cities` (`state_id`);
