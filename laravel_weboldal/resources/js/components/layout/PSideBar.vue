@@ -1,15 +1,12 @@
 <template>
-    <div class="sidebar">
-        <ul class="nav  flex-column mb-auto">
-            <li class="nav-item">
+        <ul class="nav flex-column mb-auto">
+            <li class="nav-item text-center ">
                 <button class="nav-link fs-3" @click="loadSection('profile-data')">Adataim</button></li>
-            <li class="nav-item">
+            <li class="nav-item text-center ">
                 <button class="nav-link fs-3" @click="loadSection('profile-pets')">Feltöltéseim</button></li>
-            <li class="nav-item">
+            <li class="nav-item text-center ">
                 <button class="nav-link fs-3" @click="loadSection('profile-new-pet')">Új feltöltés</button></li>
         </ul>
-
-    </div>
 </template>
   
 <script>
