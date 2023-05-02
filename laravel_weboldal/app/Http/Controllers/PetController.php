@@ -52,4 +52,25 @@ class PetController extends Controller
         return route('home');
     }
     
+    public function userpets($id){
+        $pets = Advert::where('user_id',$id)
+        ->with('user','pet','state')
+        ->get();
+
+        return $pets;
+    }
+
+    public function newpet(StorePetRequest $request){
+        $validated = $request->validated();
+        $pet = Pet::create([
+            'pet name' => $validated['pet name'],
+            'born' => $validated['born'],
+            'breed' => $validated['breed'],
+            'species' => $validated['species'],
+            'gender' => $validated['gender'],
+            'img' => $validated['img'],
+            'description' => $validated['description'],
+        ]);
+        
+    }
 }

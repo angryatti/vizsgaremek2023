@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
- import axios from 'axios';
+import axios from 'axios';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import {ref} from 'vue'
 import * as yup from 'yup';
@@ -51,7 +51,7 @@ import { router } from '../router';
     localStorage.setItem('logged_in',true)
     alert(response.data.message)
     //router.push(`/profil`);
-    location.replace(`#/profil`);
+    location.replace(`#/profil/${response.data.data.user_id}`);
     router.go(0);
     submitting = false
 }

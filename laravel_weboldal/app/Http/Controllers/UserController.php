@@ -39,7 +39,7 @@ class UserController extends Controller
             //$user = Auth::user();
             $user = $request->user();
             $success['token'] = $user->createToken('auth_token')->plainTextToken;
-            $success['name'] = $user->user_name;
+            $success['user_id'] = $user->id;
 
             $response = [
                 'success' => true,

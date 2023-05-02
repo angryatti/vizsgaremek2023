@@ -47,20 +47,11 @@ export default{
             else{
               const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
               this.user = response.data
-              console.log(this.user)
             } 
         },
         loadSection(section){
-          if(section==='profile-data'){
-            this.currentSection = {
-              component: ProfileData,
-              props:{
-                user: this.user
-              }
-            }
-          }else{
             this.currentSection = section
-          }
+          
         }
     },
     mounted(){
