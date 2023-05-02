@@ -75,8 +75,6 @@ namespace PetAndCareDesktopApp
 
                     MySqlCommand command = new MySqlCommand("SELECT * FROM `pets`;", connection);
                     DbDataReader reader = await command.ExecuteReaderAsync();
-                    DateTime currentDate;
-                    DateTime currentUpdated;
                     int petBreadID = 0;
                     pets.Clear();
                     dogs.Clear();
@@ -87,7 +85,7 @@ namespace PetAndCareDesktopApp
                     PetCatSortCB.SelectedIndex = Convert.ToInt32(petCatIDTB.Text == "" ? 0 : petCatIDTB.Text);
                     while (await reader.ReadAsync())
                     {
-                        if (reader.GetValue(9).ToString() == string.Empty)
+                        if (reader.GetValue(4).ToString() == string.Empty)
                         {
                             petBreadID = -1;
 
@@ -96,30 +94,15 @@ namespace PetAndCareDesktopApp
                         else
                         {
 
-                            petBreadID = Convert.ToInt32(reader.GetValue(9));
+                            petBreadID = Convert.ToInt32(reader.GetValue(4));
 
 
                         }
-                        if (reader.GetValue(10).ToString() == string.Empty || reader.GetValue(10) == null)
-                        {
-                            currentDate = DateTime.Now;
-                            currentUpdated = DateTime.Now;
-                        }
-                        else
-                        {
 
-                            currentDate = Convert.ToDateTime(reader.GetValue(10));
-                            currentUpdated = Convert.ToDateTime(reader.GetValue(11));
-
-
-
-                        }
                         pets.Add(new Pet(iD: Convert.ToInt32(reader.GetValue(0)), petName: reader.GetValue(1).ToString(), age: Convert.ToInt32(reader.GetValue(2)),
                             breed: reader.GetValue(3).ToString(),
-                            gender: reader.GetValue(4).ToString(), castrated: Convert.ToBoolean(reader.GetValue(5)), imgUserDefine: reader.GetValue(6).ToString(),
-                            description: reader.GetValue(7).ToString(), contactInfo: reader.GetValue(8).ToString(), petbreedid: petBreadID,
-                            createdAt: currentDate,
-                            updatedAt: currentUpdated));
+                            petbreedid: petBreadID, gender: reader.GetValue(5).ToString(), castrated: Convert.ToBoolean(reader.GetValue(6).ToString()),
+                            imgUserDefine: reader.GetValue(7).ToString(), description: reader.GetValue(8).ToString()));
                     }
 
                     await reader.CloseAsync();
@@ -128,9 +111,9 @@ namespace PetAndCareDesktopApp
                     {
                         switch (pet.Breed)
                         {
-                            case "kutya": dogs.Add(new Dog(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description, pet.ContactInfo, pet.PetBreedId, pet.CreatedAt, pet.UpdatedAt)); break;
-                            case "macska": cats.Add(new Cat(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description, pet.ContactInfo, pet.PetBreedId, pet.CreatedAt, pet.UpdatedAt)); break;
-                            case "egyeb": otherpets.Add(new OtherPets(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description, pet.ContactInfo, pet.PetBreedId, pet.CreatedAt, pet.UpdatedAt)); break;
+                            case "kutya": dogs.Add(new Dog(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.PetBreedId, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description)); break;
+                            case "macska": cats.Add(new Cat(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.PetBreedId, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description)); break;
+                            case "egyeb": otherpets.Add(new OtherPets(pet.ID, pet.PetName, pet.Age, pet.Breed, pet.PetBreedId, pet.Gender, pet.Castrated, pet.ImgUserDefine, pet.Description)); break;
                         }
                     }
 
@@ -138,7 +121,7 @@ namespace PetAndCareDesktopApp
                     {
                         PetDogSortCB.Items.Add(dog.PetName);
                     }
-
+              
                     foreach (Cat cat in cats)
                     {
                         PetCatSortCB.Items.Add(cat.PetName);
@@ -148,7 +131,7 @@ namespace PetAndCareDesktopApp
                     {
                         PetOtherSortCB.Items.Add(other.PetName);
                     }
-
+                
                     command = new MySqlCommand("SELECT `dogbreed` FROM `doglist`;", connection);
                     reader = await command.ExecuteReaderAsync();
 
@@ -558,6 +541,7 @@ namespace PetAndCareDesktopApp
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     tempList.Add(tb.Text);
+                    MessageBox.Show(tb.Text);
                 }
                 tempList.Add(petBreedDogCB.SelectedIndex.ToString());
                 if (tempList[4] == "True")
@@ -568,7 +552,7 @@ namespace PetAndCareDesktopApp
                 {
                     temp = 0;
                 }
-                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{tempList[2]}','{tempList[3]}',{temp},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{tempList[2]}','{tempList[3]}',{temp},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
                 reader.Close();
 

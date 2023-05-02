@@ -16,20 +16,19 @@ namespace PetAndCareDesktopApp
         }
 
 
-        public Pet(int iD, string petName, int age, string breed, string gender, bool castrated, string imgUserDefine, string description, string contactInfo,int petbreedid, DateTime createdAt, DateTime updatedAt)
+        public Pet(int iD, string petName, int age, string breed, int petbreedid, string gender, bool castrated, string imgUserDefine, string description)
         {
             ID = iD;
             PetName = petName;
             Age = age;
             Breed = breed;
+            PetBreedId = petbreedid;
             Gender = gender;
             Castrated = castrated;
             ImgUserDefine = imgUserDefine;
             Description = description;
-            ContactInfo = contactInfo;
-            PetBreedId = petbreedid;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
+       
+         
         }
 
         public int ID { get; set; }
