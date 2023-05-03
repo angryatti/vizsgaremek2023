@@ -74,7 +74,7 @@ const routes = [
     }
   },
   {
-    path: '/profil/:id',
+    path: '/profil/',
     name: 'profil',
     component: () => import('@/pages/ProfilePage.vue'),
     meta: {

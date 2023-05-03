@@ -13,7 +13,7 @@ class PetController extends Controller
     {
         $dog = 'kutya';
         $adverts = Advert::whereHas('pet', function($query) use ($dog) {
-            $query->where('breed', $dog);
+            $query->where('species', $dog);
         })
         ->with('pet','state')
         ->get();
@@ -23,7 +23,7 @@ class PetController extends Controller
     {
         $cat = 'macska';
         $adverts = Advert::whereHas('pet', function($query) use ($cat) {
-            $query->where('breed', $cat);
+            $query->where('species', $cat);
         })
         ->with('pet','state')
         ->get();
@@ -33,7 +33,7 @@ class PetController extends Controller
     {
         $other = 'egyeb';
         $adverts = Advert::whereHas('pet', function($query) use ($other) {
-            $query->where('breed', $other);
+            $query->where('species', $other);
         })
         ->with('pet','state')
         ->get();

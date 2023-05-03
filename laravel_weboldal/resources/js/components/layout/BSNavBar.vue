@@ -17,8 +17,8 @@
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
         <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===false"  v-for="link in routes.slice(8,10)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
-          <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===true" v-for="links in routes.slice(10)" :key="links.name">
-          <router-link class="nav-link active" aria-current="page" :to="{name: links.name}">{{links.meta.title}}</router-link></li>
+          <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===true">
+          <router-link class="nav-link active" aria-current="page" :to="{ name: 'profil'}">Profilom</router-link></li>
            <li class="btn btn-danger" v-show="logged===true" @click="logout">Kijelentkezés</li>
       </ul>
   </div>
@@ -40,7 +40,7 @@ if (logged_in === null){
   logged = true
 }
 const routes = useRouter().getRoutes(); 
-
+const user_id = localStorage.getItem('user_id')
 const logout = () => {
   localStorage.clear();
   location.replace(`#/belepes`);

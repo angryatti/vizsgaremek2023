@@ -29,7 +29,8 @@ export default{
     },
     methods:{
         async getPets(){
-            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user/${this.$route.params.id}`)
+            const user_id = localStorage.getItem('user_id')
+            const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user/${user_id}`)
             this.pets = response.data
             console.log(this.pets)
         }

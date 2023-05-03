@@ -49,9 +49,10 @@ import { router } from '../router';
     console.log(response);
     localStorage.setItem('user_info',response.data.data.token)
     localStorage.setItem('logged_in',true)
+    localStorage.setItem('user_id',response.data.data.user_id)
     alert(response.data.message)
     //router.push(`/profil`);
-    location.replace(`#/profil/${response.data.data.user_id}`);
+    location.replace(`#/profil`);
     router.go(0);
     submitting = false
 }
