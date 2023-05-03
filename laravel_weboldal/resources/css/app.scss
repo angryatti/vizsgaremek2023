@@ -3,6 +3,8 @@
 
 .bg{
    background-image: linear-gradient(45deg, rgba(245, 237, 216, 1),rgba(184, 91, 47, 1), rgba(62, 22, 0, 1) 80%);
+   background-repeat: no-repeat;
+    background-attachment: fixed;
 
 }
 #app{

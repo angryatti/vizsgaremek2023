@@ -62,15 +62,34 @@ class PetController extends Controller
 
     public function newpet(StorePetRequest $request){
         $validated = $request->validated();
+
         $pet = Pet::create([
-            'pet name' => $validated['pet name'],
+            'pet_name' => $validated['pet_name'],
             'born' => $validated['born'],
             'breed' => $validated['breed'],
             'species' => $validated['species'],
             'gender' => $validated['gender'],
-            'img' => $validated['img'],
+            'castrated' => $validated['castrated'],
+            'img_userdefine' => $validated['img'],
             'description' => $validated['description'],
         ]);
-        
+        $advert = Advert::create([
+            'state_id' => $validated['state_id'],
+            'contact_info' => $validated['contact_info'],
+            'pet_id' => $pet['id'],
+            'user_id' => $validated['user_id'],
+        ]);
+
+        $success['pet'] = $pet;
+        $success['advert'] = $advert;
+
+        $response = [
+            'success' => true,
+            'data' => $success,
+            'message'=>'Sikeresen feltetted a hirdetést!'
+        ];
+        return response()->json($response);
     }
+
+    
 }

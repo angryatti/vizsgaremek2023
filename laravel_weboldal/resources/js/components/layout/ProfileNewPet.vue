@@ -1,5 +1,5 @@
 <template>
-    <div class="overflow-scroll">
+    <div>
                 <h1 class="text-center text-decoration-underline">Új állat feltöltése</h1>
         
             <div>

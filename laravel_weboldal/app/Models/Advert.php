@@ -37,4 +37,13 @@ class Advert extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    protected $fillable = [
+        'state_id',
+        'contact_info',
+        'pet_id',
+        'user_id'
+    ];
+    protected $guarded = [];
+    public $timestamps = false;
 }

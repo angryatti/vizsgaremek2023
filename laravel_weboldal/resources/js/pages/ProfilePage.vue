@@ -6,7 +6,7 @@
                 <div class=" sidebar d-flex flex-column flex-shrink-0 " style="width: 25%; color: white; ">
                   <pside-bar @load-section="loadSection"/>
                 </div>
-  <div class="content" style="margin-left:30%">
+  <div class="content overflow-auto" style="margin-left:30%">
       <component :is="currentSection"></component>
   
 </div>

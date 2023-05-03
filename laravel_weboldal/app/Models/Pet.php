@@ -17,4 +17,18 @@ class Pet extends Model
     {
         return $this->hasOne(Advert::class);
     }
+    protected $fillable = [
+        'pet_name',
+        'born',
+        'breed', 
+        'species',
+        'gender',
+        'castrated',
+        'img_userdefine',
+        'description',
+    ];
+
+    protected $guarded = [];
+
+    public $timestamps = false;
 }

@@ -24,17 +24,17 @@ class StorePetRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required'
-            'pet name' => 'required',
+            'user_id' => 'required',
+            'pet_name' => 'required',
             'born' =>'required',
-            'breed' => 'required',
             'species' => 'required',
+            'breed' => 'required',
             'gender' => 'required',
-            'castrated' => 'required',
+            'castrated' => 'required|boolean',
             'img' => 'required',
             'description' => 'required',
-            'state' => 'required',
-            'contact info' => 'required',
+            'state_id' => 'required',
+            'contact_info' => 'required',
         ];
     }
 }

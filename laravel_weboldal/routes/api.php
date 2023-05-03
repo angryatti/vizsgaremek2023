@@ -25,6 +25,7 @@ Route::get('/others',[PetController::class,'others']);
 Route::get('/allat/{id}',[PetController::class,'show']);
 Route::get('/user/{id}',[PetController::class,'userpets']);
 Route::get('/states',[StateController::class,'showall']);
+Route::post('/user/newpet',[PetController::class,'newpet']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request){
     return $request->user();
 });

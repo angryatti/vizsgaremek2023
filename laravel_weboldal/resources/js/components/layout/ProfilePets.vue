@@ -31,7 +31,7 @@ export default{
         async getPets(){
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user/${this.$route.params.id}`)
             this.pets = response.data
-            console.log(pets)
+            console.log(this.pets)
         }
     },
     mounted(){
