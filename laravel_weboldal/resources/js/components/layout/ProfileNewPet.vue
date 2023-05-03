@@ -16,9 +16,7 @@
         <h2>Állat:</h2>  
         <br> 
         <Field name="field" as="select">
-            <option>Kutya</option>
-            <option>Macska</option>
-            <option>Egyéb</option>
+            <option v-for="pet in pets" :key="pet" >{{ pet }}</option>
         </Field>
 
         <h2>Fajta:</h2> 
@@ -28,8 +26,7 @@
         <h2>Neme:</h2>  
         <br> 
         <Field name="field" as="select">
-            <option>Hím</option>
-            <option>Nőstény</option>
+            <option v-for="gender in genders" :key="gender">{{ gender }}</option>
         </Field>
 
         <h2>Kasztált:
@@ -72,6 +69,15 @@ export default{
             return{
                previewImage:null,
                states: [],
+               pets:[
+                "kutya",
+                "macska",
+                "egyéb"
+               ],
+               genders:[
+                "Hím",
+                "Nőstény"
+               ]
             }
         },
         methods:{

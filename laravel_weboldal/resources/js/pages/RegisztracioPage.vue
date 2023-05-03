@@ -50,10 +50,11 @@ const submitForm = async() =>{
     const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/register`,{
       user_name:user_name.value,
       email:email.value,
-      password:password.value
+      password:password.value,
+      
     })
     console.log(response)
-    alert(response.data.message)
+    alert('sikeres regisztráció')
   }catch(error){
     alert(error.response.data.message)
   }

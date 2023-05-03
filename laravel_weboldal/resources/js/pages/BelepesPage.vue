@@ -41,7 +41,7 @@ import { router } from '../router';
     submitting.value = true
     errors.value = {}
     try{
-    const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
+    var response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,
       password:password.value,
       
@@ -55,6 +55,7 @@ import { router } from '../router';
     location.replace(`#/profil`);
     router.go(0);
     submitting = false
+    
 }
     catch(response){
       if(response.data.success === false){

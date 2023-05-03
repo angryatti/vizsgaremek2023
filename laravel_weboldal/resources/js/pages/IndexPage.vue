@@ -3,11 +3,13 @@
     
   <div class="box">
     <div class="inbox">
-        <h1 class="text-center ">Üdvözöljük!</h1>
+        <h1 v-if="logged===false" class="text-center">Üdvözöljük!</h1>
+        <h1 v-else class="text-center">Üdvözöljük {{ user.full_name }}!</h1>
 
-        <p class="fs-3"> Az állatok örökbefogadáásért jött létre ez az oldal. 
+        
+        <p class="fs-3"> Az állatok örökbefogadásásért jött létre ez az oldal. 
             Amennyiben érdeklődne az állatok iránt, abban az esetben be kell regisztrálnia!
-            A mi feladatunk a közvetítés , ezért felelősséget nem vállalunk /*ide nem tudom mit kéne írni*/!
+            A mi feladatunk a közvetítés , ezért csak az oldallal kapcsolatos problémákban tudunk segíteni, másért felelősséget nem vállalunk!
             Amennyiben problémát tapasztal az oldallal kapcsolatban , akkor írjon a KAPCSOLAT menüpontban.
         </p>
     </div>
@@ -31,16 +33,30 @@ data(){
         
         cities: [],
         
+        user_token : null,
+            user : {},
     }
 },
 
 
 methods:{
-   
+        async userdata(){
+            var logged_in = localStorage.getItem('logged_in')
+            var logged = false
+            if (logged_in === null){
+             logged = false
+            }
+            else{
+                logged = true
+                const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
+              this.user = response.data
+            }
+            
+        }
 },
 
 mounted(){
-    
+    this.userdata()
 }
 }
 </script>

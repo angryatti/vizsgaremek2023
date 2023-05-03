@@ -6,9 +6,10 @@
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" :src="`pet_imgs/${pet.img_userdefine}`" :alt="pet.img_userdefine" /></div>
                     <div class="col-md-6">
                         <h1 class="display-5 fw-bolder">{{ pet.pet_name }}</h1>
-                        <div class="medium mb-1">Faj: {{ pet.breed }}</div>
+                        <div class="medium mb-1">Faj: {{ pet.species }}</div>
                         <div class="medium mb-1">Fajta (ide petbreed)</div>
-                        <div class="medium mb-1">Született {{pet.born}}</div>
+                     <!--   <div class="medium mb-1">Született {{pet.born}}</div>-->
+                        <div>{{ currentDate()-pet.born }} éves</div>
                         <div class="medium mb-1" v-if="pet.castrated===1">Ivartalanított</div>
                         <div class="medium mb-1" v-else>Nincs Ivartalanítva</div>
                         <div class="fs-5 mb-5">
@@ -39,15 +40,22 @@
 
 <script>
 import axios from 'axios';
+
 export default{
     name: "AdvertPage",
+    
    data(){
    return{
         allat: {},
         pet: {},
         user:{},
-        state:{}
+        state:{},
+        
+        
     }
+
+
+
     },
     methods:{
         async fetchData(){
@@ -56,10 +64,17 @@ export default{
             this.pet = this.allat.pet
             this.user = this.allat.user
             this.state = this.allat.state
-        }
+        },
+        currentDate() {
+      const current = new Date();
+      const date = `${current.getFullYear()}`;
+      return date;
+    }
+        
     },
     mounted(){
         this.fetchData()
+        
     }
 }
 </script>
