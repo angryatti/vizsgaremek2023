@@ -23,6 +23,7 @@ Route::get('/dogs',[PetController::class,'dogs']);
 Route::get('/cats',[PetController::class,'cats']);
 Route::get('/others',[PetController::class,'others']);
 Route::get('/allat/{id}',[PetController::class,'show']);
+Route::get('/allat/{id}/adoption',[PetController::class,'adoption']);
 Route::get('/user/{id}',[PetController::class,'userpets']);
 Route::get('/states',[StateController::class,'showall']);
 Route::post('/user/newpet',[PetController::class,'newpet']);

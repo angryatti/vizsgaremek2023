@@ -90,6 +90,15 @@ const routes = [
       title: "Egy adott kisállat",
       requiesAuth: false
     }
+  },
+  {
+    path: '/allat/:id/adoption',
+    name: 'orokbefogadas',
+    component: () => import('@/pages/Adoption.vue'),
+    meta: {
+      title: "orokbefogadas",
+      requiesAuth: true
+    }
   }
 ]
 

@@ -12,6 +12,8 @@
             A mi feladatunk a közvetítés , ezért csak az oldallal kapcsolatos problémákban tudunk segíteni, másért felelősséget nem vállalunk!
             Amennyiben problémát tapasztal az oldallal kapcsolatban , akkor írjon a KAPCSOLAT menüpontban.
         </p>
+
+        
     </div>
          
 

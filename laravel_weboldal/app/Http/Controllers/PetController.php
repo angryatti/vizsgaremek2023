@@ -48,6 +48,15 @@ class PetController extends Controller
         return $advert;
     }
 
+    public function adoption($id)
+    {
+       $advert = Advert::where('id',$id)
+        ->with('user','pet','state')
+        ->firstOrFail();
+        
+        return $advert;
+    }
+
     public function home(){
         return route('home');
     }

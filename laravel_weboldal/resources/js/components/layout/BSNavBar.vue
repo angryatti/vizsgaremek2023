@@ -8,14 +8,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto  mb-0">
-        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-for="link in routes.slice(3, 6)" :key="link.name">
+        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-for="link in routes.slice(4, 7)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link>
         </li>
       </ul>
       <ul class="navbar-nav me-2  mb-0">
-        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;"  v-for="link in routes.slice(6, 8)" :key="link.name">
+        <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;"  v-for="link in routes.slice(7, 9)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
-        <li class="nav-item btn btn-success" style="margin-left: 24px; margin-right: 24px; font-size: 32px; text-transform: uppercase;" v-show="logged===false"  v-for="link in routes.slice(8,10)" :key="link.name">
+        <li class="nav-item btn btn-success" style="margin-left: 24px; margin-right: 24px; font-size: 32px; text-transform: uppercase;" v-show="logged===false"  v-for="link in routes.slice(9,11)" :key="link.name">
           <router-link class="nav-link active" aria-current="page" :to="{name: link.name}">{{link.meta.title}}</router-link></li>
           <li class="nav-item hovering" style="margin-left: 24px; margin-right: 24px;" v-show="logged===true">
           <router-link class="nav-link active" aria-current="page" :to="{ name: 'profil'}">Profilom</router-link></li>
