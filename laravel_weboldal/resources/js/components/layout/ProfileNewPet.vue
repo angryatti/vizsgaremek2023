@@ -3,7 +3,7 @@
                 <h1 class="text-center text-decoration-underline">Új állat feltöltése</h1>
         
             <div>
-                <Form @submit="submitForm" >
+                <Form @submit="submitForm">
 
         <h2>Állat neve:</h2>  
         <br> 
@@ -52,9 +52,16 @@
         </Field>
       
 
-        <h2>Kontakt Infó:</h2>  
+        <h2 data-bs-toggle="tooltip" data-bs-placement="top" title="segítség: Mikor keressenek,
+               pontosabb cím meghatározás">Kontakt Infó:</h2>  
         <br> 
-        <Field name="contact_info" v-model="contact_info" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="contact_info" v-model="contact_info" type="text" class="form-control mb-3 pb-5"  style="justify-content: center;"/>
+
+        <button type="submit" class="btn btn-custom d-block w-100 p-3 mx-auto mt-3 fs-4">Feltöltés</button>
+
+        <button type="button" >
+  Tooltip on top
+</button>
         </Form> 
             </div>
     </div>
@@ -149,5 +156,15 @@ export default{
 img{
     width: 8%;
     height: auto;
+}
+button{
+    background-color: #B85B2F;
+    color: white;
+    font-weight: bolder;
+}
+button:hover{
+    background-color: #198754;
+    color: white;
+    
 }
 </style>
