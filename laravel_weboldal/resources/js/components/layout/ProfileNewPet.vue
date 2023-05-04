@@ -7,31 +7,31 @@
 
         <h2>Állat neve:</h2>  
         <br> 
-        <Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="pet_name" v-model="pet_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
 
         <h2>Született:</h2>  
         <br> 
-        <Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="born" v-model="born" type="text" class="form-control mb-3" style="justify-content: center;"/>
 
         <h2>Állat:</h2>  
         <br> 
-        <Field name="field" as="select">
+        <Field name="species" v-model="species" as="select">
             <option v-for="pet in pets" :key="pet" >{{ pet }}</option>
         </Field>
 
         <h2>Fajta:</h2> 
         <br> 
-        <Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="breed" v-model="breed" type="text" class="form-control mb-3" style="justify-content: center;"/>
 
         <h2>Neme:</h2>  
         <br> 
-        <Field name="field" as="select">
+        <Field name="gender" v-model="gender" as="select">
             <option v-for="gender in genders" :key="gender">{{ gender }}</option>
         </Field>
 
         <h2>Kasztált:
         
-        <Field name="drink" type="checkbox" /></h2> 
+        <Field name="castrated" v-model="castrated" type="checkbox" /></h2> 
 
         <h2>kép feltöltése:</h2>  
         <div>
@@ -43,18 +43,18 @@
 
         <h2>Leírás:</h2>  
         <br> 
-        <Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="description" v-model="description" type="text" class="form-control mb-3" style="justify-content: center;"/>
 
         <h2>Megye:</h2>  
         <br> 
-        <Field name="field" as="select">
+        <Field name="state_id" v-model="state_id" as="select">
                 <option selected v-for="settlement in states" :key="settlement.id">{{ settlement.name }}</option>
         </Field>
       
 
         <h2>Kontakt Infó:</h2>  
         <br> 
-        <Field name="user_name" v-model="user_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <Field name="contact_info" v-model="contact_info" type="text" class="form-control mb-3" style="justify-content: center;"/>
         </Form> 
             </div>
     </div>
@@ -62,7 +62,7 @@
 
 <script>
 import {Form, Field} from 'vee-validate';
-    
+import axios from 'axios';    
 export default{
     name:'imageUpload',
         data(){
@@ -77,7 +77,17 @@ export default{
                genders:[
                 "Hím",
                 "Nőstény"
-               ]
+               ],
+                pet_name: '',
+                born: '',
+                species: '',
+                breed: '',
+                gender: '',
+                castrated: '',
+                img: '',
+                description: '',
+                state_id: '',
+                contact_info: ''
             }
         },
         methods:{
@@ -91,12 +101,33 @@ export default{
                 };
                 
             },
-            async getStates(){
-            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
-            this.states = response2.data
-            
-        }
-            
+                async getStates(){
+                const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
+                this.states = response2.data
+            },
+            async submitForm(){
+                const user_id = localStorage.getItem('user_id')
+                try{
+                        const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/user/newpet`,{
+                        user_id: user_id,
+                        pet_name: this.pet_name,
+                        born: this.born,
+                        breed:this.breed,
+                        species:this.species,
+                        gender:this.gender,
+                        castrated:this.castrated,
+                        img:this.img,
+                        description: this.description,
+                        state_id:this.state_id,
+                        contact_info:this.contact_info,
+                    })
+                    console.log(response.data)
+                }
+                
+                catch(error){
+                console.alert(error)
+                }
+            }
         },
         components:{
             Form,
@@ -104,7 +135,6 @@ export default{
         },
 
         mounted(){
-        
         this.getStates();
     }
         
