@@ -36,7 +36,7 @@
         <h2>kép feltöltése:</h2>  
         <div>
       <img src="pet_imgs/navbar.png" class="uploading-image" />
-      <input v-on:change="img"  type="file" accept="image/jpeg" @change=uploadImage>
+      <input @change="onFileChange"  type="file" accept="image/jpeg">
    </div>
         
         
@@ -95,18 +95,17 @@ export default{
             }
         },
         methods:{
-            uploadImage(e){
-                const image = e.target.files[0];
+            onFileChange(event){
+                var fileData =  event.target.files[0];
+                this.img=fileData.name;
                 const reader = new FileReader();
-                reader.readAsDataURL(image);
+                reader.readAsDataURL(fileData);
                 reader.onload = e =>{
                     this.previewImage = e.target.result;
                     console.log(this.previewImage);
-
-                };
-                return image.name
+                }
             },
-                async getStates(){
+            async getStates(){
                 const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
                 this.states = response2.data
             },
