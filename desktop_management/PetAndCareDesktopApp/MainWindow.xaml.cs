@@ -511,13 +511,7 @@ namespace PetAndCareDesktopApp
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     tempList.Add(tb.Text);
-                  //  MessageBox.Show(tb.Text);
                 }
-              //  tempList.Add(petBreedDogCB.SelectedIndex.ToString());
-   
-
-          
-
                 MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{2023 - Convert.ToInt32(tempList[2])}','{tempList[3]}','{tempList[4]}','{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
                 reader.Close();
@@ -561,23 +555,13 @@ namespace PetAndCareDesktopApp
                 }
                 await connection.CloseAsync();
                 List<string> tempList = new List<string>();
-                int temp;
                 await connection.OpenAsync();
                 foreach (TextBox tb in FindVisualChildren<TextBox>(this))
                 {
                     tempList.Add(tb.Text);
                 }
-
-                tempList.Add(petBreedCatCB.SelectedIndex.ToString());
-                if (tempList[4] == "True")
-                {
-                    temp = 1;
-                }
-                else
-                {
-                    temp = 0;
-                }
-                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{tempList[2]}','{tempList[3]}',{temp},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
+         
+                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{2023 - Convert.ToInt32(tempList[2])}','{tempList[3]}','{tempList[4]}','{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
 
                 reader.Close();
@@ -602,7 +586,6 @@ namespace PetAndCareDesktopApp
                     return;
                 }
             }
-
             if (adminSigned)
             {
                 using MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["PetsDB"].ConnectionString);
@@ -625,16 +608,7 @@ namespace PetAndCareDesktopApp
                     tempList.Add(tb.Text);
                 }
 
-                tempList.Add(petBreedOtherCB.SelectedIndex.ToString());
-                if (tempList[4] == "True")
-                {
-                    temp = 1;
-                }
-                else
-                {
-                    temp = 0;
-                }
-                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{tempList[2]}','{tempList[3]}',{temp},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{2023 - Convert.ToInt32(tempList[2])}','{tempList[3]}',{tempList[4]},'{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}','{DateTime.Now.ToString("yy-MM-dd")}','{DateTime.Now.ToString("yy-MM-dd")}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
 
                 reader.Close();
@@ -657,7 +631,6 @@ namespace PetAndCareDesktopApp
                     tb.Text = "";
             }
             PetBreedDogTB.Text = "kutya";
-          //  petBreedDogCB.SelectedIndex = 0;
             petDogIDTB.Text = "zárolt";
             PetDogSortCB.SelectedIndex = 0;
         }
@@ -669,7 +642,7 @@ namespace PetAndCareDesktopApp
                     tb.Text = "";
             }
             PetBreedCatTB.Text = "macska";
-            petBreedCatCB.SelectedIndex = 0;
+     
             petCatIDTB.Text = "zárolt";
             PetCatSortCB.SelectedIndex = 0;
         }
@@ -721,8 +694,6 @@ namespace PetAndCareDesktopApp
                     }
                     petDogDescriptionTB.Text = dogs[petDogCounter].Description;
                     PetBreedDogTB.Text = dogs[petDogCounter].Breed;
-                //    petDogContactInfoTB.Text = dogs[petDogCounter].ContactInfo;
-                    //petBreedDogCB.SelectedIndex = dogs[petDogCounter].PetBreedId;
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
@@ -778,8 +749,6 @@ namespace PetAndCareDesktopApp
                     }
                     petCatDescriptionTB.Text = cats[petCatCounter].Description;
                     PetBreedCatTB.Text = cats[petCatCounter].Breed;
-               //     petCatContactInfoTB.Text = cats[petCatCounter].ContactInfo;
-               //     petBreedCatCB.SelectedIndex = cats[petCatCounter].PetBreedId;
 
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
@@ -837,14 +806,11 @@ namespace PetAndCareDesktopApp
                     }
                     petOtherDescriptionTB.Text = otherpets[petOtherCounter].Description;
                     PetBreedOtherTB.Text = otherpets[petOtherCounter].Breed;
-               //     petOtherContactInfoTB.Text = otherpets[petOtherCounter].ContactInfo;
-               //     petBreedOtherCB.SelectedIndex = otherpets[petOtherCounter].PetBreedId;
 
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petOtherImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    //  showCatImg.Width = Width / 3;
                     showOtherImg.Source = bmp;
                 }
                 catch (PetException ex)
@@ -1057,14 +1023,11 @@ namespace PetAndCareDesktopApp
                     }
                     petDogDescriptionTB.Text = dogs[PetDogSortCB.SelectedIndex].Description;
                     PetBreedDogTB.Text = dogs[PetDogSortCB.SelectedIndex].Breed;
-              //      petDogContactInfoTB.Text = dogs[PetDogSortCB.SelectedIndex].ContactInfo;
-                    //petBreedDogCB.SelectedIndex = dogs[PetDogSortCB.SelectedIndex].PetBreedId;
 
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-              //      showDogImg.Width = Width / 3;
                     showDogImg.Source = bmp;
                 }
             }
@@ -1093,15 +1056,10 @@ namespace PetAndCareDesktopApp
                     }
                     petCatDescriptionTB.Text = cats[PetCatSortCB.SelectedIndex].Description;
                     PetBreedCatTB.Text = cats[PetCatSortCB.SelectedIndex].Breed;
-            //        petCatContactInfoTB.Text = cats[PetCatSortCB.SelectedIndex].ContactInfo;
-            //        petBreedCatCB.SelectedIndex = cats[PetCatSortCB.SelectedIndex].PetBreedId;
-
-
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petCatImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-             //       showCatImg.Width = Width / 3;
                     showCatImg.Source = bmp;
 
                 }
@@ -1132,15 +1090,10 @@ namespace PetAndCareDesktopApp
                     }
                     petOtherDescriptionTB.Text = otherpets[PetOtherSortCB.SelectedIndex].Description;
                     PetBreedOtherTB.Text = otherpets[PetOtherSortCB.SelectedIndex].Breed;
-                 //   petOtherContactInfoTB.Text = otherpets[PetOtherSortCB.SelectedIndex].ContactInfo;
-                  //  petBreedOtherCB.SelectedIndex = otherpets[PetOtherSortCB.SelectedIndex].PetBreedId;
-
-
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petOtherImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    
                     showOtherImg.Source = bmp;
 
                 }
