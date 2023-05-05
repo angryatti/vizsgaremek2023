@@ -40,13 +40,14 @@ import { router } from '../router';
   const submitForm = async() =>{
     submitting.value = true
     errors.value = {}
-    try{
-    var response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
+    const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,
       password:password.value,
       
     })
-    console.log(response);
+    try{
+    
+    
     localStorage.setItem('user_info',response.data.data.token)
     localStorage.setItem('logged_in',true)
     localStorage.setItem('user_id',response.data.data.user_id)
@@ -57,7 +58,8 @@ import { router } from '../router';
     submitting = false
     
 }
-    catch(response){
+    catch{
+      
       if(response.data.success === false){
         alert(response.data.message)
         submitting = false
