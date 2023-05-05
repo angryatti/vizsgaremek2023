@@ -16,39 +16,16 @@
                             <span></span>
                         </div>
                         <p class="lead">{{ pet.description }}</p>
-                        <h3>Kapcsolat:</h3>
-                        <h5>Feladó nevei: {{ user.full_name }}</h5>
-                        <p class="lead">{{ user.email }}</p>
-                        <p class="lead">{{ user.phone_number }}</p>
-                        <p class="lead">{{ allat.contact_info }}</p>
-                        <p class="lead">Feladva: {{ state.name }} megyében</p>
-                        <div class="d-flex">
+                        
+                        <div>
 
-
-
-                             <div v-if="logged===false">
-                                <p>be kell jelentkezni az örökbefogadáshoz!</p>
-                            </div>
-                            <div v-else>
-                                <router-link 
-                                to="/allat/:id/adoption"
-                                custom
-                                v-slot="{ navigate }"
-                                
-                                >
-                                <button class="btn btn-outline-dark flex-shrink-0" type="button"
-                                    @click="navigate"
-                                    role="link"
-                                >
-                                    Jelentkezés Örökbefogadásra
-                                </button>
-                                </router-link>
-                            </div>
-
+                            
+                            <router-link v-if="logged='true'" :kisallat="pet" :to="'/allat/'+pet.id + '/adoption'" class="btn btn-outline-dark" style="width: 75%;">örökbefogadás</router-link>
                            
-                            <!-- logged ertek ellenorzese. Nem mukodik! neha ezt adja , neha azt ugy hogy bejelentkezve maradok -->
-                            <h1 v-if="logged===false">asd</h1>
-                            <h1 v-else>fgh</h1>
+                             
+                            
+                           
+                            
 
                             
                         
@@ -86,20 +63,11 @@ export default{
 
     },
     methods:{
-        async userdata(){
-            var logged_in = localStorage.getItem('logged_in')
-            var logged = false
-            if (logged_in === null){
-             logged = false
-
-            }
-            else{
-                logged = true
-                const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
-              this.user = response.data
-
-            }
-            console.log(logged_in)
+        async getUserInfo(){
+            this.user_token = localStorage.getItem('user_info')
+            const logged = localStorage.getItem('logged_in')
+            console.log(logged)
+            
         },
         
         async fetchData(){
@@ -120,7 +88,7 @@ export default{
     },
     mounted(){
         this.fetchData(),
-        this.userdata()
+        this.getUserInfo()
     }
 }
 </script>

@@ -43,6 +43,7 @@ export default{
             console.log(logged)
             if(logged===null){
                 alert('Hahó, te itt nem lehetsz, először jelentkezz be!!!!!!!!!!!!')
+                location.replace(`#/belepes`);
             }
             else{
               const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/user`,{token:this.user_token})
