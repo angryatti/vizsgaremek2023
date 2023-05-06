@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="box">
 
         <div class="container text-center">
@@ -13,7 +14,7 @@
         </div>
                         
     </div>
-    
+    </div>
 </template>
 <script>
 import axios from 'axios'

@@ -1,4 +1,5 @@
 <template>
+  
     <div class="d-flex flex-column w-100">
         <ul class="nav d-block mb-auto">
             <li class="nav-item">
@@ -48,12 +49,9 @@ span{
 }
 
 .sidebar {
-    position: absolute;
+    
     padding: 20px;
-    display: block;
-    height: 30%;
-    border-radius: 50px;
-    background-color: #3E1600;
+    min-width: fit-content;
 }
 .content {
     position: absolute;

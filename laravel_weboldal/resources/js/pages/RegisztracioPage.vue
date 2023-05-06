@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="box">
         <div class="container bg-primary bg-opacity-25">              
             <div class="row"> 
@@ -23,6 +24,7 @@
                 </div>        
               </div>
             </div>
+        </div>
         </div>
 </template>
   

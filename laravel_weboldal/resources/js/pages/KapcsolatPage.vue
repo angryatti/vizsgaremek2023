@@ -1,6 +1,6 @@
 <template>
 
-    
+<div>
     <div class="box">
         <div class="container">
             <div class="row">
@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>

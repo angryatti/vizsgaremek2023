@@ -1,6 +1,6 @@
 <template>
 
-    
+    <div>
     <div class="box">
         <div class="container">
             <div class="row">
@@ -16,6 +16,7 @@ Továbbá egy kérdéssor megválaszolásával és annak megerősítésével egy
             </div>
         </div>
         
+    </div>
     </div>
 </template>
 
