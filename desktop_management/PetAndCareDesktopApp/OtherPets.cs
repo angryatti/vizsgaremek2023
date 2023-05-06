@@ -8,7 +8,7 @@ namespace PetAndCareDesktopApp
 {
     public class OtherPets : Pet
     {
-        public OtherPets(int iD, string petName,int age, string breed, int petbreedid, string gender, bool castrated, string imgUserDefine, string description) : base(iD,  petName, age, breed, petbreedid, gender, castrated, imgUserDefine, description) 
+        public OtherPets(int iD, string petName,int age, string breed, string petbreed, string gender, bool castrated, string imgUserDefine, string description) : base(iD,  petName, age, breed, petbreed, gender, castrated, imgUserDefine, description) 
         {
         }
     }

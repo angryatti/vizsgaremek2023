@@ -8,8 +8,8 @@ namespace PetAndCareDesktopApp
 {
     class Cat : Pet
     {
-        public Cat(int iD, string petName, int age,string breed, int petbreedid, string gender, bool castrated, string imgUserDefine, string description) :
-            base(iD, petName, age, breed, petbreedid, gender, castrated, imgUserDefine, description)
+        public Cat(int iD, string petName, int age,string breed, string petbreed, string gender, bool castrated, string imgUserDefine, string description) :
+            base(iD, petName, age, breed, petbreed, gender, castrated, imgUserDefine, description)
         {
         }
     }

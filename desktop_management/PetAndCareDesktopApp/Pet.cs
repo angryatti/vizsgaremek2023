@@ -16,13 +16,13 @@ namespace PetAndCareDesktopApp
         }
 
 
-        public Pet(int iD, string petName, int age, string breed, int petbreedid, string gender, bool castrated, string imgUserDefine, string description)
+        public Pet(int iD, string petName, int age, string breed, string petbreed, string gender, bool castrated, string imgUserDefine, string description)
         {
             ID = iD;
             PetName = petName;
             Age = age;
             Breed = breed;
-            PetBreedId = petbreedid;
+            PetBreed = petbreed;
             Gender = gender;
             Castrated = castrated;
             ImgUserDefine = imgUserDefine;
@@ -40,13 +40,7 @@ namespace PetAndCareDesktopApp
         public string ImgUserDefine { get; set; }
         public string Description { get; set; }
 
-        public string ContactInfo { get; set; }
-
-        public int PetBreedId { get; set; }
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
+        public string PetBreed { get; set; }
 
 
     }
