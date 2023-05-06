@@ -80,6 +80,9 @@ mounted(){
     p{
         text-align: justify;
         margin: 2px;
+        height: 100%;
+        overflow: scroll;
+        scroll-margin-left: 1px;
     }
 </style>
 
