@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ImageUploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StateController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::get('/allat/{id}/adoption',[PetController::class,'adoption']);
 Route::get('/user/{id}',[PetController::class,'userpets']);
 Route::get('/states',[StateController::class,'showall']);
 Route::post('/user/newpet',[PetController::class,'newpet']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request){
     return $request->user();
 });
