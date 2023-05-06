@@ -22,6 +22,14 @@ class ImageUploadController extends Controller
                 return redirect()->back()->with('message','Fájl feltöltve.');
             }
         }
-     //   return view('layouts.upload');
+    }
+
+    public function uploadFrontend(Request $request)
+    {
+        $validated = $request->validate([
+            'image' => 'required|image|max:2048', // max size of 2MB
+        ]);
+        $path = $request->file('image')->store('public/pet_imgs');
+        return ['path' => asset($path)];
     }
 }

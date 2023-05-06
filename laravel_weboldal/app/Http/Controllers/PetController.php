@@ -6,6 +6,8 @@ use App\Http\Requests\StorePetRequest;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Advert;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PetController extends Controller
 {
@@ -70,6 +72,8 @@ class PetController extends Controller
     }
 
     public function newpet(StorePetRequest $request){
+
+        Log::debug($request);
         $validated = $request->validated();
 
         $pet = Pet::create([
@@ -88,6 +92,9 @@ class PetController extends Controller
             'pet_id' => $pet['id'],
             'user_id' => $validated['user_id'],
         ]);
+        $image = $request->file('imagepreview');
+        $imagename = $pet->img_userdefine;
+         $image->storeAs('public/pet_imgs',$imagename);
 
         $success['pet'] = $pet;
         $success['advert'] = $advert;

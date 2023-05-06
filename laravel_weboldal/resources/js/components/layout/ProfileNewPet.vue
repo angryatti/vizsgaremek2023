@@ -36,7 +36,7 @@
         <h2>kép feltöltése:</h2>  
         <div>
       <img src="pet_imgs/navbar.png" class="uploading-image" />
-      <input @change="onFileChange"  type="file" accept="image/jpeg">
+      <input @change="onFileChange"   type="file" accept="image/jpeg,image/png,image/gif">
    </div>
         
         
@@ -71,7 +71,6 @@ export default{
     name:'imageUpload',
         data(){
             return{
-               previewImage:null,
                states: [],
                pets:[
                 "kutya",
@@ -82,6 +81,7 @@ export default{
                 "Hím",
                 "Nőstény"
                ],
+                file:{},
                 pet_name: '',
                 born: '',
                 species: '',
@@ -96,14 +96,14 @@ export default{
         },
         methods:{
             onFileChange(event){
-                var fileData =  event.target.files[0];
-                this.img=fileData.name;
+                this.file =  event.target.files[0];
+                this.img=this.file.name;
                 const reader = new FileReader();
-                reader.readAsDataURL(fileData);
+                reader.readAsDataURL(this.file);
                 reader.onload = e =>{
                     this.previewImage = e.target.result;
-                    console.log(this.previewImage);
                 }
+                console.log(this.file)
             },
             async getStates(){
                 const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
@@ -111,27 +111,35 @@ export default{
             },
             async submitForm(){
                 const user_id = localStorage.getItem('user_id')
-                try{
-                        const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/user/newpet`,{
-                        user_id: user_id,
-                        pet_name: this.pet_name,
-                        born: this.born,
-                        breed:this.breed,
-                        species:this.species,
-                        gender:this.gender,
-                        castrated:this.castrated,
-                        img: this.img,
-                        description: this.description,
-                        state_id:this.state_id,
-                        contact_info:this.contact_info,
-                    })
+                const formData = new FormData();
+      
+                formData.append('user_id', user_id);
+                formData.append('pet_name', this.pet_name);
+                formData.append('born', this.born);
+                formData.append('breed', this.breed);
+                formData.append('species', this.species);
+                formData.append('gender', this.gender);
+                formData.append('castrated', this.castrated);
+                formData.append('description', this.description);
+                formData.append('state_id', this.state_id);
+                formData.append('contact_info', this.contact_info);
+                formData.append('img', this.img);
+                formData.append('imagepreview',this.file)
+
+                try {
+                    const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/user/newpet`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                    });
                     console.log(response.data)
+                    alert(response.data.message)
                 }
                 
                 catch(error){
                 console.warn(error)
                 }
-            }
+            },
         },
         components:{
             Form,
