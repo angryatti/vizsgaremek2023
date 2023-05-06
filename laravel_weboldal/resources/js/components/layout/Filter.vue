@@ -9,8 +9,7 @@
   <thead>
     <tr>
       
-      <th class="fs-3" scope="col" style="text-decoration: underline;">Ivar</th>
-      <th class="fs-3" scope="col" style="text-decoration: underline;">Termet</th>
+      <th class="fs-3" scope="col" style="text-decoration: underline;">Nem</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Kor</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;">Helyszín</th>
       <th class="fs-3" scope="col" style="text-decoration: underline;"></th>
@@ -23,16 +22,7 @@
   
   
 </div></th>
-      
-
-      <td><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    kicsi
-  </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.kicsi" value="" id="flexCheckDefault">
-</div></td>
-      
+            
     </tr>
     <tr>
       
@@ -41,24 +31,17 @@
   <label class="form-check-label" for="flexCheckDefault">
     Hím
   </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.him" value="" id="flexCheckDefault">
-</div></td>
-      <td><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Közepes
-  </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.kozepes" value="" id="flexCheckDefault">
+  <input class="form-check-input" :value="gender[1]" type="checkbox" v-model="selectgender" id="flexCheckDefault">
 </div></td>
       <td>
-<input type="range" class="form-range" min="0" max="10" step="1" id="customRange3">
+<input type="range" v-model="age" class="form-range" min="0" :max="currentDate()-maxAge"  step="1" id="customRange3">
 </td>
 <td><div class="dropdown">
-  <select class="form-select" aria-label="Default select example">
-    <option selected v-for="settlement in states" :key="settlement.id">{{ settlement.name }}</option>
+  <select class="form-select" v-model="state_id" aria-label="Default select example">
+    <option selected v-for="settlement in states" :value="settlement.id" :key="settlement.id">{{ settlement.name }}</option>
 </select>
 </div></td>
-<td><button class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold; height:40pt; width:100px;">szűrés</button></td>
+<td><button @click="applyFilter" class="submit btn btn-primary" style="background-color: #B85B2F; font-weight: bold; height:40pt; width:100px;">szűrés</button></td>
     </tr>
     <tr>
       
@@ -67,16 +50,10 @@
   <label class="form-check-label" for="flexCheckDefault">
     Nőstény
   </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.nosteny" value="" id="flexCheckDefault">
+  <input class="form-check-input" type="checkbox" :value="gender[0]"  v-model="selectgender" id="flexCheckDefault">
 </div></td>
-      <td><div class="form-check">
-  
-  <label class="form-check-label" for="flexCheckDefault">
-    Nagy
-  </label>
-  <input class="form-check-input" type="checkbox"  v-model="values.nagy" value="" id="flexCheckDefault">
-</div></td>
-      <td><div class="d-flex justify-content-between"><span>0</span><span>10+</span> </div></td>
+      
+      <td><div class="d-flex justify-content-between"><span>0</span><span>{{ this.age }}</span>{{ currentDate()-maxAge }} </div></td>
     </tr>
   </tbody>
 </table>
@@ -87,35 +64,78 @@
 
 <script>
 export default{
-
+  props:{
+    pets: Array
+  },
   data(){
     return{
-        
       states: [],
-      values:{
-        kutya: false,
-        macska: false,
-        egyeb: false,
-        him: false,
-        nosteny: false,
-        kicsi: false,
-        kozepes: false,
-        nagy: false,
-        }
+      gender:['Nőstény','Hím'],
+      selectgender:[],
+      age:'',
+      state_id: ''
+      
     }
   },
+  computed:{
+    maxAge(){
+      var min = 2500
+          this.pets.forEach(pet => {
+           if(pet.pet.born < min){
+              min = pet.pet.born}
+          });
+          console.log(min)
+          return min;
+        }
+  },
   methods:{
-    submit(){
-      this.$emit("filter", this.values)
-    },
       async getStates(){
             const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
             this.states = response2.data
             console.log(this.states)
+            console.log(this.state_id)
+      },
+      applyFilter(){
+        let filtered = this.pets
+        if(this.selectgender.length > 0)
+        {
+          filtered = this.filterGender(filtered)
         }
+        if(this.age)
+        {
+          filtered = this.filterAge(filtered)
+        }
+        if(this.state_id)
+        {
+          filtered = this.filterState(filtered)
+        }
+        console.log(filtered)
+        this.$emit('filtered',filtered)
+        if(filtered.length === 0){alert('Ilyen állat nem létezik!')}
+      },
+      filterGender(pets){
+        return pets.filter((pet)=>{
+          return this.selectgender.includes(pet.pet.gender)
+        })
+      },
+      filterAge(pets){
+        console.log(this.age)
+        return pets.filter((pet)=>{
+          return   this.age >= (this.currentDate()-pet.pet.born)
+        })
+      },
+      filterState(pets){
+        return pets.filter((pet)=>{
+          return pet.state_id === this.state_id
+        })
+      },
+      currentDate() {
+        const current = new Date();
+        const date = `${current.getFullYear()}`;
+        return date;
+      }
     },
     mounted(){
-        
         this.getStates();
     }
   ,

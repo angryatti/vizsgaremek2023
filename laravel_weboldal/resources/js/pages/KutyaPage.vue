@@ -4,7 +4,7 @@
         <div class="container mb-3" style="background-color: #F5EDD8; border-radius: 50px;">
         <div class="row">
             <div class="col-12">   
-              <Filter @filter="(v)=>values=v"/>
+              <Filter :pets="dogs" @filtered="filtered = $event"/>
 </div>
         </div>
      </div>  
@@ -13,7 +13,9 @@
                 <div class="col-12 mt-3 mb-3">
                     <div class="card-group">
             <div class="row d-flex mx-auto text-center" style="gap: 20px; justify-content: center;"> 
-                <advert-card v-for="pet in dogs" :key="pet.id" :id="pet.id" :pet="pet"/>
+                <advert-card v-show="filtered.length===0" v-for="pet in dogs" :key="pet.id" :id="pet.id" :pet="pet"/>
+                <advert-card v-show="filtered.length>0" v-for="pet in filtered" :key="pet.id" :id="pet.id" :pet="pet"/>
+               
             </div>
         </div>
                 </div>
@@ -42,23 +44,19 @@ export default{
     data(){
         return{
             dogs: [],
-            states: []
+            filtered:[],
         }
     },
     methods:{
         async getDogs(){
             const response = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/dogs`)
             this.dogs = response.data
+            console.log(this.dogs)
+            console.log(this.filtered)
         },
-        async getStates(){
-            const response2 = await axios.get(`${import.meta.env.VITE_LARAVEL_URL}/api/states`)
-            this.states = response2.data
-            
-        }
     },
     mounted(){
         this.getDogs()
-        this.getStates();
     }
 }
 </script>
