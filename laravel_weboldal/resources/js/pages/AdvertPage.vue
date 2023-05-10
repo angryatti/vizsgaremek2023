@@ -99,8 +99,5 @@ export default{
 
 <style scoped>
     
-    .box #contents{
-        
-        overflow: scroll;
-    }
+   
 </style>

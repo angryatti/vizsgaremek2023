@@ -2,60 +2,70 @@
     <div>
                 <h1 class="text-center text-decoration-underline">Új állat feltöltése</h1>
         
-            <div>
-                <Form @submit="submitForm">
+            <div >
+                <Form @submit="submitForm" :validation-schema="schema">
 
         <h2>Állat neve:</h2>  
         <br> 
         <Field name="pet_name" v-model="pet_name" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <ErrorMessage name="pet_name" class="alert alert-danger" role="alert"/>
 
         <h2>Született:</h2>  
         <br> 
         <Field name="born" v-model="born" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <ErrorMessage name="born" class="alert alert-danger" role="alert"/>
 
         <h2>Állat:</h2>  
         <br> 
         <Field name="species" v-model="species" as="select">
             <option v-for="pet in pets" :value="pet" :key="pet" >{{ pet }}</option>
         </Field>
+        <ErrorMessage name="species" class="alert alert-danger" role="alert"/>
 
-        <h2>Fajta:</h2> 
+        <h2>Fajtak:</h2> 
         <br> 
         <Field name="breed" v-model="breed" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <ErrorMessage name="breed" class="alert alert-danger" role="alert"/>
 
         <h2>Neme:</h2>  
         <br> 
         <Field name="gender" v-model="gender" as="select">
             <option v-for="gender in genders" :value="gender" :key="gender">{{ gender }}</option>
         </Field>
+        <ErrorMessage name="gender" class="alert alert-danger" role="alert"/>
 
         <h2>Kasztált:
         
         <Field name="castrated" value="1" v-model="castrated" type="checkbox" /></h2> 
+        
 
         <h2>kép feltöltése:</h2>  
         <div>
       <img src="pet_imgs/navbar.png" class="uploading-image" />
-      <input @change="onFileChange"   type="file" accept="image/jpeg,image/png,image/gif">
+      <input @change="onFileChange"  name="image" type="file" accept="image/jpeg,image/png,image/gif">
+     
    </div>
-        
+   
         
 
         <h2>Leírás:</h2>  
         <br> 
         <Field name="description" v-model="description" type="text" class="form-control mb-3" style="justify-content: center;"/>
+        <ErrorMessage name="description" class="alert alert-danger" role="alert"/>
 
         <h2>Megye:</h2>  
         <br> 
         <Field name="state_id" v-model="state_id" as="select">
                 <option selected v-for="settlement in states" :value="settlement.id" :key="settlement.id">{{ settlement.name }}</option>
         </Field>
-      
+        <ErrorMessage name="state_id" class="alert alert-danger" role="alert"/>
+
 
         <h2 data-bs-toggle="tooltip" data-bs-placement="top" title="segítség: Mikor keressenek,
                pontosabb cím meghatározás">Kontakt Infó:</h2>  
         <br> 
         <Field name="contact_info" v-model="contact_info" type="text" class="form-control mb-3 pb-5"  style="justify-content: center;"/>
+        <ErrorMessage name="contact_info" class="alert alert-danger" role="alert"/>
 
         <button type="submit" class="btn btn-custom d-block w-100 p-3 mx-auto mt-3 fs-4">Feltöltés</button>
 
@@ -65,8 +75,17 @@
 </template>
 
 <script>
-import {Form, Field} from 'vee-validate';
-import axios from 'axios';    
+import {Form, Field, ErrorMessage } from 'vee-validate';
+import axios from 'axios';   
+
+
+import * as yup from 'yup';
+
+  
+  
+
+
+
 export default{
     name:'imageUpload',
         data(){
@@ -91,10 +110,42 @@ export default{
                 img: '',
                 description: '',
                 state_id: '',
-                contact_info: ''
+                contact_info: '',
+
+                required: "kötelező kitölteni!",
+                select: "válasszon a lehetőségek közül!",
+                number: "csak szám lehet!",
+                string: "csak szöveg lehet!"
             }
         },
+        components:{
+            Form,
+            Field,
+            ErrorMessage
+        },
+        computed:
+        {
+            schema(){
+
+            return yup.object({
+            pet_name: yup.string().required(this.required).matches(/^[a-zA-ZöÖüÜóÓőŐúÚűŰáÁéÉ]*$/, this.string),
+            born: yup.string().matches(/^[0-9]+$/, this.number).required("kötelező kitölteni!"),
+            species: yup.string().required(this.select),
+            breed: yup.string().required(this.required),
+            gender: yup.string().required(this.required),
+            description: yup.string().required(this.required),
+            state_id: yup.string().required(this.select),
+            contact_info: yup.string().required(this.required),
+
+            
+    
+    
+           
+  })},   
+        },
         methods:{
+         
+
             onFileChange(event){
                 this.file =  event.target.files[0];
                 this.img=this.file.name;
@@ -141,10 +192,8 @@ export default{
                 }
             },
         },
-        components:{
-            Form,
-            Field
-        },
+        
+        
 
         mounted(){
         this.getStates();
@@ -170,6 +219,11 @@ button{
 button:hover{
     background-color: #198754;
     color: white;
+    
+}
+.alert{
+    display: block;
+   text-align: center;
     
 }
 </style>
