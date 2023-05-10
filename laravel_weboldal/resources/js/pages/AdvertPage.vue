@@ -8,11 +8,13 @@
                     <div class="col-md-6" id="contents">
                         <h1 class="display-5 fw-bolder">{{ pet.pet_name }}</h1>
                         <div class="medium mb-1">Faj: {{ pet.species }}</div>
-                        <div class="medium mb-1">Fajta (ide petbreed)</div>
+                        <div class="medium mb-1">Fajta: {{pet.breed}}</div>
+                        <div class="medium mb-1">Neme: {{pet.gender}}</div>
                      <!--   <div class="medium mb-1">Született {{pet.born}}</div>-->
                         <div>{{ currentDate()-pet.born }} éves</div>
                         <div class="medium mb-1" v-if="pet.castrated===1">Ivartalanított</div>
                         <div class="medium mb-1" v-else>Nincs Ivartalanítva</div>
+                        <div class="medium mb-1"> {{state.name}} vármegye</div>
                         <div class="fs-5 mb-5">
                             <span></span>
                         </div>
@@ -21,7 +23,7 @@
                         <div>
 
                             
-                            <router-link v-if="logged='true'" :kisallat="pet" :to="'/allat/'+pet.id + '/adoption'" class="btn btn-outline-dark" style="width: 75%;">örökbefogadás</router-link>
+                            <router-link v-if="logged==='true'" :kisallat="pet" :to="'/allat/'+pet.id + '/adoption'" class="btn btn-outline-dark" style="width: 75%;">örökbefogadás</router-link>
                            
                              
                             
@@ -58,7 +60,7 @@ export default{
         pet: {},
         user:{},
         state:{},
-        
+        logged:"",
         user_token : null,
         data : {},
     }
@@ -69,8 +71,7 @@ export default{
     methods:{
         async getUserInfo(){
             this.user_token = localStorage.getItem('user_info')
-            const logged = localStorage.getItem('logged_in')
-            console.log(logged)
+            this.logged = localStorage.getItem('logged_in')
             
         },
         
