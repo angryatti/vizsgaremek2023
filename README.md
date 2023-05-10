@@ -22,6 +22,21 @@ chmod u+x laravel_weboldal/start.sh
 cd laravel_weboldal && ./start.sh
 ```
 
+## Linux alatt: ##
+```
+Tesztkörnyezet: 
+Debian GNU/Linux 11 (bullseye) @ 5.10.0-19 amd64 kernel
+Docker version 20.10.5
+docker-compose version 1.25.0,
+```
+
+```
+Esetenként az inotify érték megemelése szükséges lehet
+```
+```
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
 **Esetenként előfordulhat, hogy a ./start_win.sh-t kell használni**
 ```
 cd laravel_weboldal && ./start_win.sh

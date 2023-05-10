@@ -174,10 +174,11 @@
                     <Label Grid.Column="0" Grid.Row="0" x:Name="PetCatNameLB" Content="Kisállat neve:" />
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="petCatNameTB" TextWrapping="Wrap" Text="kisállat" ForceCursor="True" />
                     <Label Grid.Column="2" Grid.Row="2" x:Name="PetBreedCatLB" Content="Macska Fajtája:" />
-                    <Label Grid.Column="3" Grid.Row="4"  x:Name="PetBreedCatLBNOSEE" Content="macska?" Visibility="Hidden"/>
+                    <Label Grid.Column="3" Grid.Row="4"  x:Name="PetBreedCatLBNOSEE" Content="macska" Visibility="Hidden"/>
                     <Label Grid.Column="2" Grid.Row="1" x:Name="PetCatAgeLB" Content="Életkor:" />
                     <TextBox Grid.Column="3" Grid.Row="1" x:Name="petCatAgeTB" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="kor" ForceCursor="True" />
                     <TextBox Grid.Column="2" Grid.Row="4" x:Name="PetBreedCatTB" IsReadOnly="True" Visibility="Hidden" />
+                    <TextBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" x:Name="petBreedCatTB"  ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="1" x:Name="PetCatGenderLB" Content="Ivar:"/>
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="petCatGenderTB" TextWrapping="Wrap" Text="ivar" ForceCursor="True" />
                     <Label Grid.Column="0" Grid.Row="2" x:Name="PetCatCastratedLB" Content="Kasztrált:"/>
@@ -189,7 +190,7 @@
                     <Label Grid.Column="0" Grid.Row="5" x:Name="PetCatContactInfoLB" Content="Gazda elérhetősége: " />
                     <TextBox Grid.Column="1" Grid.Row="5" x:Name="petCatContactInfoTB" TextWrapping="Wrap" Text="Kapcsolat" ForceCursor="True" />
                     <Label Grid.Column="2" Grid.Row="7" Content="Kép előnézet:"/>
-                    <TextBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" x:Name="petBreedCatTB"  ForceCursor="True" />
+              
                     <Image Grid.Column="3" Grid.Row="7"  Grid.RowSpan="3" x:Name="showCatImg" HorizontalAlignment="Right"/>
 
                     <Button Grid.Column="1" Grid.Row="6" x:Name="nextCatPetBT" Background="CornflowerBlue" Click="nextCatPetBT_Click">Következő kisállat</Button>

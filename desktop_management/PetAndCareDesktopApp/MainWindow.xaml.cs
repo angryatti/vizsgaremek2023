@@ -166,14 +166,11 @@ namespace PetAndCareDesktopApp
                     }
                     petDogDescriptionTB.Text = dogs[petDogCounter].Description;
                     PetBreedDogTB.Text = dogs[petDogCounter].Breed;
-              //      petDogContactInfoTB.Text = dogs[petDogCounter].ContactInfo;
-                  //  petBreedDogTB.Text = dogs[petDogCounter].PetBreedId;
                     PetDogSortCB.SelectedValue = petDogNameTB.Text;
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petDogImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                    //showDogImg.Width = 200;
                     showDogImg.Source = bmp;
                 }
                 catch (PetException ex)
@@ -228,14 +225,11 @@ namespace PetAndCareDesktopApp
 
                     petCatDescriptionTB.Text = cats[petCatCounter].Description;
                     PetBreedCatTB.Text = cats[petCatCounter].Breed;
-                 //   petCatContactInfoTB.Text = cats[petCatCounter].ContactInfo;
-                  //  petBreedCatCB.SelectedIndex = cats[petCatCounter].PetBreedId;
 
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
                     bmp.UriSource = new Uri("http://localhost:" + portNumber + "/pet_imgs/" + petCatImgUserDefineTB.Text, UriKind.Absolute);
                     bmp.EndInit();
-                  //  showCatImg.Width = 200;
                     showCatImg.Source = bmp;
 
                 }
@@ -333,7 +327,6 @@ namespace PetAndCareDesktopApp
                     reader.Close();
                     columnIndex++;
                 }
-               // temp = petBreedDogCB.SelectedIndex.ToString();
 
                 MySqlCommand command_cb = new MySqlCommand($"UPDATE pets SET `petbreed_id` =  '{Convert.ToInt32(temp)}' where id = {dogs[petDogCounter].ID - 1};", connection);
                 DbDataReader reader_cb = await command_cb.ExecuteReaderAsync();
@@ -552,6 +545,8 @@ namespace PetAndCareDesktopApp
                 while (await reader_first.ReadAsync())
                 {
                     arrayOfcolumns.Add(reader_first.GetString(0));
+
+                    MessageBox.Show(reader_first.GetString(0));
                 }
                 await connection.CloseAsync();
                 List<string> tempList = new List<string>();
@@ -560,7 +555,6 @@ namespace PetAndCareDesktopApp
                 {
                     tempList.Add(tb.Text);
                 }
-         
                 MySqlCommand command = new MySqlCommand($"INSERT INTO pets VALUES (NULL,'{tempList[1]}','{2023 - Convert.ToInt32(tempList[2])}','{tempList[3]}','{tempList[4]}','{tempList[5]}','{tempList[6]}','{tempList[7]}','{tempList[8].ToString()}');", connection);
                 DbDataReader reader = await command.ExecuteReaderAsync();
 
