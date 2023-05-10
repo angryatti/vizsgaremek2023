@@ -23,7 +23,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "dog.jpg",
             'description' => "A kiskutya két hete született, jövő héten elvihető.",
-            'breed' => 1,
+            'breed' => 'Németjuhász',
         ]);
 
  DB::table('pets')->insert([
@@ -34,14 +34,14 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "dog.jpg",
             'description' => "A kiskutya két hete született, jövő héten nagy eséllyel elvihető.",
-            'breed' => 31,
+            'breed' => "Keverék",
         ]);
     
         DB::table('pets')->insert([
             'pet_name' => 'Pannus',
             'born' => 2012,
             'species' => 'kutya', //nem listázott érték / unlisted,
-            'breed' => 5,
+            'breed' => "Szamojéd",
             'gender' => 'Nőstény',
             'castrated' => true,
             'img_userdefine' => "dog.jpg",
@@ -57,7 +57,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
             'img_userdefine' => "dog.jpg",
             'description' => "A kislány kutya két hónapja született, ivartalanított, azonnal elvihető.",
-            'breed' => 1,
+            'breed' => "Francia bulldog",
         ]);
 
         DB::table('pets')->insert([
@@ -68,7 +68,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
             'img_userdefine' => "dog.jpg",
             'description' => "A kiskutya három hete született, ivartalanított, jövő héten elvihető.",
-            'breed' => 12
+            'breed' => "Alaszkai malamut"
         ]);
 
 
@@ -80,7 +80,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => true,
             'img_userdefine' => "cat.jpg",
             'description' => "Háromhetes. A cica ivartalanított és féregtelenítve!",
-            'breed' => 12,
+            'breed' => "Maine Coon",
         ]);
 
         DB::table('pets')->insert([
@@ -91,7 +91,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "cat.jpg",
             'description' => "Kéthetes, jövő héten elvíhető, féregtelenítve!",
-            'breed' => 35
+            'breed' => "Amerikai drótszőrű"
           ]);
 
         DB::table('pets')->insert([
@@ -102,7 +102,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "cat.jpg",
             'description' => "Négyhetes, jövő héten elvíhető, féregtelenítve!",
-            'breed' => 5
+            'breed' => "Bengáli"
           ]);
 
         DB::table('pets')->insert([
@@ -113,7 +113,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "cat.jpg",
             'description' => "Háromhetes, jövő héten elvíhető, féregtelenítve!",
-            'breed' => 55
+            'breed' => "Brit rövidszőrű"
           ]);
 
 
@@ -126,7 +126,7 @@ class DatabasePetSeeder extends Seeder
             'castrated' => false,
             'img_userdefine' => "others.jpg",
             'description' => "Háromhetes, jövő héten elvíhető",
-            'breed' => 55
+            'breed' => "Egér"
           ]);
           
         
