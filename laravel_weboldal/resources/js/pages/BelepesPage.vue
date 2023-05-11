@@ -38,7 +38,7 @@ import { router } from '../router';
   const errors = ref({})
 
   const submitForm = async() =>{
-    submitting.value = true
+    submitting.value = true,
     errors.value = {}
     const response = await axios.post(`${import.meta.env.VITE_LARAVEL_URL}/api/login`,{
       email:email.value,

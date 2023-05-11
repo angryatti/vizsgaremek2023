@@ -8,8 +8,8 @@
                     <h1 class="text-center">Kapcsolat</h1>
                     <p class="fs-3">Ha bármilyen hibát tapasztal , vagy esetleg személyes kérdése lenne az oldallal kapcsolatban
                     vegye fel velünk a kapcsolatot!</p>
-                    <p class="fs-3">Telefon: <a href="#">06-xx-xxx-xxxx</a></p>
-                    <p class="fs-3">E-mail: <a href="#"> Xyz@xmail.com</a></p>
+                    <p class="fs-3 text">Telefon: <a href="#">+36-345-6789</a></p>
+                    <p class="fs-3">E-mail: <a href="#" class=""> Pet&Care@Contact.com</a></p>
                 </div>
             </div>
         </div>
@@ -25,9 +25,14 @@
         background-color: #3E1600;
         color: white;
         border-radius: 50px;
+        padding: 1rem;
     }
     h1{
         text-decoration: underline;
     }
+    a{
+        padding-left: 10px;
+    }
+    
     
 </style>
