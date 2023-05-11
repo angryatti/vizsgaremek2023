@@ -37,9 +37,17 @@ Esetenként az inotify érték megemelése szükséges lehet
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
-**Esetenként előfordulhat, hogy a ./start_win.sh-t kell használni**
+**Windows alatt esetenként előfordulhat, hogy a ./start_win.sh-t kell használni**
 ```
 cd laravel_weboldal && ./start_win.sh
+```
+
+**Előre regisztrált teszt felhasználó:**
+```
+E-mailcím: proba1@proba.hu
+```
+```
+Jelszó: proba123
 ```
 
 ## A C# Admin felület .start.sh nélkül is működésre bírható, de nem működik adatbázis kapcsolat nélkül a lényeges funkciói
