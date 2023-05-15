@@ -51,6 +51,19 @@ Jelszó: proba123
 ```
 
 ## A C# Admin felület .start.sh nélkül is működésre bírható, de nem működik adatbázis kapcsolat nélkül a lényeges funkciói
+```
+App.config fájlt igazítani kell az .env (.env-example) fájlhoz (alapértelmezett értékek):
+
+
+	<connectionStrings>
+		<add name="PetsDB" connectionString="Server=localhost;Port=33061;Database=laravel;User ID=root;Password=root_password;"/>
+	</connectionStrings>
+
+```
+
+```
+C# alkalmazáshoz a bejelentkezési adatok: A (mysql connect) felhasználónév a root és a jelszó: root_password 
+```
 
 Amennyiben nem lenne git a gépünkön telepítve, az előbbi műveletet docker segítségével is megtehetjük:
 
